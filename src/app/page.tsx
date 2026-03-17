@@ -304,33 +304,66 @@ function HeroSection({ onStart }: { onStart: () => void }) {
 function AccreditationSection() {
   const { ref, visible } = useInView();
   return (
-    <section ref={ref} className="py-16 sm:py-20 px-4 sm:px-6 bg-surface relative">
+    <section ref={ref} className="py-16 sm:py-24 px-4 sm:px-6 bg-surface relative">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-      <div className={`max-w-4xl mx-auto ${visible ? "animate-fade-in-up" : "opacity-0"}`}>
+      <div className={`max-w-5xl mx-auto ${visible ? "animate-fade-in-up" : "opacity-0"}`}>
         <div className="text-center mb-10">
           <span className="text-xs uppercase tracking-[0.25em] text-primary font-semibold mb-3 block">Acreditare oficială</span>
           <h2 className="text-2xl sm:text-3xl font-bold mb-4">Consultant Nutriție Generală certificat</h2>
+          <p className="text-muted max-w-md mx-auto text-sm">Acreditare eliberată de AIPNSF — Asociația Internațională de Psihologie, Nutriție, Sport și Fitness.</p>
         </div>
 
-        <div className="bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200/50 rounded-3xl p-8 sm:p-10 max-w-2xl mx-auto">
-          <div className="text-center">
-            <p className="text-xs uppercase tracking-[0.2em] text-amber-700/70 font-semibold mb-4">Asociația Internațională de Psihologie, Nutriție, Sport și Fitness</p>
-            <div className="w-16 h-px bg-amber-400 mx-auto mb-4" />
-            <h3 className="text-2xl sm:text-3xl font-bold text-amber-900 mb-2">Aviz Liberă Practică</h3>
-            <p className="text-sm text-amber-700/80 mb-6">Reg. Unic · Serie NG · Număr 598</p>
+        <div className="grid md:grid-cols-2 gap-8 items-center max-w-4xl mx-auto">
+          {/* Real certificate image */}
+          <div className="relative">
+            <div className="absolute -inset-3 bg-gradient-to-br from-amber-100/50 to-orange-100/50 rounded-[2rem] blur-sm" />
+            <div className="relative rounded-2xl overflow-hidden shadow-xl border-2 border-amber-200/30">
+              <Image src="/images/aviz-certificate.jpg" alt="Aviz Liberă Practică — Doboș Dumitrița — Consultant Nutriție Generală — AIPNSF 2025" width={540} height={960} className="w-full h-auto" unoptimized />
+            </div>
+          </div>
 
-            <div className="bg-white/60 rounded-2xl p-5 mb-6">
-              <p className="text-lg font-semibold text-amber-900">Doboș Dumitrița</p>
-              <p className="text-sm text-amber-700 mt-1">Domeniul de acreditare:</p>
-              <p className="text-base font-bold text-amber-800 mt-0.5">Consultant Nutriție Generală</p>
+          {/* Certificate details */}
+          <div className="space-y-6">
+            <div className="bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200/40 rounded-2xl p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-2xl">🏅</span>
+                <div>
+                  <h3 className="font-bold text-amber-900">Aviz Liberă Practică</h3>
+                  <p className="text-xs text-amber-700/70">Reg. Unic · Serie NG · Nr. 598</p>
+                </div>
+              </div>
+              <div className="space-y-2.5 text-sm">
+                <div className="flex justify-between py-2 border-b border-amber-200/30">
+                  <span className="text-amber-700/80">Nume</span>
+                  <span className="font-semibold text-amber-900">Doboș Dumitrița</span>
+                </div>
+                <div className="flex justify-between py-2 border-b border-amber-200/30">
+                  <span className="text-amber-700/80">Domeniu</span>
+                  <span className="font-semibold text-amber-900">Consultant Nutriție Generală</span>
+                </div>
+                <div className="flex justify-between py-2 border-b border-amber-200/30">
+                  <span className="text-amber-700/80">Emis de</span>
+                  <span className="font-semibold text-amber-900">AIPNSF</span>
+                </div>
+                <div className="flex justify-between py-2 border-b border-amber-200/30">
+                  <span className="text-amber-700/80">Președinte</span>
+                  <span className="font-semibold text-amber-900">Iulian Dinu</span>
+                </div>
+                <div className="flex justify-between py-2">
+                  <span className="text-amber-700/80">An</span>
+                  <span className="font-semibold text-amber-900">2025</span>
+                </div>
+              </div>
             </div>
 
-            <div className="flex items-center justify-center gap-6 text-xs text-amber-700/70">
-              <span>Președinte: Iulian Dinu</span>
-              <span>·</span>
-              <span>AIPNSF</span>
-              <span>·</span>
-              <span>2025</span>
+            <div className="bg-primary-50 border border-primary/10 rounded-2xl p-5">
+              <div className="flex items-center gap-3 mb-3">
+                <span className="text-xl">🎓</span>
+                <h3 className="font-bold text-sm">Certificat de Absolvire</h3>
+              </div>
+              <p className="text-xs text-muted leading-relaxed">
+                Fitness Education School · Curs desfășurat în perioada 22.02.2025 - 17.08.2025 · Competențe: planuri alimentare, principii nutritive, calcul nutrițional, alimentația copiilor, vârstnicilor, în sarcină și alăptare.
+              </p>
             </div>
           </div>
         </div>
