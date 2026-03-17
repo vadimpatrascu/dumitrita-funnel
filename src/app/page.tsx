@@ -277,18 +277,20 @@ function HeroSection({ onStart }: { onStart: () => void }) {
           </button>
         </div>
 
-        {/* Real stats from Instagram */}
+        {/* Real stats from Instagram — animated */}
         <div className="animate-fade-in-up delay-300 mt-10 flex flex-wrap justify-center gap-6 sm:gap-10">
-          {[
-            { number: "16.7K", label: "Urmăritori Instagram" },
-            { number: "136+", label: "Membri în comunitate" },
-            { number: "108", label: "Postări cu rețete" },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center">
-              <p className="stat-number text-xl sm:text-2xl font-bold text-primary">{stat.number}</p>
-              <p className="text-xs text-muted mt-0.5">{stat.label}</p>
-            </div>
-          ))}
+          <div className="text-center">
+            <p className="text-xl sm:text-2xl font-bold text-primary"><AnimatedCounter end={16700} suffix="+" /></p>
+            <p className="text-xs text-muted mt-0.5">Urmăritori Instagram</p>
+          </div>
+          <div className="text-center">
+            <p className="text-xl sm:text-2xl font-bold text-primary"><AnimatedCounter end={136} suffix="+" duration={1500} /></p>
+            <p className="text-xs text-muted mt-0.5">Membri în comunitate</p>
+          </div>
+          <div className="text-center">
+            <p className="text-xl sm:text-2xl font-bold text-primary"><AnimatedCounter end={108} duration={1500} /></p>
+            <p className="text-xs text-muted mt-0.5">Postări cu rețete</p>
+          </div>
         </div>
 
         <div className="animate-fade-in-up delay-400 mt-8 flex flex-wrap justify-center gap-2.5">
@@ -671,6 +673,117 @@ function ResultsSection({ answers }: { answers: Record<string, string> }) {
   );
 }
 
+function InstagramFeedSection() {
+  const { ref, visible } = useInView();
+  const foods = [
+    { src: "/images/food1.jpg", alt: "Rețetă sănătoasă - Dumitrița Doboș" },
+    { src: "/images/food2.jpg", alt: "Mâncare sănătoasă" },
+    { src: "/images/pinned1.jpg", alt: "Rețetă de pe Instagram" },
+    { src: "/images/pinned2.jpg", alt: "Aperitive sănătoase" },
+  ];
+
+  return (
+    <section ref={ref} className="py-16 sm:py-24 px-4 sm:px-6 bg-surface relative">
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+      <div className="max-w-5xl mx-auto">
+        <div className={`text-center mb-10 ${visible ? "animate-fade-in-up" : "opacity-0"}`}>
+          <span className="text-xs uppercase tracking-[0.25em] text-primary font-semibold mb-3 block">De pe Instagram</span>
+          <h2 className="text-2xl sm:text-3xl font-bold mb-3">Rețete sănătoase și gustoase</h2>
+          <p className="text-muted max-w-md mx-auto text-sm">Alimentația sănătoasă nu înseamnă mâncare fără gust. Iată doar câteva exemple! 🍽️</p>
+        </div>
+
+        <div className={`grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 ${visible ? "animate-fade-in-up delay-100" : "opacity-0"}`}>
+          {foods.map((food, i) => (
+            <a key={i} href="https://instagram.com/dobos_dumitrita" target="_blank" rel="noopener noreferrer" className="group relative aspect-square rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
+              <Image src={food.src} alt={food.alt} width={400} height={400} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" unoptimized />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute bottom-3 left-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="flex items-center gap-1.5 text-white text-xs">
+                  <InstagramIcon className="w-3.5 h-3.5" />
+                  <span className="font-medium">@dobos_dumitrita</span>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        <div className={`text-center mt-8 ${visible ? "animate-fade-in-up delay-200" : "opacity-0"}`}>
+          <a href="https://instagram.com/dobos_dumitrita" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white font-semibold px-6 py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 text-sm">
+            <InstagramIcon className="w-4 h-4" />
+            Vezi toate rețetele pe Instagram
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FloatingWhatsApp() {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    const handler = () => setShow(window.scrollY > 400);
+    window.addEventListener("scroll", handler, { passive: true });
+    return () => window.removeEventListener("scroll", handler);
+  }, []);
+
+  if (!show) return null;
+
+  return (
+    <a
+      href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent("Bună Dumitrița! Aș dori să aflu mai multe despre programele tale de nutriție. 🙏")}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="fixed bottom-6 right-6 z-50 animate-scale-in"
+      aria-label="Scrie pe WhatsApp"
+    >
+      <div className="relative">
+        <div className="absolute inset-0 bg-whatsapp rounded-full animate-ping opacity-20" />
+        <div className="relative w-14 h-14 bg-whatsapp hover:bg-whatsapp-dark rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110">
+          <WhatsAppIcon className="w-7 h-7 text-white" />
+        </div>
+      </div>
+    </a>
+  );
+}
+
+function AnimatedCounter({ end, suffix = "", duration = 2000 }: { end: number; suffix?: string; duration?: number }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const [started, setStarted] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting && !started) { setStarted(true); obs.disconnect(); } },
+      { threshold: 0.5 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [started]);
+
+  useEffect(() => {
+    if (!started) return;
+    const steps = 60;
+    const increment = end / steps;
+    const interval = duration / steps;
+    let current = 0;
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= end) {
+        setCount(end);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(current));
+      }
+    }, interval);
+    return () => clearInterval(timer);
+  }, [started, end, duration]);
+
+  return <span ref={ref} className="stat-number">{started ? count.toLocaleString("ro-RO") : "0"}{suffix}</span>;
+}
+
 function Footer() {
   return (
     <footer className="bg-surface border-t border-border-light">
@@ -728,6 +841,7 @@ export default function Home() {
           <AboutSection />
           <RealResultsSection />
           <TransformationGallery />
+          <InstagramFeedSection />
           <ServicesSection onStart={handleStart} />
           <CTASection onStart={handleStart} />
         </>
@@ -751,6 +865,7 @@ export default function Home() {
       )}
 
       <Footer />
+      <FloatingWhatsApp />
     </div>
   );
 }
