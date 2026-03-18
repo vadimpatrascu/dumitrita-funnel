@@ -668,7 +668,7 @@ function ServicesSection({ onStart }: { onStart: () => void }) {
 
         <div className="grid sm:grid-cols-3 gap-5">
           {[
-            { icon: "🔥", title: "Maratonul de Slăbit", desc: "Program intensiv cu suport zilnic, rețete noi săptămânal și comunitate activă. Transformări reale!", tag: "Cel mai popular", highlight: true },
+            { icon: "🔥", title: "Maratonul de Slăbit", desc: "Program intensiv cu suport zilnic, rețete noi săptămânal și comunitate activă. Locuri limitate!", tag: "Ediția 3 — Înscrieri deschise", highlight: true },
             { icon: "📋", title: "Plan Alimentar Personal", desc: "Plan adaptat obiectivelor tale, preferințelor alimentare și stilului de viață.", tag: null, highlight: false },
             { icon: "🤝", title: "Consultație 1-la-1", desc: "Sesiune individuală unde creăm împreună planul tău de acțiune personalizat.", tag: null, highlight: false },
           ].map((s, i) => (
@@ -774,9 +774,21 @@ function ProgressBar({ current, total }: { current: number; total: number }) {
   );
 }
 
-function QuestionCard({ question, onSelect }: { question: QuizQuestion; onSelect: (v: string) => void }) {
+const quizEncouragements = [
+  "Super alegere! Hai să continuăm 💪",
+  "Foarte bine! Încă câteva întrebări... ✨",
+  "Aproape gata! Mai avem puțin 🎯",
+  "Ultimul pas! Recomandarea ta e aproape gata 🌟",
+];
+
+function QuestionCard({ question, questionIndex, onSelect }: { question: QuizQuestion; questionIndex: number; onSelect: (v: string) => void }) {
   return (
     <div className="animate-fade-in-up">
+      {questionIndex > 0 && (
+        <p className="text-center text-sm text-primary font-medium mb-6 animate-fade-in">
+          {quizEncouragements[Math.min(questionIndex - 1, quizEncouragements.length - 1)]}
+        </p>
+      )}
       <h2 className="text-2xl sm:text-3xl font-bold text-center mb-2">{question.question}</h2>
       {question.subtitle && <p className="text-muted text-center mb-8">{question.subtitle}</p>}
       <div className="grid gap-3 max-w-md mx-auto">
@@ -790,6 +802,13 @@ function QuestionCard({ question, onSelect }: { question: QuizQuestion; onSelect
           </button>
         ))}
       </div>
+
+      {/* Social proof during quiz */}
+      {questionIndex === 0 && (
+        <p className="text-center text-xs text-muted mt-6 animate-fade-in delay-300">
+          🔒 Răspunsurile tale sunt confidențiale · ⏱ Mai ai {5 - questionIndex} întrebări
+        </p>
+      )}
     </div>
   );
 }
@@ -939,7 +958,7 @@ export default function Home() {
       {stage === "quiz" && (
         <main className="flex-1 flex flex-col justify-center max-w-2xl mx-auto w-full px-4 sm:px-6 py-10 sm:py-16">
           <ProgressBar current={currentQ} total={questions.length} />
-          <QuestionCard key={questions[currentQ].id} question={questions[currentQ]} onSelect={handleSelect} />
+          <QuestionCard key={questions[currentQ].id} question={questions[currentQ]} questionIndex={currentQ} onSelect={handleSelect} />
           <button onClick={handleBack} className="mt-8 mx-auto flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors cursor-pointer">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
             {currentQ > 0 ? "Întrebarea anterioară" : "Înapoi la pagina principală"}
