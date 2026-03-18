@@ -260,19 +260,19 @@ function Navbar({ stage, currentQ, totalQ, onLogoClick }: { stage: string; curre
     <header className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? "bg-surface/90 backdrop-blur-xl shadow-sm border-b border-border-light" : "bg-transparent"}`}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
         <button onClick={onLogoClick} className="flex items-center gap-2.5 cursor-pointer group">
-          <div className="w-9 h-9 rounded-full overflow-hidden border-2 border-primary/30 group-hover:border-primary transition-colors">
+          <div className="w-9 h-9 rounded-full overflow-hidden border-2 border-brand/30 group-hover:border-brand transition-colors">
             <Image src="/images/profile.jpg" alt="Dumitrița Doboș" width={36} height={36} className="w-full h-full object-cover" />
           </div>
           <div className="text-left hidden sm:block">
             <span className="font-semibold text-sm block leading-tight">Doboș Dumitrița</span>
-            <span className="text-[11px] text-muted leading-tight">Consultant Nutriție Generală</span>
+            <span className="text-[11px] text-driftwood leading-tight">Consultant Nutriție Generală</span>
           </div>
         </button>
         <div className="flex items-center gap-3">
-          {stage === "quiz" && <span className="text-xs text-muted bg-surface-alt px-3 py-1.5 rounded-full font-medium">{currentQ + 1} / {totalQ}</span>}
+          {stage === "quiz" && <span className="text-xs text-driftwood bg-surface-warm px-3 py-1.5 rounded-full font-medium">{currentQ + 1} / {totalQ}</span>}
           {stage === "hero" && (
             <div className="flex items-center gap-2">
-              <a href="https://instagram.com/dobos_dumitrita" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-primary transition-colors p-1"><InstagramIcon className="w-5 h-5" /></a>
+              <a href="https://instagram.com/dobos_dumitrita" target="_blank" rel="noopener noreferrer" className="text-driftwood hover:text-brand transition-colors p-1"><InstagramIcon className="w-5 h-5" /></a>
               <a href={`https://wa.me/${WHATSAPP_PHONE}`} target="_blank" rel="noopener noreferrer" className="bg-whatsapp text-white text-xs font-semibold px-4 py-2 rounded-full hover:bg-whatsapp-dark transition-colors flex items-center gap-1.5">
                 <WhatsAppIcon className="w-3.5 h-3.5" /> Scrie-mi
               </a>
@@ -288,8 +288,8 @@ function Navbar({ stage, currentQ, totalQ, onLogoClick }: { stage: string; curre
 function HeroSection({ onStart }: { onStart: () => void }) {
   return (
     <section className="relative overflow-hidden">
-      <div className="absolute inset-0 leaf-pattern opacity-40" />
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl -translate-y-1/3 translate-x-1/4" />
+      <div className="absolute inset-0 leaf-bg opacity-40" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand/5 rounded-full blur-3xl -translate-y-1/3 translate-x-1/4" />
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-accent/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4" />
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-20 lg:py-24">
@@ -297,26 +297,26 @@ function HeroSection({ onStart }: { onStart: () => void }) {
           {/* Left: Copy */}
           <div className="order-2 lg:order-1 text-center lg:text-left">
             <div className="animate-fade-in-up">
-              <div className="inline-flex items-center gap-2 bg-primary-50 border border-primary/10 px-4 py-1.5 rounded-full mb-6">
-                <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                <span className="text-xs font-semibold text-primary uppercase tracking-wider">Consultant Nutriție Generală · AIPNSF</span>
+              <div className="inline-flex items-center gap-2 bg-brand-50 border border-brand/10 px-4 py-1.5 rounded-full mb-6">
+                <span className="w-2 h-2 bg-brand rounded-full animate-pulse" />
+                <span className="text-xs font-semibold text-brand uppercase tracking-wider">Consultant Nutriție Generală · AIPNSF</span>
               </div>
             </div>
 
-            <h1 className="animate-fade-in-up delay-100 text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] font-bold leading-[1.12] mb-6">
+            <h1 className="animate-fade-in-up delay-100 font-editorial text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] font-bold leading-[1.08] mb-6 tracking-tight">
               Clienta mea a slăbit
               <br />
-              <span className="gradient-text">26 kg în 5 luni</span>
+              <span className="text-gradient">26 kg în 5 luni</span>
               <br />
-              <span className="text-xl sm:text-2xl md:text-3xl font-semibold text-muted">fără înfometare, fără restricții</span>
+              <span className="text-xl sm:text-2xl md:text-3xl font-semibold text-driftwood">fără înfometare, fără restricții</span>
             </h1>
 
-            <p className="animate-fade-in-up delay-200 text-muted text-base sm:text-lg max-w-lg mx-auto lg:mx-0 mb-8 leading-relaxed">
+            <p className="animate-fade-in-up delay-200 text-driftwood text-base sm:text-lg max-w-lg mx-auto lg:mx-0 mb-8 leading-relaxed">
               Cu mine înveți să te alimentezi sănătos și gustos. Completează quiz-ul gratuit și descoperă ce plan nutrițional ți se potrivește.
             </p>
 
             <div className="animate-scale-in delay-300 flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
-              <button onClick={onStart} className="group bg-primary hover:bg-primary-dark text-white font-semibold text-base px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer">
+              <button onClick={onStart} className="group bg-brand hover:bg-brand-dark text-white font-semibold text-base px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer">
                 Începe quiz-ul gratuit <span className="inline-block ml-1.5 group-hover:translate-x-1 transition-transform">→</span>
               </button>
               <a href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent("Bună! Aș dori să aflu mai multe despre programele tale. 🙏")}`} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 border-2 border-border hover:border-whatsapp text-foreground hover:text-whatsapp font-semibold px-6 py-3.5 rounded-2xl transition-all duration-300">
@@ -327,18 +327,18 @@ function HeroSection({ onStart }: { onStart: () => void }) {
             {/* Stats */}
             <div className="animate-fade-in-up delay-400 mt-10 flex flex-wrap justify-center lg:justify-start gap-8">
               <div>
-                <p className="text-xl font-bold text-primary"><AnimatedCounter end={16700} suffix="+" /></p>
-                <p className="text-xs text-muted mt-0.5">Urmăritori</p>
+                <p className="text-xl font-bold text-brand"><AnimatedCounter end={16700} suffix="+" /></p>
+                <p className="text-xs text-driftwood mt-0.5">Urmăritori</p>
               </div>
               <div className="w-px bg-border self-stretch" />
               <div>
-                <p className="text-xl font-bold text-primary"><AnimatedCounter end={26} suffix=" kg" duration={1500} /></p>
-                <p className="text-xs text-muted mt-0.5">Cel mai mare rezultat</p>
+                <p className="text-xl font-bold text-brand"><AnimatedCounter end={26} suffix=" kg" duration={1500} /></p>
+                <p className="text-xs text-driftwood mt-0.5">Cel mai mare rezultat</p>
               </div>
               <div className="w-px bg-border self-stretch" />
               <div>
-                <p className="text-xl font-bold text-primary"><AnimatedCounter end={108} duration={1500} /></p>
-                <p className="text-xs text-muted mt-0.5">Rețete postate</p>
+                <p className="text-xl font-bold text-brand"><AnimatedCounter end={108} duration={1500} /></p>
+                <p className="text-xs text-driftwood mt-0.5">Rețete postate</p>
               </div>
             </div>
           </div>
@@ -351,19 +351,19 @@ function HeroSection({ onStart }: { onStart: () => void }) {
                 <Image src="/images/hero.jpg" alt="Doboș Dumitrița — Consultant Nutriție Generală cu centimetru de croitor" width={600} height={750} className="w-full h-auto" priority />
               </div>
               {/* Floating badge */}
-              <div className="absolute -bottom-4 -left-4 sm:bottom-6 sm:-left-6 glass-card rounded-2xl px-4 py-3 shadow-lg animate-float">
+              <div className="absolute -bottom-4 -left-4 sm:bottom-6 sm:-left-6 glass-warm rounded-2xl px-4 py-3 shadow-lg animate-float">
                 <div className="flex items-center gap-2">
                   <span className="text-lg">🏅</span>
                   <div>
-                    <p className="text-xs font-bold text-primary">Acreditare AIPNSF</p>
-                    <p className="text-[10px] text-muted">Aviz Liberă Practică 2025</p>
+                    <p className="text-xs font-bold text-brand">Acreditare AIPNSF</p>
+                    <p className="text-[10px] text-driftwood">Aviz Liberă Practică 2025</p>
                   </div>
                 </div>
               </div>
               {/* Result badge */}
               <div className="absolute -top-2 -right-2 sm:top-4 sm:-right-4 bg-white rounded-2xl px-4 py-2.5 shadow-lg border border-border-light">
-                <p className="text-[10px] text-muted uppercase tracking-wider font-semibold">Rezultat real</p>
-                <p className="text-lg font-bold text-primary">-26 kg</p>
+                <p className="text-[10px] text-driftwood uppercase tracking-wider font-semibold">Rezultat real</p>
+                <p className="text-lg font-bold text-brand">-26 kg</p>
               </div>
             </div>
           </div>
@@ -382,10 +382,10 @@ function SocialProofBanner() {
   ];
   const doubled = [...items, ...items];
   return (
-    <div className="bg-primary-50 border-y border-primary/10 py-3 overflow-hidden">
+    <div className="bg-brand-50 border-y border-brand/10 py-3 overflow-hidden">
       <div className="marquee-track flex gap-8 whitespace-nowrap">
         {doubled.map((item, i) => (
-          <span key={i} className="text-sm font-medium text-primary/80">{item}</span>
+          <span key={i} className="text-sm font-medium text-brand/80">{item}</span>
         ))}
       </div>
     </div>
@@ -400,9 +400,9 @@ function AccreditationSection() {
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
       <div className={`max-w-5xl mx-auto ${visible ? "animate-fade-in-up" : "opacity-0"}`}>
         <div className="text-center mb-10">
-          <span className="text-xs uppercase tracking-[0.25em] text-primary font-semibold mb-3 block">Acreditare oficială</span>
-          <h2 className="text-2xl sm:text-3xl font-bold mb-3">Consultant Nutriție Generală certificat</h2>
-          <p className="text-muted max-w-md mx-auto text-sm">Acreditare eliberată de AIPNSF — Asociația Internațională de Psihologie, Nutriție, Sport și Fitness.</p>
+          <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold mb-3 block">Acreditare oficială</span>
+          <h2 className="font-editorial text-2xl sm:text-3xl font-bold mb-3">Consultant Nutriție Generală certificat</h2>
+          <p className="text-driftwood max-w-md mx-auto text-sm">Acreditare eliberată de AIPNSF — Asociația Internațională de Psihologie, Nutriție, Sport și Fitness.</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 items-center max-w-4xl mx-auto">
@@ -438,12 +438,12 @@ function AccreditationSection() {
               </div>
             </div>
 
-            <div className="bg-primary-50 border border-primary/10 rounded-2xl p-5">
+            <div className="bg-brand-50 border border-brand/10 rounded-2xl p-5">
               <div className="flex items-center gap-3 mb-3">
                 <span className="text-xl">🎓</span>
                 <h3 className="font-bold text-sm">Certificat de Absolvire — Fitness Education School</h3>
               </div>
-              <p className="text-xs text-muted leading-relaxed">
+              <p className="text-xs text-driftwood leading-relaxed">
                 Curs: 22.02.2025 – 17.08.2025 · Competențe: planuri alimentare, principii nutritive, calcul nutrițional, alimentația copiilor, vârstnicilor, în sarcină și alăptare, programe sportive.
               </p>
             </div>
@@ -458,25 +458,25 @@ function AccreditationSection() {
 function AboutSection() {
   const { ref, visible } = useInView();
   return (
-    <section ref={ref} className="py-20 sm:py-28 px-4 sm:px-6 relative overflow-hidden leaf-pattern">
+    <section ref={ref} className="py-20 sm:py-28 px-4 sm:px-6 relative overflow-hidden leaf-bg">
       <div className={`max-w-6xl mx-auto ${visible ? "" : "opacity-0"}`}>
         <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
           <div className={`relative ${visible ? "animate-slide-left" : ""}`}>
             <div className="relative max-w-sm mx-auto md:mx-0">
-              <div className="absolute -top-4 -left-4 w-24 h-24 bg-primary/10 rounded-full blur-xl" />
+              <div className="absolute -top-4 -left-4 w-24 h-24 bg-brand/10 rounded-full blur-xl" />
               <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-accent/10 rounded-full blur-xl" />
-              <div className="relative rounded-3xl overflow-hidden shadow-xl aspect-[3/4] bg-primary-50">
+              <div className="relative rounded-3xl overflow-hidden shadow-xl aspect-[3/4] bg-brand-50">
                 <Image src="/images/client-result.jpg" alt="Doboș Dumitrița — portret profesional" width={400} height={533} className="w-full h-full object-cover object-top" unoptimized />
               </div>
             </div>
           </div>
 
           <div className={visible ? "animate-slide-right" : ""}>
-            <span className="text-xs uppercase tracking-[0.25em] text-primary font-semibold mb-3 block">Despre mine</span>
+            <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold mb-3 block">Despre mine</span>
             <h2 className="text-2xl sm:text-3xl font-bold mb-5 leading-tight">
               Bună, sunt Dumitrița! <span className="inline-block animate-float">👋</span>
             </h2>
-            <div className="space-y-4 text-muted leading-relaxed">
+            <div className="space-y-4 text-driftwood leading-relaxed">
               <p>Sunt <strong className="text-foreground">Consultant Nutriție Generală</strong>, acreditată de Asociația Internațională de Psihologie, Nutriție, Sport și Fitness (AIPNSF).</p>
               <p>Cu mine înveți să te alimentezi <strong className="text-foreground">sănătos și gustos</strong> — fără înfometare, fără diete extreme. Doar un plan clar, suport și consistență.</p>
               <p>Clienta mea a slăbit <strong className="text-foreground">26 kg în doar 5 luni</strong> — iar rezultatele fetelor din Maratonul de Slăbit sunt incredibile!</p>
@@ -489,10 +489,10 @@ function AboutSection() {
                 { icon: "🍽️", label: "Rețete sănătoase", sub: "Gustoase și ușor de făcut" },
                 { icon: "💬", label: "Comunitate activă", sub: "136+ membri WhatsApp" },
               ].map((item) => (
-                <div key={item.label} className="bg-surface rounded-xl p-3 border border-border-light hover:border-primary/20 transition-colors">
+                <div key={item.label} className="bg-surface rounded-xl p-3 border border-border-light hover:border-brand/20 transition-colors">
                   <span className="text-lg">{item.icon}</span>
                   <p className="text-sm font-medium mt-1">{item.label}</p>
-                  <p className="text-[11px] text-muted">{item.sub}</p>
+                  <p className="text-[11px] text-driftwood">{item.sub}</p>
                 </div>
               ))}
             </div>
@@ -518,25 +518,25 @@ function ProcessSection({ onStart }: { onStart: () => void }) {
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
       <div className="max-w-5xl mx-auto">
         <div className={`text-center mb-14 ${visible ? "animate-fade-in-up" : "opacity-0"}`}>
-          <span className="text-xs uppercase tracking-[0.25em] text-primary font-semibold mb-3 block">Cum funcționează</span>
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4">4 pași simpli spre transformarea ta</h2>
+          <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold mb-3 block">Cum funcționează</span>
+          <h2 className="font-editorial text-2xl sm:text-3xl font-bold mb-4">4 pași simpli spre transformarea ta</h2>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {steps.map((step, i) => (
-            <div key={step.num} className={`relative bg-background rounded-2xl p-6 border border-border-light hover:border-primary/20 hover:shadow-md transition-all duration-300 ${visible ? "animate-fade-in-up" : "opacity-0"}`} style={{ animationDelay: `${i * 0.1}s` }}>
+            <div key={step.num} className={`relative bg-bg rounded-2xl p-6 border border-border-light hover:border-brand/20 hover:shadow-md transition-all duration-300 ${visible ? "animate-fade-in-up" : "opacity-0"}`} style={{ animationDelay: `${i * 0.1}s` }}>
               <div className="flex items-center justify-between mb-4">
                 <span className="text-3xl">{step.icon}</span>
-                <span className="text-3xl font-bold text-primary/15">{step.num}</span>
+                <span className="text-3xl font-bold text-brand/15">{step.num}</span>
               </div>
               <h3 className="font-semibold mb-2">{step.title}</h3>
-              <p className="text-sm text-muted leading-relaxed">{step.desc}</p>
+              <p className="text-sm text-driftwood leading-relaxed">{step.desc}</p>
             </div>
           ))}
         </div>
 
         <div className={`text-center mt-10 ${visible ? "animate-fade-in-up delay-400" : "opacity-0"}`}>
-          <button onClick={onStart} className="bg-primary hover:bg-primary-dark text-white font-semibold px-8 py-4 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer">
+          <button onClick={onStart} className="bg-brand hover:bg-brand-dark text-white font-semibold px-8 py-4 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer">
             Începe acum — este gratuit →
           </button>
         </div>
@@ -549,12 +549,12 @@ function ProcessSection({ onStart }: { onStart: () => void }) {
 function RealResultsSection() {
   const { ref, visible } = useInView();
   return (
-    <section ref={ref} className="py-20 sm:py-28 px-4 sm:px-6 relative leaf-pattern">
+    <section ref={ref} className="py-20 sm:py-28 px-4 sm:px-6 relative leaf-bg">
       <div className="max-w-5xl mx-auto">
         <div className={`text-center mb-14 ${visible ? "animate-fade-in-up" : "opacity-0"}`}>
-          <span className="text-xs uppercase tracking-[0.25em] text-primary font-semibold mb-3 block">Rezultate verificate</span>
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4">Transformări reale, măsurate în cifre</h2>
-          <p className="text-muted max-w-lg mx-auto">Rezultate documentate de la cliente reale din programul de nutriție.</p>
+          <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold mb-3 block">Rezultate verificate</span>
+          <h2 className="font-editorial text-2xl sm:text-3xl font-bold mb-4">Transformări reale, măsurate în cifre</h2>
+          <p className="text-driftwood max-w-lg mx-auto">Rezultate documentate de la cliente reale din programul de nutriție.</p>
         </div>
 
         {/* Transformation image + measurements side by side */}
@@ -563,26 +563,26 @@ function RealResultsSection() {
             <Image src="/images/food1.jpg" alt="Transformare Reală — Maraton de Slăbit — @veradurnea7" width={540} height={540} className="w-full h-auto" unoptimized />
           </div>
           <div className="bg-surface rounded-2xl border border-border-light overflow-hidden shadow-sm">
-            <div className="bg-primary text-white px-6 py-4">
+            <div className="bg-brand text-white px-6 py-4">
               <h3 className="font-semibold text-sm">📊 Transformare clientă — 5 luni de program</h3>
             </div>
             <div className="divide-y divide-border-light">
-              <div className="flex items-center px-5 py-3 bg-surface-alt text-xs font-semibold text-muted uppercase tracking-wider">
+              <div className="flex items-center px-5 py-3 bg-surface-warm text-xs font-semibold text-driftwood uppercase tracking-wider">
                 <span className="w-20">Măsură</span>
                 <span className="flex-1 text-center">Înainte</span>
                 <span className="flex-1 text-center">După</span>
                 <span className="w-20 text-right">Diferență</span>
               </div>
               {realMeasurements.map((m) => (
-                <div key={m.label} className="flex items-center px-5 py-3.5 hover:bg-primary-50/30 transition-colors">
+                <div key={m.label} className="flex items-center px-5 py-3.5 hover:bg-brand-50/30 transition-colors">
                   <span className="text-sm font-medium w-20">{m.label}</span>
-                  <span className="text-sm text-muted flex-1 text-center">{m.before}</span>
+                  <span className="text-sm text-driftwood flex-1 text-center">{m.before}</span>
                   <span className="text-sm font-medium flex-1 text-center">{m.after}</span>
-                  <span className="text-sm font-bold text-primary w-20 text-right">{m.diff}</span>
+                  <span className="text-sm font-bold text-brand w-20 text-right">{m.diff}</span>
                 </div>
               ))}
             </div>
-            <div className="px-5 py-3 bg-surface-alt text-[11px] text-muted text-center">
+            <div className="px-5 py-3 bg-surface-warm text-[11px] text-driftwood text-center">
               📌 Sursă: postare verificată pe Instagram @dobos_dumitrita
             </div>
           </div>
@@ -594,19 +594,19 @@ function RealResultsSection() {
             <div key={t.name} className={`testimonial-card bg-surface rounded-2xl p-6 border border-border-light ${visible ? "animate-fade-in-up" : "opacity-0"}`} style={{ animationDelay: `${0.3 + i * 0.12}s` }}>
               <div className="flex gap-0.5 mb-3">
                 {[...Array(5)].map((_, j) => (
-                  <svg key={j} className="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                  <svg key={j} className="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                   </svg>
                 ))}
               </div>
-              <p className="text-sm text-muted leading-relaxed mb-4 italic">&ldquo;{t.text}&rdquo;</p>
+              <p className="text-sm text-driftwood leading-relaxed mb-4 italic">&ldquo;{t.text}&rdquo;</p>
               <div className="pt-3 border-t border-border-light">
                 <div className="flex items-center justify-between mb-1.5">
                   <p className="font-semibold text-sm">{t.name}</p>
-                  <span className="bg-primary-50 text-primary font-bold text-xs px-2.5 py-1 rounded-full">{t.result}</span>
+                  <span className="bg-brand-50 text-brand font-bold text-xs px-2.5 py-1 rounded-full">{t.result}</span>
                 </div>
-                <p className="text-[11px] text-muted">{t.detail} · {t.metrics}</p>
-                <p className="text-[10px] text-muted-light mt-1">📌 {t.source}</p>
+                <p className="text-[11px] text-driftwood">{t.detail} · {t.metrics}</p>
+                <p className="text-[10px] text-stone mt-1">📌 {t.source}</p>
               </div>
             </div>
           ))}
@@ -629,9 +629,9 @@ function InstagramFeedSection() {
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
       <div className="max-w-5xl mx-auto">
         <div className={`text-center mb-10 ${visible ? "animate-fade-in-up" : "opacity-0"}`}>
-          <span className="text-xs uppercase tracking-[0.25em] text-primary font-semibold mb-3 block">De pe Instagram</span>
-          <h2 className="text-2xl sm:text-3xl font-bold mb-3">Alimentația sănătoasă poate fi delicioasă</h2>
-          <p className="text-muted max-w-md mx-auto text-sm">Rețete gustoase, ușor de preparat, care te ajută să slăbești fără a renunța la plăcere 🍽️</p>
+          <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold mb-3 block">De pe Instagram</span>
+          <h2 className="font-editorial text-2xl sm:text-3xl font-bold mb-3">Alimentația sănătoasă poate fi delicioasă</h2>
+          <p className="text-driftwood max-w-md mx-auto text-sm">Rețete gustoase, ușor de preparat, care te ajută să slăbești fără a renunța la plăcere 🍽️</p>
         </div>
 
         <div className={`grid grid-cols-3 gap-3 sm:gap-4 ${visible ? "animate-fade-in-up delay-100" : "opacity-0"}`}>
@@ -646,7 +646,7 @@ function InstagramFeedSection() {
         </div>
 
         <div className={`text-center mt-8 ${visible ? "animate-fade-in-up delay-200" : "opacity-0"}`}>
-          <a href="https://instagram.com/dobos_dumitrita" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary-dark transition-colors">
+          <a href="https://instagram.com/dobos_dumitrita" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold text-brand hover:text-brand-dark transition-colors">
             <InstagramIcon className="w-4 h-4" /> Vezi toate rețetele pe @dobos_dumitrita →
           </a>
         </div>
@@ -659,11 +659,11 @@ function InstagramFeedSection() {
 function ServicesSection({ onStart }: { onStart: () => void }) {
   const { ref, visible } = useInView();
   return (
-    <section ref={ref} className="py-20 sm:py-28 px-4 sm:px-6 relative leaf-pattern">
+    <section ref={ref} className="py-20 sm:py-28 px-4 sm:px-6 relative leaf-bg">
       <div className="max-w-5xl mx-auto">
         <div className={`text-center mb-14 ${visible ? "animate-fade-in-up" : "opacity-0"}`}>
-          <span className="text-xs uppercase tracking-[0.25em] text-primary font-semibold mb-3 block">Programele mele</span>
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4">Alege programul potrivit pentru tine</h2>
+          <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold mb-3 block">Programele mele</span>
+          <h2 className="font-editorial text-2xl sm:text-3xl font-bold mb-4">Alege programul potrivit pentru tine</h2>
         </div>
 
         <div className="grid sm:grid-cols-3 gap-5">
@@ -672,17 +672,17 @@ function ServicesSection({ onStart }: { onStart: () => void }) {
             { icon: "📋", title: "Plan Alimentar Personal", desc: "Plan adaptat obiectivelor tale, preferințelor alimentare și stilului de viață.", tag: null, highlight: false },
             { icon: "🤝", title: "Consultație 1-la-1", desc: "Sesiune individuală unde creăm împreună planul tău de acțiune personalizat.", tag: null, highlight: false },
           ].map((s, i) => (
-            <div key={s.title} className={`relative bg-surface rounded-2xl p-6 sm:p-7 border-2 ${s.highlight ? "border-primary shadow-lg" : "border-border-light"} hover:shadow-lg transition-all duration-300 ${visible ? "animate-fade-in-up" : "opacity-0"}`} style={{ animationDelay: `${i * 0.1}s` }}>
-              {s.tag && <span className="absolute -top-3 left-6 bg-primary text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">{s.tag}</span>}
+            <div key={s.title} className={`relative bg-surface rounded-2xl p-6 sm:p-7 border-2 ${s.highlight ? "border-brand shadow-lg" : "border-border-light"} hover:shadow-lg transition-all duration-300 ${visible ? "animate-fade-in-up" : "opacity-0"}`} style={{ animationDelay: `${i * 0.1}s` }}>
+              {s.tag && <span className="absolute -top-3 left-6 bg-brand text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">{s.tag}</span>}
               <span className="text-3xl block mb-4">{s.icon}</span>
               <h3 className="text-lg font-semibold mb-2">{s.title}</h3>
-              <p className="text-sm text-muted leading-relaxed">{s.desc}</p>
+              <p className="text-sm text-driftwood leading-relaxed">{s.desc}</p>
             </div>
           ))}
         </div>
 
         <div className={`text-center mt-12 ${visible ? "animate-fade-in-up delay-300" : "opacity-0"}`}>
-          <button onClick={onStart} className="bg-primary hover:bg-primary-dark text-white font-semibold px-8 py-4 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer">
+          <button onClick={onStart} className="bg-brand hover:bg-brand-dark text-white font-semibold px-8 py-4 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer">
             Descoperă ce ți se potrivește →
           </button>
         </div>
@@ -701,22 +701,22 @@ function FAQSection() {
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
       <div className="max-w-2xl mx-auto">
         <div className={`text-center mb-12 ${visible ? "animate-fade-in-up" : "opacity-0"}`}>
-          <span className="text-xs uppercase tracking-[0.25em] text-primary font-semibold mb-3 block">Întrebări frecvente</span>
+          <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold mb-3 block">Întrebări frecvente</span>
           <h2 className="text-2xl sm:text-3xl font-bold">Ai întrebări? Am răspunsuri!</h2>
         </div>
 
         <div className={`space-y-3 ${visible ? "animate-fade-in-up delay-100" : "opacity-0"}`}>
           {faqData.map((faq, i) => (
-            <div key={i} className="border border-border-light rounded-2xl overflow-hidden transition-colors hover:border-primary/20">
+            <div key={i} className="border border-border-light rounded-2xl overflow-hidden transition-colors hover:border-brand/20">
               <button
                 onClick={() => setOpenIdx(openIdx === i ? null : i)}
                 className="w-full flex items-center justify-between px-6 py-4 text-left cursor-pointer"
               >
                 <span className="font-medium text-[15px] pr-4">{faq.q}</span>
-                <ChevronDown className={`w-5 h-5 text-muted flex-shrink-0 transition-transform duration-300 ${openIdx === i ? "rotate-180" : ""}`} />
+                <ChevronDown className={`w-5 h-5 text-driftwood flex-shrink-0 transition-transform duration-300 ${openIdx === i ? "rotate-180" : ""}`} />
               </button>
               <div className={`overflow-hidden transition-all duration-300 ${openIdx === i ? "max-h-60 opacity-100" : "max-h-0 opacity-0"}`}>
-                <p className="px-6 pb-5 text-sm text-muted leading-relaxed">{faq.a}</p>
+                <p className="px-6 pb-5 text-sm text-driftwood leading-relaxed">{faq.a}</p>
               </div>
             </div>
           ))}
@@ -731,27 +731,27 @@ function CTASection({ onStart }: { onStart: () => void }) {
   const { ref, visible } = useInView();
   return (
     <section ref={ref} className="py-20 sm:py-28 px-4 sm:px-6 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-background to-accent-light" />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-bg to-gold-50" />
       <div className={`relative max-w-2xl mx-auto text-center ${visible ? "animate-fade-in-up" : "opacity-0"}`}>
-        <div className="w-20 h-20 rounded-full overflow-hidden mx-auto mb-6 border-2 border-primary/20">
+        <div className="w-20 h-20 rounded-full overflow-hidden mx-auto mb-6 border-2 border-brand/20">
           <Image src="/images/profile.jpg" alt="Dumitrița" width={80} height={80} className="w-full h-full object-cover" />
         </div>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 leading-tight">
+        <h2 className="font-editorial text-2xl sm:text-3xl md:text-4xl font-bold mb-3 leading-tight">
           Ești gata să faci primul pas?
         </h2>
-        <p className="text-sm text-muted italic mb-6">&ldquo;Fiecare transformare începe cu o decizie: Gata, de azi aleg altceva.&rdquo;</p>
-        <p className="text-muted text-base mb-10 max-w-lg mx-auto leading-relaxed">
+        <p className="text-sm text-driftwood italic mb-6">&ldquo;Fiecare transformare începe cu o decizie: Gata, de azi aleg altceva.&rdquo;</p>
+        <p className="text-driftwood text-base mb-10 max-w-lg mx-auto leading-relaxed">
           Completează quiz-ul gratuit și vorbește direct cu mine pe WhatsApp. ❤️
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <button onClick={onStart} className="group bg-primary hover:bg-primary-dark text-white font-semibold text-base px-10 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer">
+          <button onClick={onStart} className="group bg-brand hover:bg-brand-dark text-white font-semibold text-base px-10 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer">
             Începe quiz-ul acum <span className="inline-block ml-1.5 group-hover:translate-x-1 transition-transform">→</span>
           </button>
           <a href={`https://wa.me/${WHATSAPP_PHONE}`} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 bg-whatsapp hover:bg-whatsapp-dark text-white font-semibold px-8 py-4 rounded-2xl shadow-lg transition-all duration-300">
             <WhatsAppIcon className="w-5 h-5" /> WhatsApp direct
           </a>
         </div>
-        <p className="text-xs text-muted mt-6">⏱ 1 minut · 🔒 Fără date personale · ✓ 100% gratuit</p>
+        <p className="text-xs text-driftwood mt-6">⏱ 1 minut · 🔒 Fără date personale · ✓ 100% gratuit</p>
       </div>
     </section>
   );
@@ -763,9 +763,9 @@ function ProgressBar({ current, total }: { current: number; total: number }) {
   const pct = ((current + 1) / total) * 100;
   return (
     <div className="w-full max-w-md mx-auto mb-10">
-      <div className="flex justify-between text-sm text-muted mb-2.5">
+      <div className="flex justify-between text-sm text-driftwood mb-2.5">
         <span className="font-medium">Întrebarea {current + 1} din {total}</span>
-        <span className="text-primary font-semibold">{Math.round(pct)}%</span>
+        <span className="text-brand font-semibold">{Math.round(pct)}%</span>
       </div>
       <div className="w-full h-2.5 bg-border-light rounded-full overflow-hidden">
         <div className="progress-bar h-full rounded-full" style={{ width: `${pct}%`, background: "linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%)" }} />
@@ -785,18 +785,18 @@ function QuestionCard({ question, questionIndex, onSelect }: { question: QuizQue
   return (
     <div className="animate-fade-in-up">
       {questionIndex > 0 && (
-        <p className="text-center text-sm text-primary font-medium mb-6 animate-fade-in">
+        <p className="text-center text-sm text-brand font-medium mb-6 animate-fade-in">
           {quizEncouragements[Math.min(questionIndex - 1, quizEncouragements.length - 1)]}
         </p>
       )}
       <h2 className="text-2xl sm:text-3xl font-bold text-center mb-2">{question.question}</h2>
-      {question.subtitle && <p className="text-muted text-center mb-8">{question.subtitle}</p>}
+      {question.subtitle && <p className="text-driftwood text-center mb-8">{question.subtitle}</p>}
       <div className="grid gap-3 max-w-md mx-auto">
         {question.options.map((opt) => (
-          <button key={opt.value} onClick={() => onSelect(opt.value)} className="quiz-option group flex items-center gap-4 bg-surface border-2 border-border-light hover:border-primary rounded-2xl px-6 py-5 text-left transition-all duration-200 hover:shadow-md cursor-pointer active:scale-[0.98]">
+          <button key={opt.value} onClick={() => onSelect(opt.value)} className="quiz-option group flex items-center gap-4 bg-surface border-2 border-border-light hover:border-brand rounded-2xl px-6 py-5 text-left transition-all duration-200 hover:shadow-md cursor-pointer active:scale-[0.98]">
             <span className="text-2xl sm:text-3xl group-hover:scale-110 transition-transform flex-shrink-0">{opt.emoji}</span>
             <span className="font-medium text-foreground text-[15px] flex-1">{opt.label}</span>
-            <svg className="w-5 h-5 text-muted-light group-hover:text-primary flex-shrink-0 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 text-stone group-hover:text-brand flex-shrink-0 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
@@ -805,7 +805,7 @@ function QuestionCard({ question, questionIndex, onSelect }: { question: QuizQue
 
       {/* Social proof during quiz */}
       {questionIndex === 0 && (
-        <p className="text-center text-xs text-muted mt-6 animate-fade-in delay-300">
+        <p className="text-center text-xs text-driftwood mt-6 animate-fade-in delay-300">
           🔒 Răspunsurile tale sunt confidențiale · ⏱ Mai ai {5 - questionIndex} întrebări
         </p>
       )}
@@ -829,23 +829,23 @@ function ResultsSection({ answers }: { answers: Record<string, string> }) {
   return (
     <div className="animate-fade-in-up max-w-lg mx-auto">
       <div className="text-center mb-8">
-        <div className="w-16 h-16 rounded-2xl bg-primary-50 flex items-center justify-center text-3xl mx-auto mb-5">{result.emoji}</div>
+        <div className="w-16 h-16 rounded-2xl bg-brand-50 flex items-center justify-center text-3xl mx-auto mb-5">{result.emoji}</div>
         <h2 className="text-2xl sm:text-3xl font-bold mb-2">{result.title}</h2>
-        <p className="text-muted leading-relaxed">{result.text}</p>
+        <p className="text-driftwood leading-relaxed">{result.text}</p>
       </div>
 
       <div className="bg-surface border border-border-light rounded-2xl p-6 mb-8 shadow-sm">
-        <h3 className="font-semibold text-sm uppercase tracking-wider text-muted mb-5">Profilul tău nutrițional</h3>
+        <h3 className="font-semibold text-sm uppercase tracking-wider text-driftwood mb-5">Profilul tău nutrițional</h3>
         <div className="space-y-3">
           {[
             { icon: "🎯", label: "Obiectiv", value: goalLabel[answers.goal] || answers.goal },
             { icon: "⚡", label: "Provocare", value: challengeLabel[answers.challenge] || answers.challenge },
             { icon: "🌟", label: "Tip suport", value: supportLabel[answers.support] || answers.support },
           ].map((item) => (
-            <div key={item.label} className="flex items-center gap-4 bg-surface-alt rounded-xl p-3.5">
+            <div key={item.label} className="flex items-center gap-4 bg-surface-warm rounded-xl p-3.5">
               <span className="text-xl flex-shrink-0">{item.icon}</span>
               <div className="min-w-0">
-                <p className="text-[11px] text-muted uppercase tracking-wider">{item.label}</p>
+                <p className="text-[11px] text-driftwood uppercase tracking-wider">{item.label}</p>
                 <p className="font-medium text-sm">{item.value}</p>
               </div>
             </div>
@@ -857,10 +857,10 @@ function ResultsSection({ answers }: { answers: Record<string, string> }) {
         <a href={waURL} target="_blank" rel="noopener noreferrer" className="animate-pulse-glow inline-flex items-center gap-3 bg-whatsapp hover:bg-whatsapp-dark text-white font-semibold text-base sm:text-lg px-10 py-4 sm:py-5 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto justify-center">
           <WhatsAppIcon className="w-6 h-6" /> Scrie-mi pe WhatsApp
         </a>
-        <p className="text-sm text-muted mt-4">Răspunsurile tale vor fi trimise automat în mesaj</p>
-        <div className="mt-8 flex flex-wrap justify-center gap-4 text-xs text-muted">
+        <p className="text-sm text-driftwood mt-4">Răspunsurile tale vor fi trimise automat în mesaj</p>
+        <div className="mt-8 flex flex-wrap justify-center gap-4 text-xs text-driftwood">
           <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 bg-success rounded-full" />Răspuns în max 24h</span>
-          <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 bg-primary rounded-full" />Consultație gratuită</span>
+          <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 bg-brand rounded-full" />Consultație gratuită</span>
           <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 bg-accent rounded-full" />Fără obligații</span>
         </div>
       </div>
@@ -886,10 +886,10 @@ function FloatingButtons() {
       {showTop && (
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="animate-scale-in w-10 h-10 bg-surface border border-border-light rounded-full flex items-center justify-center shadow-md hover:shadow-lg hover:border-primary/30 transition-all cursor-pointer"
+          className="animate-scale-in w-10 h-10 bg-surface border border-border-light rounded-full flex items-center justify-center shadow-md hover:shadow-lg hover:border-brand/30 transition-all cursor-pointer"
           aria-label="Înapoi sus"
         >
-          <svg className="w-4 h-4 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4 text-driftwood" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
           </svg>
         </button>
@@ -920,17 +920,17 @@ function Footer() {
             </div>
             <div>
               <div className="flex items-center"><p className="font-semibold text-sm">Doboș Dumitrița</p><VerifiedBadge /></div>
-              <p className="text-xs text-muted">Consultant Nutriție Generală · AIPNSF</p>
+              <p className="text-xs text-driftwood">Consultant Nutriție Generală · AIPNSF</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <a href="https://instagram.com/dobos_dumitrita" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-surface-alt border border-border-light flex items-center justify-center text-muted hover:text-primary hover:border-primary/30 transition-all"><InstagramIcon className="w-4 h-4" /></a>
-            <a href="https://www.threads.com/@dobos_dumitrita" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-surface-alt border border-border-light flex items-center justify-center text-muted hover:text-foreground hover:border-foreground/30 transition-all"><ThreadsIcon className="w-4 h-4" /></a>
-            <a href={`https://wa.me/${WHATSAPP_PHONE}`} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-surface-alt border border-border-light flex items-center justify-center text-muted hover:text-whatsapp hover:border-whatsapp/30 transition-all"><WhatsAppIcon className="w-4 h-4" /></a>
+            <a href="https://instagram.com/dobos_dumitrita" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-surface-warm border border-border-light flex items-center justify-center text-driftwood hover:text-brand hover:border-brand/30 transition-all"><InstagramIcon className="w-4 h-4" /></a>
+            <a href="https://www.threads.com/@dobos_dumitrita" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-surface-warm border border-border-light flex items-center justify-center text-driftwood hover:text-foreground hover:border-foreground/30 transition-all"><ThreadsIcon className="w-4 h-4" /></a>
+            <a href={`https://wa.me/${WHATSAPP_PHONE}`} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-surface-warm border border-border-light flex items-center justify-center text-driftwood hover:text-whatsapp hover:border-whatsapp/30 transition-all"><WhatsAppIcon className="w-4 h-4" /></a>
           </div>
         </div>
         <div className="mt-8 pt-6 border-t border-border-light text-center">
-          <p className="text-xs text-muted-light">© {new Date().getFullYear()} Doboș Dumitrița · Consultant Nutriție Generală · AIPNSF · Toate drepturile rezervate</p>
+          <p className="text-xs text-stone">© {new Date().getFullYear()} Doboș Dumitrița · Consultant Nutriție Generală · AIPNSF · Toate drepturile rezervate</p>
         </div>
       </div>
     </footer>
@@ -978,7 +978,7 @@ export default function Home() {
         <main className="flex-1 flex flex-col justify-center max-w-2xl mx-auto w-full px-4 sm:px-6 py-10 sm:py-16">
           <ProgressBar current={currentQ} total={questions.length} />
           <QuestionCard key={questions[currentQ].id} question={questions[currentQ]} questionIndex={currentQ} onSelect={handleSelect} />
-          <button onClick={handleBack} className="mt-8 mx-auto flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors cursor-pointer">
+          <button onClick={handleBack} className="mt-8 mx-auto flex items-center gap-2 text-sm text-driftwood hover:text-foreground transition-colors cursor-pointer">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
             {currentQ > 0 ? "Întrebarea anterioară" : "Înapoi la pagina principală"}
           </button>
