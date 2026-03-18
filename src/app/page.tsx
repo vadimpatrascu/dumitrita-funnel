@@ -414,7 +414,10 @@ function Results() {
       <div className={`max-w-[1140px] mx-auto ${v?"":"opacity-0"}`}>
 
         <div className="max-w-2xl mb-16">
-          <p className={`text-xs font-medium uppercase tracking-[.2em] text-brand mb-4 ${v?"a-up":""}`}>Rezultate verificate</p>
+          <div className={`flex items-center gap-3 mb-4 ${v?"a-up":""}`}>
+            <p className="text-xs font-medium uppercase tracking-[.2em] text-brand">Rezultate verificate</p>
+            <span className="text-[10px] font-medium text-olive bg-olive-subtle px-2 py-0.5 rounded-full">Documentat pe Instagram</span>
+          </div>
           <h2 className={`f-serif text-2xl sm:text-3xl font-normal leading-tight ${v?"a-up d1":""}`}>
             Rezultatele vorbesc<br/>
             <span className="text-fg-3 font-light">de la sine.</span>
@@ -588,8 +591,9 @@ function Foot() {
           <a href={`https://wa.me/${WA}`} target="_blank" rel="noopener noreferrer" className="text-fg-4 hover:text-wa transition-colors" aria-label="WhatsApp"><WaIco c="w-4 h-4"/></a>
         </div>
       </div>
-      <div className="max-w-[1140px] mx-auto mt-6 pt-4 border-t border-line-subtle text-center">
+      <div className="max-w-[1140px] mx-auto mt-6 pt-4 border-t border-line-subtle flex flex-col sm:flex-row items-center justify-between gap-2">
         <p className="text-[11px] text-fg-5">© {new Date().getFullYear()} Doboș Dumitrița. Toate drepturile rezervate.</p>
+        <p className="text-[11px] text-fg-5">Aviz Liberă Practică · Serie NG Nr. 598 · AIPNSF 2025</p>
       </div>
     </footer>
   );
