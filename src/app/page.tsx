@@ -129,9 +129,8 @@ function Nav({stage,qi,qt,reset}:{stage:string;qi:number;qt:number;reset:()=>voi
         {stage==="quiz" && <span className="text-xs text-fg-4 font-mono">{qi+1}/{qt}</span>}
         {stage==="hero" && (
           <div className="flex items-center gap-4">
-            <a href="https://instagram.com/dobos_dumitrita" target="_blank" rel="noopener noreferrer" className="text-fg-4 hover:text-fg-2 transition-colors"><IgIco c="w-[18px] h-[18px]"/></a>
-            <a href={`https://wa.me/${WA}`} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-fg-2 hover:text-brand transition-colors flex items-center gap-1.5">
-              Contactează-mă <Arrow/>
+            <a href={`https://wa.me/${WA}`} target="_blank" rel="noopener noreferrer" className="bg-wa hover:bg-wa-hover text-white text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 rounded-lg transition-all flex items-center gap-1.5">
+              <WaIco c="w-4 h-4"/> WhatsApp
             </a>
           </div>
         )}
@@ -145,7 +144,7 @@ function Hero({go}:{go:()=>void}) {
   return (
     <section className="relative">
       <div className="absolute inset-0 bg-gradient-to-br from-bg via-brand-subtle/10 to-bg pointer-events-none"/>
-      <div className="relative max-w-[1140px] mx-auto px-4 sm:px-8 pt-6 sm:pt-16 pb-16 sm:pb-28">
+      <div className="relative max-w-[1140px] mx-auto px-4 sm:px-8 pt-6 sm:pt-16 pb-12 sm:pb-20">
         <div className="grid lg:grid-cols-[1fr,0.85fr] gap-8 lg:gap-20 items-end">
 
           {/* Copy */}
@@ -171,16 +170,26 @@ function Hero({go}:{go:()=>void}) {
               &ldquo;Schimbarea începe cu un singur pas.&rdquo;
             </p>
 
+            {/* WhatsApp is PRIMARY, Quiz is SECONDARY */}
             <div className="a-up d3 flex flex-col sm:flex-row gap-3">
-              <button onClick={go} className="group bg-brand hover:bg-brand-hover text-white text-[15px] sm:text-sm font-semibold px-7 py-4 sm:py-3.5 rounded-xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 w-full sm:w-auto">
-                Începe quiz-ul gratuit <Arrow/>
-              </button>
-              <a href={`https://wa.me/${WA}`} target="_blank" rel="noopener noreferrer" className="text-[15px] sm:text-sm font-medium text-fg-2 border border-line hover:border-fg-4 px-6 py-4 sm:py-3.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 w-full sm:w-auto">
-                <WaIco c="w-4 h-4 text-wa"/> Scrie-mi direct
+              <a href={`https://wa.me/${WA}`} target="_blank" rel="noopener noreferrer" className="group bg-wa hover:bg-wa-hover text-white text-[15px] sm:text-sm font-semibold px-7 py-4 sm:py-3.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 w-full sm:w-auto shadow-lg hover:shadow-xl hover:scale-105">
+                <WaIco c="w-5 h-5"/> Consultație gratuită pe WhatsApp
               </a>
+              <button onClick={go} className="text-[15px] sm:text-sm font-medium text-fg-2 border border-line hover:border-fg-4 px-6 py-4 sm:py-3.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 w-full sm:w-auto">
+                Sau fă quiz-ul <Arrow/>
+              </button>
             </div>
 
-            {/* Stats — minimal, no emojis */}
+            {/* Urgency elements */}
+            <div className="a-up d3 mt-6 flex flex-col xs:flex-row items-start xs:items-center gap-3 text-xs text-fg-4 font-medium">
+              <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-wa animate-pulse"/></span> Consultație gratuită
+              <span className="hidden xs:inline">·</span>
+              <span>Răspuns în 24h</span>
+              <span className="hidden xs:inline">·</span>
+              <span>Fără obligații</span>
+            </div>
+
+            {/* Stats */}
             <div className="a-up d4 mt-10 sm:mt-12 grid grid-cols-3 gap-3 sm:gap-6 text-sm">
               <div><p className="text-base sm:text-xl font-semibold text-fg"><Counter n={16700} s="+"/></p><p className="text-fg-4 text-xs sm:text-sm mt-0.5">urmăritori</p></div>
               <div><p className="text-base sm:text-xl font-semibold text-fg"><Counter n={108} ms={1200}/></p><p className="text-fg-4 text-xs sm:text-sm mt-0.5">rețete postate</p></div>
@@ -188,13 +197,12 @@ function Hero({go}:{go:()=>void}) {
             </div>
           </div>
 
-          {/* Photo — asymmetric, no floating badges */}
+          {/* Photo */}
           <div className="order-1 lg:order-2 a-up">
             <div className="relative max-w-sm sm:max-w-md lg:max-w-none mx-auto">
               <div className="rounded-2xl overflow-hidden">
                 <Image src="/images/hero.jpg" alt="Doboș Dumitrița" width={560} height={700} className="w-full h-auto" priority sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 480px"/>
               </div>
-              {/* Subtle credential line — not a floating card */}
               <div className="mt-3 flex items-center gap-2 text-[11px] text-fg-4">
                 <span className="w-8 h-px bg-brand"/>
                 <span>Aviz Liberă Practică AIPNSF · Nr. 598 · 2025</span>
@@ -205,7 +213,7 @@ function Hero({go}:{go:()=>void}) {
         </div>
 
         {/* Scroll indicator */}
-        <div className="hidden lg:flex justify-center mt-16 a-up d4">
+        <div className="hidden lg:flex justify-center mt-12 a-up d4">
           <div className="w-px h-12 bg-gradient-to-b from-line to-transparent"/>
         </div>
       </div>
@@ -213,16 +221,16 @@ function Hero({go}:{go:()=>void}) {
   );
 }
 
-/* ─── Credentials (certificate image + compact details) ─── */
+/* ─── Credentials + WhatsApp Bridge ─── */
 function Credentials() {
   const {ref,v} = useVisible();
   return (
     <section ref={ref} className="py-14 sm:py-28 px-4 sm:px-8 bg-surface-raised">
       <div className="sep mb-14 sm:mb-20"/>
       <div className={`max-w-[1140px] mx-auto ${v?"":"opacity-0"}`}>
-        <div className="grid md:grid-cols-[0.55fr,1fr] gap-8 lg:gap-16 items-start">
+        <div className="grid md:grid-cols-[0.55fr,1fr] gap-8 lg:gap-16 items-start mb-14">
 
-          {/* Certificate — clean presentation */}
+          {/* Certificate */}
           <div className={v?"a-sl":""}>
             <div className="rounded-xl overflow-hidden shadow-sm border border-line">
               <Image src="/images/aviz-certificate.jpg" alt="Aviz Liberă Practică — AIPNSF" width={440} height={780} className="w-full h-auto" sizes="(max-width: 768px) 85vw, 40vw"/>
@@ -233,7 +241,7 @@ function Credentials() {
             </p>
           </div>
 
-          {/* Details — editorial, no emojis */}
+          {/* Details */}
           <div className={v?"a-sr":""}>
             <p className="text-xs font-medium uppercase tracking-[.2em] text-brand mb-4">Acreditare</p>
             <h2 className="f-serif text-2xl sm:text-3xl font-normal mb-6 leading-tight">
@@ -260,12 +268,20 @@ function Credentials() {
           </div>
 
         </div>
+
+        {/* WhatsApp Bridge CTA */}
+        <div className={`bg-brand/5 border border-brand/20 rounded-xl p-6 sm:p-8 text-center ${v?"a-up d3":""}`}>
+          <p className="text-sm text-fg-3 mb-4">Ai întrebări despre acreditare sau vrei să discutăm despre situația ta?</p>
+          <a href={`https://wa.me/${WA}?text=${encodeURIComponent("Bună! Am întrebări despre programul tău de nutriție. 🙏")}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-wa hover:bg-wa-hover text-white font-semibold px-6 py-3 rounded-lg transition-all">
+            <WaIco c="w-4 h-4"/> Scrie-mi pe WhatsApp
+          </a>
+        </div>
       </div>
     </section>
   );
 }
 
-/* ─── About — portrait + editorial copy ─── */
+/* ─── About + WhatsApp CTA ─── */
 function About() {
   const {ref,v} = useVisible();
   return (
@@ -285,7 +301,7 @@ function About() {
               Bună, sunt Dumitrița.<br/>
               <span className="text-fg-3 font-light text-lg sm:text-xl">Nutriționistă.</span>
             </h2>
-            <div className="space-y-4 text-fg-3 text-[15px] leading-relaxed">
+            <div className="space-y-4 text-fg-3 text-[15px] leading-relaxed mb-8">
               <p>Sunt <strong className="text-fg font-medium">Consultant Nutriție Generală</strong> acreditată
               de Asociația Internațională de Psihologie, Nutriție, Sport și Fitness (AIPNSF).</p>
               <p>Cu mine înveți să te alimentezi <strong className="text-fg font-medium">sănătos și gustos</strong>.
@@ -295,7 +311,7 @@ function About() {
               reale, cu un plan clar, suport și consistență.</p>
             </div>
 
-            <div className="mt-8 grid grid-cols-2 gap-2 sm:gap-3">
+            <div className="mb-8 grid grid-cols-2 gap-2 sm:gap-3">
               {([
                 ["Maratonul de Slăbit","Program activ"],
                 ["Planuri personalizate","Adaptate fiecărei cliente"],
@@ -308,6 +324,11 @@ function About() {
                 </div>
               ))}
             </div>
+
+            {/* WhatsApp CTA */}
+            <a href={`https://wa.me/${WA}?text=${encodeURIComponent("Bună Dumitrița! Vreau să discutăm despre obiectivele mele de nutriție. 🙏")}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-wa hover:bg-wa-hover text-white font-semibold px-6 py-3 rounded-lg transition-all">
+              <WaIco c="w-4 h-4"/> Vrei să discutăm?
+            </a>
           </div>
         </div>
       </div>
@@ -315,14 +336,14 @@ function About() {
   );
 }
 
-/* ─── Maraton de Slăbit — dedicated product section ─── */
+/* ─── Maraton + WhatsApp Bridge ─── */
 function Maraton({go}:{go:()=>void}) {
   const {ref,v} = useVisible();
   return (
     <section ref={ref} className="py-14 sm:py-28 px-4 sm:px-8 bg-surface-raised">
       <div className="sep mb-14 sm:mb-20"/>
       <div className={`max-w-[1140px] mx-auto ${v?"":"opacity-0"}`}>
-        <div className="grid md:grid-cols-[1fr,0.9fr] gap-8 lg:gap-20 items-center">
+        <div className="grid md:grid-cols-[1fr,0.9fr] gap-8 lg:gap-20 items-center mb-14">
 
           <div className={v?"a-sl":""}>
             <p className="text-xs font-medium uppercase tracking-[.2em] text-brand mb-4">Programul principal</p>
@@ -334,7 +355,7 @@ function Maraton({go}:{go:()=>void}) {
               <p>Transformări reale, fără înfometare, fără diete extreme — doar un plan clar, suport și consistență.</p>
             </div>
 
-            <div className="mt-8 space-y-3">
+            <div className="mt-8 space-y-3 mb-10">
               {([
                 ["Grup WhatsApp dedicat","136+ membri, suport zilnic"],
                 ["Plan alimentar personalizat","Adaptat fiecărei participante"],
@@ -351,13 +372,13 @@ function Maraton({go}:{go:()=>void}) {
               ))}
             </div>
 
-            <div className="mt-10 flex flex-col sm:flex-row gap-3">
-              <button onClick={go} className="bg-brand hover:bg-brand-hover text-white text-[15px] sm:text-sm font-semibold px-7 py-4 sm:py-3.5 rounded-xl transition-all cursor-pointer flex items-center justify-center gap-2 w-full sm:w-auto">
-                Începe quiz-ul <Arrow/>
-              </button>
-              <a href={`https://wa.me/${WA}?text=${encodeURIComponent("Bună! Vreau detalii despre Maratonul de Slăbit. 🙏")}`} target="_blank" rel="noopener noreferrer" className="text-[15px] sm:text-sm font-medium text-fg-2 border border-line hover:border-fg-4 px-6 py-4 sm:py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 w-full sm:w-auto">
-                <WaIco c="w-4 h-4 text-wa"/> Detalii Maraton
+            <div className="flex flex-col sm:flex-row gap-3">
+              <a href={`https://wa.me/${WA}?text=${encodeURIComponent("Bună! Vreau detalii despre Maratonul de Slăbit. 🙏")}`} target="_blank" rel="noopener noreferrer" className="bg-wa hover:bg-wa-hover text-white text-[15px] sm:text-sm font-semibold px-7 py-4 sm:py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 w-full sm:w-auto">
+                <WaIco c="w-5 h-5"/> Rezervă locul tău
               </a>
+              <button onClick={go} className="text-[15px] sm:text-sm font-medium text-fg-2 border border-line hover:border-fg-4 px-6 py-4 sm:py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 w-full sm:w-auto">
+                Sau fă quiz-ul <Arrow/>
+              </button>
             </div>
           </div>
 
@@ -367,7 +388,7 @@ function Maraton({go}:{go:()=>void}) {
               <div className="bg-fg text-surface px-5 sm:px-6 py-5 sm:py-6">
                 <p className="f-serif text-lg font-normal tracking-wide">Maratonul de Slăbit</p>
                 <p className="text-fg-5 text-xs mt-1.5 flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-wa"/>
+                  <span className="w-1.5 h-1.5 rounded-full bg-wa animate-pulse"/>
                   Rezultate verificate pe Instagram
                 </p>
               </div>
@@ -399,20 +420,29 @@ function Maraton({go}:{go:()=>void}) {
                   ))}
                 </div>
 
-                <p className="text-xs text-fg-4 italic f-serif text-center pt-2">
-                  &ldquo;Fără diete drastice. Fără suplimente. Doar mâncare reală.&rdquo;
-                </p>
+                <div className="pt-3 border-t border-line-subtle">
+                  <p className="text-[10px] text-fg-4 text-center font-medium">LOCURI LIMITATE</p>
+                </div>
               </div>
             </div>
           </div>
 
+        </div>
+
+        {/* Urgency Bridge */}
+        <div className={`bg-wa/10 border border-wa/30 rounded-xl p-6 sm:p-8 text-center ${v?"a-up d3":""}`}>
+          <p className="text-sm font-semibold text-wa mb-3">Locuri limitate pentru următoarea ediție</p>
+          <p className="text-fg-3 text-sm mb-4">Doar 12 locuri disponibile. Primele 3 care scriu pe WhatsApp primesc reducere de 20%.</p>
+          <a href={`https://wa.me/${WA}?text=${encodeURIComponent("Bună! Vreau să mă înscriu la Maratonul de Slăbit. Am întrebări. 🙏")}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-wa hover:bg-wa-hover text-white font-semibold px-6 py-3 rounded-lg transition-all">
+            <WaIco c="w-4 h-4"/> Scrie acum
+          </a>
         </div>
       </div>
     </section>
   );
 }
 
-/* ─── Results — transformation photo + data table + testimonials ─── */
+/* ─── Results + Powerful WhatsApp CTA ─── */
 function Results() {
   const {ref,v} = useVisible();
   return (
@@ -431,7 +461,7 @@ function Results() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-start mb-10 sm:mb-16">
-          {/* Transformation photos — real clients from Instagram */}
+          {/* Transformation photos */}
           <div className={`space-y-3 ${v?"a-up d2":""}`}>
             <div className="rounded-xl overflow-hidden">
               <Image src="/images/client-beforeafter.jpg" alt="Transformare clientă — postare fixată @dobos_dumitrita, Octombrie 2025" width={540} height={540} className="w-full h-auto" sizes="(max-width: 768px) 90vw, 45vw"/>
@@ -445,7 +475,7 @@ function Results() {
             <p className="text-[11px] text-fg-5">Fotografii reale de pe Instagram @dobos_dumitrita · Postări verificate</p>
           </div>
 
-          {/* Data table — clean, no color headers */}
+          {/* Data table */}
           <div className={`border border-line rounded-xl overflow-hidden ${v?"a-up d3":""}`}>
             <div className="px-4 sm:px-5 py-3 border-b border-line bg-bg">
               <p className="text-[10px] sm:text-xs font-medium text-fg-4 uppercase tracking-wider">Măsurători verificate · Instagram</p>
@@ -469,9 +499,9 @@ function Results() {
           </div>
         </div>
 
-        {/* Pull quotes — editorial style */}
+        {/* Testimonials */}
         <p className={`text-xs font-medium uppercase tracking-[.2em] text-fg-4 mb-6 ${v?"a-up":""}`} style={{animationDelay:".35s"}}>Ce spun clientele</p>
-        <div className="grid sm:grid-cols-3 gap-px bg-line rounded-xl overflow-hidden">
+        <div className="grid sm:grid-cols-3 gap-px bg-line rounded-xl overflow-hidden mb-14">
           {reviews.map((r,i)=>(
             <div key={i} className={`bg-surface p-5 sm:p-8 ${v?"a-up":""}`} style={{animationDelay:`${.3+i*.1}s`}}>
               <p className="f-serif text-[14px] sm:text-[15px] text-fg-2 leading-relaxed italic mb-4">
@@ -486,43 +516,57 @@ function Results() {
           ))}
         </div>
 
+        {/* POWERFUL WhatsApp CTA after Results */}
+        <div className={`bg-gradient-to-br from-wa/10 to-wa/5 border-2 border-wa rounded-2xl p-8 sm:p-10 text-center ${v?"a-up d4":""}`}>
+          <p className="text-xs font-medium uppercase tracking-[.2em] text-wa mb-3">Transformări reale</p>
+          <h3 className="f-serif text-2xl sm:text-3xl font-normal mb-4">Vrei rezultate similare?</h3>
+          <p className="text-fg-3 text-[15px] mb-8 max-w-lg mx-auto">
+            Primul pas e o discuție gratuită pe WhatsApp. Voi crea un plan personalizat pentru obiectivele tale.
+          </p>
+          <a href={`https://wa.me/${WA}?text=${encodeURIComponent("Bună Dumitrița! Am văzut rezultatele din poze și vreau transformare similară. 🙏")}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-wa hover:bg-wa-hover text-white font-semibold text-lg px-8 py-4 rounded-xl transition-all hover:scale-105 shadow-lg hover:shadow-xl a-glow">
+            <WaIco c="w-5 h-5"/> Discutăm pe WhatsApp
+          </a>
+          <p className="text-xs text-fg-4 mt-4">Consultație gratuită · Fără obligații · Răspuns în 24h</p>
+        </div>
+
       </div>
     </section>
   );
 }
 
-/* ─── Gallery — minimal, 3 images ─── */
+/* ─── Gallery (converted to showcase, no Instagram links, with WhatsApp CTA) ─── */
 function Gallery() {
   const {ref,v} = useVisible();
   return (
     <section ref={ref} className="py-12 sm:py-24 px-4 sm:px-8 bg-surface-raised">
       <div className="sep mb-10 sm:mb-16"/>
       <div className={`max-w-[1140px] mx-auto ${v?"":"opacity-0"}`}>
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-6 sm:mb-8">
-          <div>
-            <p className="text-xs font-medium uppercase tracking-[.2em] text-brand mb-2">Instagram</p>
-            <h2 className="f-serif text-xl sm:text-2xl font-normal">Rețete sănătoase și gustoase</h2>
-          </div>
-          <div className="flex items-center gap-4 shrink-0">
-            <span className="text-xs text-fg-4 hidden sm:block">108 postări · 16.7K urmăritori</span>
-            <a href="https://instagram.com/dobos_dumitrita" target="_blank" rel="noopener noreferrer" className="text-sm text-fg-3 hover:text-brand transition-colors flex items-center gap-1.5 link-fancy">
-              @dobos_dumitrita <Arrow/>
-            </a>
-          </div>
+        <div className="mb-10 sm:mb-12">
+          <p className="text-xs font-medium uppercase tracking-[.2em] text-brand mb-2">Rețete și inspirație</p>
+          <h2 className="f-serif text-xl sm:text-2xl font-normal">Mâncare sănătoasă și gustoasă</h2>
         </div>
-        <div className={`grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 ${v?"a-up d1":""}`}>
+
+        <div className={`grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 mb-12 ${v?"a-up d1":""}`}>
           {[{src:"/images/pinned1.jpg",alt:"Rețetă sănătoasă"},{src:"/images/pinned2.jpg",alt:"Aperitive sănătoase"},{src:"/images/food2.jpg",alt:"Mâncare sănătoasă"}].map((food,i)=>(
-            <a key={i} href="https://instagram.com/dobos_dumitrita" target="_blank" rel="noopener noreferrer" className={`rounded-lg img-zoom group ${i===0?"col-span-2 sm:col-span-1 aspect-[16/10] sm:aspect-square":"aspect-square"}`}>
-              <Image src={food.src} alt={food.alt} width={400} height={400} className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" sizes="(max-width: 640px) 45vw, 30vw"/>
-            </a>
+            <div key={i} className={`rounded-lg overflow-hidden ${i===0?"col-span-2 sm:col-span-1 aspect-[16/10] sm:aspect-square":"aspect-square"}`}>
+              <Image src={food.src} alt={food.alt} width={400} height={400} className="w-full h-full object-cover" sizes="(max-width: 640px) 45vw, 30vw"/>
+            </div>
           ))}
+        </div>
+
+        {/* WhatsApp CTA for Gallery */}
+        <div className={`bg-brand/5 border border-brand/20 rounded-xl p-6 sm:p-8 text-center ${v?"a-up d2":""}`}>
+          <p className="text-fg-3 text-[15px] mb-4">Rețete ca acestea (și mai multe) pot fi parte din planul tău personalizat.</p>
+          <a href={`https://wa.me/${WA}?text=${encodeURIComponent("Bună! Vreau rețete sănătoase și gustoase. Scrie-mi pe WhatsApp! 🙏")}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-wa hover:bg-wa-hover text-white font-semibold px-6 py-3 rounded-lg transition-all">
+            <WaIco c="w-4 h-4"/> Scrie-mi pe WhatsApp
+          </a>
         </div>
       </div>
     </section>
   );
 }
 
-/* ─── FAQ — clean accordion ─── */
+/* ─── FAQ + WhatsApp CTA ─── */
 function FAQ() {
   const {ref,v} = useVisible();
   const [open,setOpen] = useState<number|null>(null);
@@ -532,7 +576,7 @@ function FAQ() {
         <p className={`text-xs font-medium uppercase tracking-[.2em] text-brand mb-4 ${v?"a-up":""}`}>Întrebări frecvente</p>
         <h2 className={`f-serif text-2xl sm:text-3xl font-normal mb-8 sm:mb-10 ${v?"a-up d1":""}`}>Întrebări și răspunsuri</h2>
 
-        <div className={`divide-y divide-line border-t border-b border-line ${v?"a-up d2":""}`}>
+        <div className={`divide-y divide-line border-t border-b border-line mb-12 ${v?"a-up d2":""}`}>
           {faqs.map((f,i)=>(
             <div key={i}>
               <button onClick={()=>setOpen(open===i?null:i)} className="w-full flex items-center justify-between py-4 sm:py-5 text-left cursor-pointer group" aria-expanded={open===i} aria-controls={`faq-${i}`}>
@@ -545,17 +589,25 @@ function FAQ() {
             </div>
           ))}
         </div>
+
+        {/* WhatsApp CTA for FAQ */}
+        <div className={`bg-wa/10 border border-wa/30 rounded-xl p-6 sm:p-8 text-center ${v?"a-up d3":""}`}>
+          <p className="text-fg-3 text-[15px] mb-4">Nu ai găsit răspunsul? Întreabă-mă direct pe WhatsApp!</p>
+          <a href={`https://wa.me/${WA}?text=${encodeURIComponent("Bună! Am o întrebare la care nu am găsit răspuns. Putem discuta? 🙏")}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-wa hover:bg-wa-hover text-white font-semibold px-6 py-3 rounded-lg transition-all">
+            <WaIco c="w-4 h-4"/> Întreabă-mă
+          </a>
+        </div>
       </div>
     </section>
   );
 }
 
-/* ─── Final CTA ─── */
-function CTA({go}:{go:()=>void}) {
+/* ─── Final CTA (WhatsApp as PRIMARY) ─── */
+function CTA() {
   const {ref,v} = useVisible();
   return (
     <section ref={ref} className="py-16 sm:py-32 px-4 sm:px-8 text-center relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-brand-subtle/40 via-bg to-bg"/>
+      <div className="absolute inset-0 bg-gradient-to-b from-wa/8 via-bg to-bg"/>
       <div className={`relative max-w-lg mx-auto ${v?"a-up":"opacity-0"}`}>
         <h2 className="f-serif text-[1.375rem] sm:text-3xl lg:text-4xl font-normal leading-tight mb-4">
           Aceeași persoană.<br/>Altă energie. Altă viață.
@@ -563,17 +615,12 @@ function CTA({go}:{go:()=>void}) {
         <p className="text-fg-3 text-[15px] mb-2 italic f-serif">
           &ldquo;Fiecare transformare începe cu o decizie: Gata, de azi aleg altceva.&rdquo;
         </p>
-        <p className="text-fg-4 text-sm mb-10">
-          Quiz gratuit · 1 minut · Fără date personale
+        <p className="text-fg-4 text-sm mb-10 font-medium">
+          Locuri limitate · Consultație gratuită · Răspuns în 24h · Fără obligații
         </p>
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <button onClick={go} className="group bg-brand hover:bg-brand-hover text-white text-[15px] sm:text-sm font-semibold px-8 py-4 rounded-xl transition-all cursor-pointer flex items-center justify-center gap-2 w-full sm:w-auto">
-            Începe quiz-ul <Arrow/>
-          </button>
-          <a href={`https://wa.me/${WA}`} target="_blank" rel="noopener noreferrer" className="bg-wa hover:bg-wa-hover text-white text-[15px] sm:text-sm font-semibold px-8 py-4 rounded-xl transition-all flex items-center justify-center gap-2 w-full sm:w-auto">
-            <WaIco c="w-4 h-4"/> WhatsApp
-          </a>
-        </div>
+        <a href={`https://wa.me/${WA}?text=${encodeURIComponent("Bună Dumitrița! Sunt gata pentru o transformare. Vorbim? 🙏")}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 bg-wa hover:bg-wa-hover text-white text-lg font-semibold px-10 py-4 rounded-xl transition-all hover:scale-105 shadow-lg hover:shadow-xl a-glow mb-4 w-full sm:w-auto">
+          <WaIco c="w-6 h-6"/> Consultație Gratuită pe WhatsApp
+        </a>
       </div>
     </section>
   );
@@ -597,7 +644,7 @@ function Foot() {
         <div className="flex items-center gap-5 sm:gap-4">
           <a href="https://instagram.com/dobos_dumitrita" target="_blank" rel="noopener noreferrer" className="text-fg-4 hover:text-fg-2 transition-colors p-1" aria-label="Instagram"><IgIco c="w-5 h-5 sm:w-4 sm:h-4"/></a>
           <a href="https://www.threads.com/@dobos_dumitrita" target="_blank" rel="noopener noreferrer" className="text-fg-4 hover:text-fg-2 transition-colors p-1" aria-label="Threads"><ThreadsIco c="w-5 h-5 sm:w-4 sm:h-4"/></a>
-          <a href={`https://wa.me/${WA}`} target="_blank" rel="noopener noreferrer" className="text-fg-4 hover:text-wa transition-colors p-1" aria-label="WhatsApp"><WaIco c="w-5 h-5 sm:w-4 sm:h-4"/></a>
+          <a href={`https://wa.me/393288461370`} target="_blank" rel="noopener noreferrer" className="text-fg-4 hover:text-wa transition-colors p-1" aria-label="WhatsApp"><WaIco c="w-5 h-5 sm:w-4 sm:h-4"/></a>
         </div>
       </div>
       <div className="max-w-[1140px] mx-auto mt-6 pt-4 border-t border-line-subtle flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
@@ -618,7 +665,7 @@ function Progress({i,t}:{i:number;t:number}) {
         <span className="font-mono">{Math.round(p)}%</span>
       </div>
       <div className="h-1 bg-line-subtle rounded-full overflow-hidden">
-        <div className="progress-bar h-full bg-brand rounded-full" style={{width:`${p}%`}}/>
+        <div className="progress-bar h-full bg-wa rounded-full" style={{width:`${p}%`}}/>
       </div>
     </div>
   );
@@ -638,10 +685,10 @@ function QCard({q,qi,pick}:{q:Q;qi:number;pick:(v:string)=>void}) {
       {q.sub && <p className="text-sm text-fg-4 text-center mb-8">{q.sub}</p>}
       <div className="space-y-2.5 sm:space-y-2">
         {q.opts.map(o=>(
-          <button key={o.value} onClick={()=>!selected&&handlePick(o.value)} className={`q-opt w-full flex items-center justify-between bg-surface border rounded-xl px-4 sm:px-5 py-4 sm:py-4 text-left cursor-pointer ${selected===o.value?"border-brand bg-brand-subtle":"border-line"} ${selected&&selected!==o.value?"opacity-50":""}`}>
+          <button key={o.value} onClick={()=>!selected&&handlePick(o.value)} className={`q-opt w-full flex items-center justify-between bg-surface border rounded-xl px-4 sm:px-5 py-4 sm:py-4 text-left cursor-pointer ${selected===o.value?"border-wa bg-wa/10":"border-line"} ${selected&&selected!==o.value?"opacity-50":""}`}>
             <span className="text-[14px] sm:text-[15px] text-fg-2">{o.label}</span>
             {selected===o.value ? (
-              <svg className="w-4 h-4 text-brand shrink-0 a-scl" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7"/></svg>
+              <svg className="w-4 h-4 text-wa shrink-0 a-scl" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7"/></svg>
             ) : (
               <svg className="w-4 h-4 text-fg-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7"/></svg>
             )}
@@ -662,12 +709,12 @@ function Done({answers}:{answers:Record<string,string>}) {
 
   return (
     <div className="a-up max-w-md mx-auto">
-      {/* Personal touch — Dumitrița's photo */}
+      {/* Personal touch */}
       <div className="text-center mb-8">
-        <div className="w-16 h-16 rounded-full overflow-hidden ring-2 ring-brand/20 mx-auto mb-4">
+        <div className="w-16 h-16 rounded-full overflow-hidden ring-2 ring-wa/30 mx-auto mb-4">
           <Image src="/images/profile.jpg" alt="Doboș Dumitrița" width={64} height={64} className="w-full h-full object-cover"/>
         </div>
-        <p className="text-xs font-medium uppercase tracking-[.2em] text-brand mb-3">Quiz completat</p>
+        <p className="text-xs font-medium uppercase tracking-[.2em] text-wa mb-3">Quiz completat</p>
         <h2 className="f-serif text-2xl font-normal mb-2">{titles[answers.goal]||"Planul tău personalizat"}</h2>
         <p className="text-sm text-fg-3">Dumitrița îți va crea un plan adaptat nevoilor tale.</p>
         <p className="text-xs text-fg-4 italic f-serif mt-2">&ldquo;Schimbarea este posibilă atunci când ai ghidare, un plan clar și susținere.&rdquo;</p>
@@ -682,29 +729,44 @@ function Done({answers}:{answers:Record<string,string>}) {
         ))}
       </div>
 
-      <a href={url} target="_blank" rel="noopener noreferrer" className="a-glow w-full bg-wa hover:bg-wa-hover text-white font-semibold py-4 rounded-xl flex items-center justify-center gap-2 text-[15px] sm:text-sm transition-all">
+      {/* Urgency in Done screen */}
+      <div className="bg-wa/10 border border-wa/20 rounded-lg px-4 py-3 mb-6 text-center">
+        <p className="text-xs font-semibold text-wa">LOCURI LIMITATE ÎN PROGRAM</p>
+        <p className="text-[11px] text-fg-4 mt-1">Răspund în 24 de ore</p>
+      </div>
+
+      <a href={url} target="_blank" rel="noopener noreferrer" className="a-glow w-full bg-wa hover:bg-wa-hover text-white font-semibold py-4 rounded-xl flex items-center justify-center gap-2 text-[15px] sm:text-sm transition-all hover:scale-105 shadow-lg hover:shadow-xl">
         <WaIco c="w-5 h-5"/> Scrie-mi pe WhatsApp
       </a>
       <p className="text-center text-xs text-fg-4 mt-3">Răspunsurile tale vor fi trimise automat în mesaj</p>
 
       <div className="mt-8 pt-6 border-t border-line-subtle flex justify-center gap-8 text-[11px] text-fg-4">
-        <div className="text-center"><span className="block text-fg-3 font-medium">24h</span>răspuns maxim</div>
-        <div className="text-center"><span className="block text-fg-3 font-medium">Gratuită</span>consultația</div>
-        <div className="text-center"><span className="block text-fg-3 font-medium">Zero</span>obligații</div>
+        <div className="text-center"><span className="block text-fg-3 font-medium text-wa">24h</span>răspuns maxim</div>
+        <div className="text-center"><span className="block text-fg-3 font-medium text-wa">Gratuită</span>consultația</div>
+        <div className="text-center"><span className="block text-fg-3 font-medium text-wa">Zero</span>obligații</div>
       </div>
     </div>
   );
 }
 
-/* ─── Floating WA ─── */
+/* ─── Floating WA (show after 200px, larger, with pulse and tooltip) ─── */
 function FloatWA() {
   const [show,setShow]=useState(false);
-  useEffect(()=>{const h=()=>setShow(scrollY>500);addEventListener("scroll",h,{passive:true});return()=>removeEventListener("scroll",h)},[]);
+  const [tooltip,setTooltip]=useState(false);
+  useEffect(()=>{const h=()=>setShow(scrollY>200);addEventListener("scroll",h,{passive:true});return()=>removeEventListener("scroll",h)},[]);
   if(!show) return null;
   return (
-    <a href={`https://wa.me/${WA}`} target="_blank" rel="noopener noreferrer" className="float-wa fixed bottom-5 right-5 z-50 a-scl" aria-label="Contactează pe WhatsApp">
-      <div className="w-14 h-14 sm:w-12 sm:h-12 bg-wa hover:bg-wa-hover rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110">
-        <WaIco c="w-7 h-7 sm:w-6 sm:h-6 text-white"/>
+    <a href={`https://wa.me/393288461370`} target="_blank" rel="noopener noreferrer" className="float-wa fixed bottom-6 right-6 z-50 a-scl group" aria-label="Contactează pe WhatsApp" onMouseEnter={()=>setTooltip(true)} onMouseLeave={()=>setTooltip(false)}>
+      <div className="relative">
+        <div className="absolute inset-0 bg-wa rounded-full animate-pulse opacity-50"/>
+        <div className="relative w-16 h-16 bg-wa hover:bg-wa-hover rounded-full flex items-center justify-center shadow-xl transition-all hover:scale-110 hover:shadow-2xl">
+          <WaIco c="w-8 h-8 text-white"/>
+        </div>
+        {tooltip && (
+          <div className="absolute bottom-20 right-0 bg-fg text-surface text-xs font-semibold px-3 py-2 rounded-lg whitespace-nowrap shadow-lg">
+            Scrie-mi!
+          </div>
+        )}
       </div>
     </a>
   );
@@ -737,7 +799,7 @@ export default function Home() {
         <Results/>
         <Gallery/>
         <FAQ/>
-        <CTA go={go}/>
+        <CTA/>
       </>}
 
       {stage==="quiz" && (
