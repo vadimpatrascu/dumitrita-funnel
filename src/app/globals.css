@@ -120,19 +120,78 @@ img { image-rendering: -webkit-optimize-contrast; }
 
 /* ═══════ Components ═══════ */
 
-/* Quiz option */
+/* Quiz option — refined interaction */
 .q-opt {
   position: relative;
-  transition: all .2s ease;
+  transition: border-color .2s ease, box-shadow .2s ease, transform .15s ease, background-color .2s ease;
 }
-.q-opt:hover { border-color: var(--brand); box-shadow: 0 0 0 1px var(--brand); }
+.q-opt:hover {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 1px var(--brand);
+  background-color: var(--surface-raised);
+}
 .q-opt:active { transform: scale(.98); }
+
+/* Button hover lift */
+button[class*="bg-brand"], a[class*="bg-brand"], a[class*="bg-wa"] {
+  transition: all .2s cubic-bezier(.22,1,.36,1);
+}
+button[class*="bg-brand"]:hover, a[class*="bg-brand"]:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(178,106,53,.25);
+}
+a[class*="bg-wa"]:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37,211,102,.25);
+}
+
+/* Image hover zoom */
+.img-zoom { overflow: hidden; }
+.img-zoom img { transition: transform .6s cubic-bezier(.22,1,.36,1); }
+.img-zoom:hover img { transform: scale(1.03); }
+
+/* Link underline animation */
+.link-fancy {
+  position: relative;
+  display: inline-block;
+}
+.link-fancy::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--brand);
+  transition: width .3s ease;
+}
+.link-fancy:hover::after { width: 100%; }
 
 /* Stat */
 .stat { font-variant-numeric: tabular-nums; }
 
 /* Section divider */
 .sep { height:1px; background: linear-gradient(90deg, transparent, var(--line), transparent); }
+
+/* Smooth page entrance */
+@keyframes pageIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+body { animation: pageIn .4s ease forwards; }
+
+/* Card border hover */
+.card-hover {
+  transition: border-color .25s ease, box-shadow .25s ease;
+}
+.card-hover:hover {
+  border-color: var(--brand-muted);
+  box-shadow: 0 2px 12px rgba(178,106,53,.06);
+}
+
+/* Credential table row hover */
+.row-hover { transition: background-color .15s ease; }
+.row-hover:hover { background-color: var(--surface-raised); }
 
 /* ═══════ Scrollbar ═══════ */
 ::-webkit-scrollbar { width:5px }

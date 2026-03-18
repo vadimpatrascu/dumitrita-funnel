@@ -230,7 +230,7 @@ function Credentials() {
 
             <div className="border border-line rounded-xl divide-y divide-line mb-6">
               {([["Nume","Doboș Dumitrița"],["Domeniu","Consultant Nutriție Generală"],["Emitent","AIPNSF"],["Președinte","Iulian Dinu"],["Registru","Serie NG · Nr. 598"],["An","2025"]] as [string,string][]).map(([k,val])=>(
-                <div key={k} className="flex justify-between px-5 py-3 text-sm">
+                <div key={k} className="flex justify-between px-5 py-3 text-sm row-hover">
                   <span className="text-fg-4">{k}</span>
                   <span className="font-medium">{val}</span>
                 </div>
@@ -289,7 +289,7 @@ function About() {
                 ["Rețete sănătoase","Gustoase, rapide"],
                 ["Comunitate activă","136+ membri"],
               ] as [string,string][]).map(([t,s])=>(
-                <div key={t} className="border border-line rounded-lg px-4 py-3">
+                <div key={t} className="border border-line rounded-lg px-4 py-3 card-hover">
                   <p className="text-sm font-medium">{t}</p>
                   <p className="text-xs text-fg-4 mt-0.5">{s}</p>
                 </div>
@@ -389,14 +389,14 @@ function Gallery() {
             <p className="text-xs font-medium uppercase tracking-[.2em] text-brand mb-2">Instagram</p>
             <h2 className="f-serif text-xl sm:text-2xl font-normal">Rețete sănătoase și gustoase</h2>
           </div>
-          <a href="https://instagram.com/dobos_dumitrita" target="_blank" rel="noopener noreferrer" className="text-sm text-fg-3 hover:text-brand transition-colors flex items-center gap-1.5 shrink-0">
+          <a href="https://instagram.com/dobos_dumitrita" target="_blank" rel="noopener noreferrer" className="text-sm text-fg-3 hover:text-brand transition-colors flex items-center gap-1.5 shrink-0 link-fancy">
             @dobos_dumitrita <Arrow/>
           </a>
         </div>
-        <div className={`grid grid-cols-3 gap-2 sm:gap-3 ${v?"a-up d1":""}`}>
-          {["/images/pinned1.jpg","/images/pinned2.jpg","/images/food2.jpg"].map((src,i)=>(
-            <a key={i} href="https://instagram.com/dobos_dumitrita" target="_blank" rel="noopener noreferrer" className="aspect-square rounded-lg overflow-hidden group">
-              <Image src={src} alt="" width={380} height={380} className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" unoptimized/>
+        <div className={`grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 ${v?"a-up d1":""}`}>
+          {[{src:"/images/pinned1.jpg",alt:"Rețetă sănătoasă"},{src:"/images/pinned2.jpg",alt:"Aperitive sănătoase"},{src:"/images/food2.jpg",alt:"Mâncare sănătoasă"}].map((food,i)=>(
+            <a key={i} href="https://instagram.com/dobos_dumitrita" target="_blank" rel="noopener noreferrer" className={`rounded-lg img-zoom group ${i===0?"col-span-2 sm:col-span-1 aspect-[16/10] sm:aspect-square":"aspect-square"}`}>
+              <Image src={food.src} alt={food.alt} width={400} height={400} className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" unoptimized/>
             </a>
           ))}
         </div>
@@ -530,15 +530,20 @@ function Done({answers}:{answers:Record<string,string>}) {
 
   return (
     <div className="a-up max-w-md mx-auto">
+      {/* Personal touch — Dumitrița's photo */}
       <div className="text-center mb-8">
+        <div className="w-16 h-16 rounded-full overflow-hidden ring-2 ring-brand/20 mx-auto mb-4">
+          <Image src="/images/profile.jpg" alt="Doboș Dumitrița" width={64} height={64} className="w-full h-full object-cover"/>
+        </div>
         <p className="text-xs font-medium uppercase tracking-[.2em] text-brand mb-3">Quiz completat</p>
         <h2 className="f-serif text-2xl font-normal mb-2">{titles[answers.goal]||"Planul tău personalizat"}</h2>
         <p className="text-sm text-fg-3">Dumitrița îți va crea un plan adaptat nevoilor tale.</p>
+        <p className="text-xs text-fg-4 italic f-serif mt-2">&ldquo;Schimbarea este posibilă atunci când ai ghidare, un plan clar și susținere.&rdquo;</p>
       </div>
 
       <div className="border border-line rounded-xl divide-y divide-line mb-8">
         {([["Obiectiv",gl[answers.goal]||answers.goal],["Provocare",cl[answers.challenge]||answers.challenge],["Suport dorit",sl[answers.support]||answers.support]] as [string,string][]).map(([k,val])=>(
-          <div key={k} className="flex justify-between px-5 py-3.5 text-sm">
+          <div key={k} className="flex justify-between px-5 py-3.5 text-sm row-hover">
             <span className="text-fg-4">{k}</span>
             <span className="font-medium">{val}</span>
           </div>
@@ -550,10 +555,10 @@ function Done({answers}:{answers:Record<string,string>}) {
       </a>
       <p className="text-center text-xs text-fg-4 mt-3">Răspunsurile tale vor fi trimise automat în mesaj</p>
 
-      <div className="mt-8 flex justify-center gap-6 text-[11px] text-fg-4">
-        <span>Răspuns în max 24h</span>
-        <span>Consultație gratuită</span>
-        <span>Fără obligații</span>
+      <div className="mt-8 pt-6 border-t border-line-subtle flex justify-center gap-8 text-[11px] text-fg-4">
+        <div className="text-center"><span className="block text-fg-3 font-medium">24h</span>răspuns maxim</div>
+        <div className="text-center"><span className="block text-fg-3 font-medium">Gratuită</span>consultația</div>
+        <div className="text-center"><span className="block text-fg-3 font-medium">Zero</span>obligații</div>
       </div>
     </div>
   );
