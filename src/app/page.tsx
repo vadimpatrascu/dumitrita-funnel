@@ -868,24 +868,43 @@ function ResultsSection({ answers }: { answers: Record<string, string> }) {
   );
 }
 
-/* ─── Floating WhatsApp ─── */
-function FloatingWhatsApp() {
+/* ─── Floating buttons: WhatsApp + Back to top ─── */
+function FloatingButtons() {
   const [show, setShow] = useState(false);
+  const [showTop, setShowTop] = useState(false);
   useEffect(() => {
-    const h = () => setShow(window.scrollY > 400);
+    const h = () => {
+      setShow(window.scrollY > 400);
+      setShowTop(window.scrollY > 1500);
+    };
     window.addEventListener("scroll", h, { passive: true });
     return () => window.removeEventListener("scroll", h);
   }, []);
-  if (!show) return null;
+
   return (
-    <a href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent("Bună Dumitrița! Aș dori să aflu mai multe. 🙏")}`} target="_blank" rel="noopener noreferrer" className="fixed bottom-6 right-6 z-50 animate-scale-in" aria-label="WhatsApp">
-      <div className="relative">
-        <div className="absolute inset-0 bg-whatsapp rounded-full animate-ping opacity-20" />
-        <div className="relative w-14 h-14 bg-whatsapp hover:bg-whatsapp-dark rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110">
-          <WhatsAppIcon className="w-7 h-7 text-white" />
-        </div>
-      </div>
-    </a>
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 items-end">
+      {showTop && (
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="animate-scale-in w-10 h-10 bg-surface border border-border-light rounded-full flex items-center justify-center shadow-md hover:shadow-lg hover:border-primary/30 transition-all cursor-pointer"
+          aria-label="Înapoi sus"
+        >
+          <svg className="w-4 h-4 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+          </svg>
+        </button>
+      )}
+      {show && (
+        <a href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent("Bună Dumitrița! Aș dori să aflu mai multe. 🙏")}`} target="_blank" rel="noopener noreferrer" className="animate-scale-in" aria-label="WhatsApp">
+          <div className="relative">
+            <div className="absolute inset-0 bg-whatsapp rounded-full animate-ping opacity-20" />
+            <div className="relative w-14 h-14 bg-whatsapp hover:bg-whatsapp-dark rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110">
+              <WhatsAppIcon className="w-7 h-7 text-white" />
+            </div>
+          </div>
+        </a>
+      )}
+    </div>
   );
 }
 
@@ -973,7 +992,7 @@ export default function Home() {
       )}
 
       <Footer />
-      <FloatingWhatsApp />
+      <FloatingButtons />
     </div>
   );
 }
