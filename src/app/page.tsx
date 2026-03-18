@@ -53,17 +53,17 @@ const measurements = [
 ];
 
 const reviews = [
-  { name:"Clientă din Maraton", q:"Aceasta a fost cea mai bună decizie pe care am luat-o. La 40 de ani pot arăta bine!", kg:"-18.3 kg", span:"5 luni", src:"Postare fixată IG" },
-  { name:"Participantă Maraton", q:"Unicul maraton unde am o plăcere enormă să citesc mesajele din grup. Mulțumesc Dumitriței!", kg:"Rezultat vizibil", span:"Ediția 1", src:"Highlight Rezultate" },
-  { name:"Clientă @dobos_dumitrita", q:"Schimbarea este posibilă atunci când ai ghidare, un plan clar și susținere.", kg:"-18.3 kg", span:"Documentat", src:"Postare verificată IG" },
+  { name:"Clientă Maraton, 40 ani", q:"Rezultatul meu în poze și cifre. Aceasta a fost cea mai bună decizie pe care am luat-o în noiembrie, acum sunt mândră că la 40 ani pot arăta bine! Succes tuturor!", kg:"-18.3 kg", src:"Postare fixată Instagram" },
+  { name:"Clientă transformare", q:"Drumul nu e ușor, dar rezultatele vorbesc de la sine. Această poveste arată ce se întâmplă când nu mai cauți scuze, ci soluții.", kg:"Vizibil", src:"Postare @dobos_dumitrita, Oct 2025" },
+  { name:"Comentariu verificat", q:"Ce transformare frumoasă! Bravo!", kg:"—", src:"@sanduta_stepan pe Instagram" },
 ];
 
 const faqs = [
-  {q:"Cum funcționează Maratonul de Slăbit?", a:"Program intensiv cu suport zilnic, rețete noi săptămânal, plan alimentar personalizat și comunitate activă. Rezultatele sunt vizibile din prima săptămână."},
-  {q:"Trebuie să renunț la alimentele preferate?", a:"Nu. Slăbirea sănătoasă nu înseamnă foame sau restricții. Înveți să mănânci corect, gustos și cu plăcere."},
-  {q:"Cât costă un plan alimentar?", a:"Depinde de nevoile tale. Completează quiz-ul și scrie-mi pe WhatsApp — discutăm gratuit despre situația ta."},
-  {q:"Am o condiție medicală. Mă poți ajuta?", a:"Ca Consultant Nutriție Generală acreditat AIPNSF, am competențe pentru alimentație adaptată. Discutăm pe WhatsApp."},
-  {q:"Cât de repede voi vedea rezultate?", a:"Clientele mele văd rezultate din prima săptămână. Cea mai documentată transformare: -18.3 kg în 5 luni, cu măsurători verificate pe Instagram."},
+  {q:"Cum funcționează Maratonul de Slăbit?", a:"Program cu suport zilnic prin grupul de WhatsApp (136+ membri), rețete noi săptămânal și plan alimentar personalizat. Fără diete drastice, fără suplimente — doar mâncare reală, susținere zilnică și rezultate vizibile."},
+  {q:"Trebuie să renunț la alimentele preferate?", a:"Nu. Cu mine înveți să te alimentezi sănătos și gustos. Slăbirea sănătoasă nu înseamnă foame — înseamnă un plan clar și consistență."},
+  {q:"Ce rezultate au avut participantele?", a:"Cea mai documentată transformare pe Instagram: -18.3 kg, -16 cm talie, -18 cm bust, de la 99.8 la 81.5 kg. Toate măsurătorile sunt publice pe pagina @dobos_dumitrita."},
+  {q:"Cât costă un plan alimentar?", a:"Depinde de nevoile tale. Completează quiz-ul și scrie-mi pe WhatsApp — discutăm gratuit despre situația ta și găsim varianta potrivită."},
+  {q:"Am o condiție medicală. Mă poți ajuta?", a:"Ca Consultant Nutriție Generală acreditat AIPNSF, Dumitrița are competențe în alimentația adaptată diferitelor condiții. Discuți pe WhatsApp despre situația ta specifică."},
 ];
 
 /* ═══════ Utils ═══════ */
@@ -153,13 +153,16 @@ function Hero({go}:{go:()=>void}) {
 
             <h1 className="a-up d1 f-serif text-[2rem] sm:text-[2.75rem] lg:text-[3.25rem] font-normal leading-[1.1] mb-6">
               Clienta mea a slăbit<br/>
-              <span className="font-bold text-grad">26 kg în 5 luni</span><br/>
-              <span className="text-fg-3 text-[0.65em] font-light italic">fără înfometare, fără restricții.</span>
+              <span className="font-bold text-grad">26 kg în doar 5 luni</span><br/>
+              <span className="text-fg-3 text-[0.65em] font-light italic">fără înfometare!</span>
             </h1>
 
-            <p className="a-up d2 text-fg-3 text-[15px] sm:text-base leading-relaxed mb-10 max-w-md">
-              Cu mine înveți să te alimentezi sănătos și gustos. Completează quiz-ul
-              și descoperă ce plan nutrițional ți se potrivește.
+            <p className="a-up d2 text-fg-3 text-[15px] sm:text-base leading-relaxed mb-4 max-w-md">
+              Cu mine înveți să te alimentezi sănătos și gustos.
+              Transformări reale, fără diete extreme — doar un plan clar, suport și consistență.
+            </p>
+            <p className="a-up d2 text-fg-4 text-sm italic mb-10 max-w-md f-serif">
+              &ldquo;Schimbarea începe cu un singur pas.&rdquo;
             </p>
 
             <div className="a-up d3 flex flex-col sm:flex-row gap-3">
@@ -268,11 +271,12 @@ function About() {
             </h2>
             <div className="space-y-4 text-fg-3 text-[15px] leading-relaxed">
               <p>Sunt <strong className="text-fg font-medium">Consultant Nutriție Generală</strong> acreditată
-              AIPNSF. Îmi doresc ca fiecare persoană să descopere că alimentația sănătoasă poate fi
-              simplă, gustoasă și sustenabilă.</p>
-              <p>Nu cred în diete restrictive. Cred în echilibru, rețete bune și
-              consistență. Clienta mea a slăbit <strong className="text-fg font-medium">26 kg în 5 luni</strong> —
-              mâncând normal, fără foame.</p>
+              de Asociația Internațională de Psihologie, Nutriție, Sport și Fitness (AIPNSF).</p>
+              <p>Cu mine înveți să te alimentezi <strong className="text-fg font-medium">sănătos și gustos</strong>.
+              Fără diete drastice. Fără suplimente. Doar mâncare reală, susținere zilnică și
+              rezultate vizibile.</p>
+              <p>Rezultatele fetelor din Maratonul de Slăbit sunt absolut incredibile — transformări
+              reale, cu un plan clar, suport și consistență.</p>
             </div>
 
             <div className="mt-8 grid grid-cols-2 gap-3">
@@ -306,21 +310,24 @@ function Results() {
         <div className="max-w-2xl mb-16">
           <p className={`text-xs font-medium uppercase tracking-[.2em] text-brand mb-4 ${v?"a-up":""}`}>Rezultate verificate</p>
           <h2 className={`f-serif text-2xl sm:text-3xl font-normal leading-tight ${v?"a-up d1":""}`}>
-            Transformări reale,<br/>
-            <span className="text-fg-3 font-light">măsurate în cifre.</span>
+            Rezultatele vorbesc<br/>
+            <span className="text-fg-3 font-light">de la sine.</span>
           </h2>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 items-start mb-16">
-          {/* Transformation photos — real clients */}
+          {/* Transformation photos — real clients from Instagram */}
           <div className={`space-y-3 ${v?"a-up d2":""}`}>
             <div className="rounded-xl overflow-hidden">
-              <Image src="/images/food1.jpg" alt="Transformare Reală — Maraton de Slăbit @veradurnea7" width={540} height={540} className="w-full h-auto" unoptimized/>
+              <Image src="/images/client-beforeafter.jpg" alt="Transformare clientă — postare fixată @dobos_dumitrita, Octombrie 2025" width={540} height={540} className="w-full h-auto" unoptimized/>
             </div>
             <div className="rounded-xl overflow-hidden">
-              <Image src="/images/client-result-2.jpg" alt="Rezultat clientă — before and after — Maraton de Slăbit" width={540} height={540} className="w-full h-auto" unoptimized/>
+              <Image src="/images/food1.jpg" alt="Transformare Reală — Maraton de Slăbit — @veradurnea7 și @dobos_dumitrita" width={540} height={540} className="w-full h-auto" unoptimized/>
             </div>
-            <p className="text-[11px] text-fg-5">Fotografii reale ale clientelor din Maratonul de Slăbit</p>
+            <div className="rounded-xl overflow-hidden">
+              <Image src="/images/client-result-2.jpg" alt="Rezultat clientă — Maratonul de Slăbit, Decembrie 2025" width={540} height={540} className="w-full h-auto" unoptimized/>
+            </div>
+            <p className="text-[11px] text-fg-5">Fotografii reale de pe Instagram @dobos_dumitrita · Postări verificate</p>
           </div>
 
           {/* Data table — clean, no color headers */}
@@ -431,10 +438,10 @@ function CTA({go}:{go:()=>void}) {
     <section ref={ref} className="py-24 sm:py-32 px-5 sm:px-8 text-center">
       <div className={`max-w-lg mx-auto ${v?"a-up":"opacity-0"}`}>
         <h2 className="f-serif text-2xl sm:text-3xl lg:text-4xl font-normal leading-tight mb-4">
-          Ești gata să faci<br/>primul pas?
+          Aceeași persoană.<br/>Altă energie. Altă viață.
         </h2>
         <p className="text-fg-3 text-[15px] mb-2 italic f-serif">
-          &ldquo;Fiecare transformare începe cu o decizie.&rdquo;
+          &ldquo;Fiecare transformare începe cu o decizie: Gata, de azi aleg altceva.&rdquo;
         </p>
         <p className="text-fg-4 text-sm mb-10">
           Quiz gratuit · 1 minut · Fără date personale
