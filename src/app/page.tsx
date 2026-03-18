@@ -466,7 +466,8 @@ function Results() {
           </div>
         </div>
 
-        {/* Pull quotes — editorial style, not card grid */}
+        {/* Pull quotes — editorial style */}
+        <p className={`text-xs font-medium uppercase tracking-[.2em] text-fg-4 mb-6 ${v?"a-up":""}`} style={{animationDelay:".35s"}}>Ce spun clientele</p>
         <div className="grid sm:grid-cols-3 gap-px bg-line rounded-xl overflow-hidden">
           {reviews.map((r,i)=>(
             <div key={i} className={`bg-surface p-6 sm:p-8 ${v?"a-up":""}`} style={{animationDelay:`${.3+i*.1}s`}}>
