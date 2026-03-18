@@ -144,7 +144,8 @@ function Nav({stage,qi,qt,reset}:{stage:string;qi:number;qt:number;reset:()=>voi
 function Hero({go}:{go:()=>void}) {
   return (
     <section className="relative">
-      <div className="max-w-[1140px] mx-auto px-5 sm:px-8 pt-8 sm:pt-16 pb-20 sm:pb-28">
+      <div className="absolute inset-0 bg-gradient-to-br from-bg via-brand-subtle/10 to-bg pointer-events-none"/>
+      <div className="relative max-w-[1140px] mx-auto px-5 sm:px-8 pt-8 sm:pt-16 pb-20 sm:pb-28">
         <div className="grid lg:grid-cols-[1fr,0.85fr] gap-12 lg:gap-20 items-end">
 
           {/* Copy */}
