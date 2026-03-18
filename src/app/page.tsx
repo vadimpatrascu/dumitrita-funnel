@@ -219,7 +219,7 @@ function Credentials() {
           {/* Certificate — contained height */}
           <div className={v?"a-sl":""}>
             <div className="rounded-xl overflow-hidden shadow-sm border border-line max-h-[500px] flex items-start">
-              <Image src="/images/aviz-certificate.jpg" alt="Aviz Liberă Practică — AIPNSF" width={440} height={780} className="w-full h-auto object-cover object-top" unoptimized/>
+              <Image src="/images/aviz-certificate.jpg" alt="Aviz Liberă Practică — AIPNSF" width={440} height={780} className="w-full h-auto object-cover object-top"/>
             </div>
             <p className="text-[11px] text-fg-5 mt-2">Certificat original · Vizibil pe Instagram @dobos_dumitrita → Studii</p>
           </div>
@@ -266,7 +266,7 @@ function About() {
 
           <div className={v?"a-sl":""}>
             <div className="rounded-2xl overflow-hidden">
-              <Image src="/images/client-result.jpg" alt="Doboș Dumitrița — portret" width={480} height={640} className="w-full h-auto" unoptimized/>
+              <Image src="/images/client-result.jpg" alt="Doboș Dumitrița — portret" width={480} height={640} className="w-full h-auto"/>
             </div>
           </div>
 
@@ -326,13 +326,13 @@ function Results() {
           {/* Transformation photos — real clients from Instagram */}
           <div className={`space-y-3 ${v?"a-up d2":""}`}>
             <div className="rounded-xl overflow-hidden">
-              <Image src="/images/client-beforeafter.jpg" alt="Transformare clientă — postare fixată @dobos_dumitrita, Octombrie 2025" width={540} height={540} className="w-full h-auto" unoptimized/>
+              <Image src="/images/client-beforeafter.jpg" alt="Transformare clientă — postare fixată @dobos_dumitrita, Octombrie 2025" width={540} height={540} className="w-full h-auto"/>
             </div>
             <div className="rounded-xl overflow-hidden">
-              <Image src="/images/food1.jpg" alt="Transformare Reală — Maraton de Slăbit — @veradurnea7 și @dobos_dumitrita" width={540} height={540} className="w-full h-auto" unoptimized/>
+              <Image src="/images/food1.jpg" alt="Transformare Reală — Maraton de Slăbit — @veradurnea7 și @dobos_dumitrita" width={540} height={540} className="w-full h-auto"/>
             </div>
             <div className="rounded-xl overflow-hidden">
-              <Image src="/images/client-result-2.jpg" alt="Rezultat clientă — Maratonul de Slăbit, Decembrie 2025" width={540} height={540} className="w-full h-auto" unoptimized/>
+              <Image src="/images/client-result-2.jpg" alt="Rezultat clientă — Maratonul de Slăbit, Decembrie 2025" width={540} height={540} className="w-full h-auto"/>
             </div>
             <p className="text-[11px] text-fg-5">Fotografii reale de pe Instagram @dobos_dumitrita · Postări verificate</p>
           </div>
@@ -393,14 +393,17 @@ function Gallery() {
             <p className="text-xs font-medium uppercase tracking-[.2em] text-brand mb-2">Instagram</p>
             <h2 className="f-serif text-xl sm:text-2xl font-normal">Rețete sănătoase și gustoase</h2>
           </div>
-          <a href="https://instagram.com/dobos_dumitrita" target="_blank" rel="noopener noreferrer" className="text-sm text-fg-3 hover:text-brand transition-colors flex items-center gap-1.5 shrink-0 link-fancy">
-            @dobos_dumitrita <Arrow/>
-          </a>
+          <div className="flex items-center gap-4 shrink-0">
+            <span className="text-xs text-fg-4 hidden sm:block">108 postări · 16.7K urmăritori</span>
+            <a href="https://instagram.com/dobos_dumitrita" target="_blank" rel="noopener noreferrer" className="text-sm text-fg-3 hover:text-brand transition-colors flex items-center gap-1.5 link-fancy">
+              @dobos_dumitrita <Arrow/>
+            </a>
+          </div>
         </div>
         <div className={`grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 ${v?"a-up d1":""}`}>
           {[{src:"/images/pinned1.jpg",alt:"Rețetă sănătoasă"},{src:"/images/pinned2.jpg",alt:"Aperitive sănătoase"},{src:"/images/food2.jpg",alt:"Mâncare sănătoasă"}].map((food,i)=>(
             <a key={i} href="https://instagram.com/dobos_dumitrita" target="_blank" rel="noopener noreferrer" className={`rounded-lg img-zoom group ${i===0?"col-span-2 sm:col-span-1 aspect-[16/10] sm:aspect-square":"aspect-square"}`}>
-              <Image src={food.src} alt={food.alt} width={400} height={400} className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" unoptimized/>
+              <Image src={food.src} alt={food.alt} width={400} height={400} className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"/>
             </a>
           ))}
         </div>
