@@ -48,6 +48,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       </head>
       <body className={`${geistSans.variable} antialiased`}>
         <a href="#main-content" className="skip">Sari la conținut</a>
+        <noscript>
+          <div style={{padding:"2rem",textAlign:"center",background:"#FDF5ED",color:"#3D322A",fontFamily:"Georgia,serif"}}>
+            <h1 style={{fontSize:"1.5rem",marginBottom:"1rem"}}>Doboș Dumitrița — Consultant Nutriție Generală</h1>
+            <p>Pentru experiența completă, activează JavaScript în browser.</p>
+            <p style={{marginTop:"0.5rem"}}>Contactează-mă pe <a href="https://wa.me/393288461370" style={{color:"#25d366",fontWeight:"bold"}}>WhatsApp</a> sau <a href="https://instagram.com/dobos_dumitrita" style={{color:"#B26A35",fontWeight:"bold"}}>Instagram</a>.</p>
+          </div>
+        </noscript>
         {children}
         <script
           type="application/ld+json"
