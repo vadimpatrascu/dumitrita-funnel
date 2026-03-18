@@ -118,8 +118,8 @@ function Nav({stage,qi,qt,reset}:{stage:string;qi:number;qt:number;reset:()=>voi
   const [s,setS]=useState(false);
   useEffect(()=>{const h=()=>setS(scrollY>30);addEventListener("scroll",h,{passive:true});return()=>removeEventListener("scroll",h)},[]);
   return (
-    <header className={`sticky top-0 z-50 transition-all duration-300 ${s?"bg-surface/95 backdrop-blur-2xl border-b border-line":"bg-transparent"}`}>
-      <nav className="max-w-[1140px] mx-auto px-5 sm:px-8 h-14 flex items-center justify-between">
+    <header className={`sticky top-0 z-50 transition-all duration-300 ${s?"bg-surface/95 backdrop-blur-2xl border-b border-line":"bg-transparent"}`} style={{paddingTop:"env(safe-area-inset-top)"}}>
+      <nav className="max-w-[1140px] mx-auto px-4 sm:px-8 h-14 flex items-center justify-between">
         <button onClick={reset} className="flex items-center gap-2.5 cursor-pointer" aria-label="Acasă — Doboș Dumitrița">
           <div className="w-8 h-8 rounded-full overflow-hidden ring-1 ring-line">
             <Image src="/images/profile.jpg" alt="" width={32} height={32} className="w-full h-full object-cover" />
@@ -145,8 +145,8 @@ function Hero({go}:{go:()=>void}) {
   return (
     <section className="relative">
       <div className="absolute inset-0 bg-gradient-to-br from-bg via-brand-subtle/10 to-bg pointer-events-none"/>
-      <div className="relative max-w-[1140px] mx-auto px-5 sm:px-8 pt-8 sm:pt-16 pb-20 sm:pb-28">
-        <div className="grid lg:grid-cols-[1fr,0.85fr] gap-12 lg:gap-20 items-end">
+      <div className="relative max-w-[1140px] mx-auto px-4 sm:px-8 pt-6 sm:pt-16 pb-16 sm:pb-28">
+        <div className="grid lg:grid-cols-[1fr,0.85fr] gap-8 lg:gap-20 items-end">
 
           {/* Copy */}
           <div className="order-2 lg:order-1 max-w-xl">
@@ -157,9 +157,9 @@ function Hero({go}:{go:()=>void}) {
               </p>
             </div>
 
-            <h1 className="a-up d1 f-serif text-[2rem] sm:text-[2.75rem] lg:text-[3.25rem] font-normal leading-[1.1] mb-6">
-              Clienta mea a slăbit<br/>
-              <span className="font-bold text-grad">26 kg în doar 5 luni</span><br/>
+            <h1 className="a-up d1 f-serif text-[1.625rem] xs:text-[1.875rem] sm:text-[2.75rem] lg:text-[3.25rem] font-normal leading-[1.15] sm:leading-[1.1] mb-5 sm:mb-6">
+              Clienta mea a slăbit{" "}
+              <span className="font-bold text-grad">26 kg în doar 5 luni</span>{" "}
               <span className="text-fg-3 text-[0.65em] font-light italic">fără înfometare!</span>
             </h1>
 
@@ -172,19 +172,19 @@ function Hero({go}:{go:()=>void}) {
             </p>
 
             <div className="a-up d3 flex flex-col sm:flex-row gap-3">
-              <button onClick={go} className="group bg-brand hover:bg-brand-hover text-white text-sm font-semibold px-7 py-3.5 rounded-xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-2">
+              <button onClick={go} className="group bg-brand hover:bg-brand-hover text-white text-[15px] sm:text-sm font-semibold px-7 py-4 sm:py-3.5 rounded-xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 w-full sm:w-auto">
                 Începe quiz-ul gratuit <Arrow/>
               </button>
-              <a href={`https://wa.me/${WA}`} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-fg-2 border border-line hover:border-fg-4 px-6 py-3.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-2">
+              <a href={`https://wa.me/${WA}`} target="_blank" rel="noopener noreferrer" className="text-[15px] sm:text-sm font-medium text-fg-2 border border-line hover:border-fg-4 px-6 py-4 sm:py-3.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 w-full sm:w-auto">
                 <WaIco c="w-4 h-4 text-wa"/> Scrie-mi direct
               </a>
             </div>
 
             {/* Stats — minimal, no emojis */}
-            <div className="a-up d4 mt-12 flex flex-wrap gap-x-8 gap-y-4 text-sm">
-              <div><p className="text-lg sm:text-xl font-semibold text-fg"><Counter n={16700} s="+"/></p><p className="text-fg-4 mt-0.5">urmăritori</p></div>
-              <div><p className="text-lg sm:text-xl font-semibold text-fg"><Counter n={108} ms={1200}/></p><p className="text-fg-4 mt-0.5">rețete postate</p></div>
-              <div><p className="text-lg sm:text-xl font-semibold text-fg">136+</p><p className="text-fg-4 mt-0.5">membri comunitate</p></div>
+            <div className="a-up d4 mt-10 sm:mt-12 grid grid-cols-3 gap-3 sm:gap-6 text-sm">
+              <div><p className="text-base sm:text-xl font-semibold text-fg"><Counter n={16700} s="+"/></p><p className="text-fg-4 text-xs sm:text-sm mt-0.5">urmăritori</p></div>
+              <div><p className="text-base sm:text-xl font-semibold text-fg"><Counter n={108} ms={1200}/></p><p className="text-fg-4 text-xs sm:text-sm mt-0.5">rețete postate</p></div>
+              <div><p className="text-base sm:text-xl font-semibold text-fg">136+</p><p className="text-fg-4 text-xs sm:text-sm mt-0.5">membri comunitate</p></div>
             </div>
           </div>
 
@@ -192,7 +192,7 @@ function Hero({go}:{go:()=>void}) {
           <div className="order-1 lg:order-2 a-up">
             <div className="relative max-w-sm sm:max-w-md lg:max-w-none mx-auto">
               <div className="rounded-2xl overflow-hidden">
-                <Image src="/images/hero.jpg" alt="Doboș Dumitrița" width={560} height={700} className="w-full h-auto" priority/>
+                <Image src="/images/hero.jpg" alt="Doboș Dumitrița" width={560} height={700} className="w-full h-auto" priority sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 480px"/>
               </div>
               {/* Subtle credential line — not a floating card */}
               <div className="mt-3 flex items-center gap-2 text-[11px] text-fg-4">
@@ -217,15 +217,15 @@ function Hero({go}:{go:()=>void}) {
 function Credentials() {
   const {ref,v} = useVisible();
   return (
-    <section ref={ref} className="py-20 sm:py-28 px-5 sm:px-8 bg-surface-raised">
-      <div className="sep mb-20"/>
+    <section ref={ref} className="py-14 sm:py-28 px-4 sm:px-8 bg-surface-raised">
+      <div className="sep mb-14 sm:mb-20"/>
       <div className={`max-w-[1140px] mx-auto ${v?"":"opacity-0"}`}>
-        <div className="grid md:grid-cols-[0.55fr,1fr] gap-10 lg:gap-16 items-start">
+        <div className="grid md:grid-cols-[0.55fr,1fr] gap-8 lg:gap-16 items-start">
 
           {/* Certificate — clean presentation */}
           <div className={v?"a-sl":""}>
             <div className="rounded-xl overflow-hidden shadow-sm border border-line">
-              <Image src="/images/aviz-certificate.jpg" alt="Aviz Liberă Practică — AIPNSF" width={440} height={780} className="w-full h-auto"/>
+              <Image src="/images/aviz-certificate.jpg" alt="Aviz Liberă Practică — AIPNSF" width={440} height={780} className="w-full h-auto" sizes="(max-width: 768px) 85vw, 40vw"/>
             </div>
             <p className="text-[11px] text-fg-5 mt-2 flex items-center gap-1.5">
               <span className="w-1 h-1 rounded-full bg-olive"/>
@@ -243,9 +243,9 @@ function Credentials() {
 
             <div className="border border-line rounded-xl divide-y divide-line mb-6">
               {([["Nume","Doboș Dumitrița"],["Domeniu","Consultant Nutriție Generală"],["Emitent","AIPNSF"],["Președinte","Iulian Dinu"],["Registru","Serie NG · Nr. 598"],["An","2025"]] as [string,string][]).map(([k,val])=>(
-                <div key={k} className="flex justify-between px-5 py-3 text-sm row-hover">
-                  <span className="text-fg-4">{k}</span>
-                  <span className="font-medium">{val}</span>
+                <div key={k} className="flex justify-between px-4 sm:px-5 py-3 text-[13px] sm:text-sm row-hover gap-2">
+                  <span className="text-fg-4 shrink-0">{k}</span>
+                  <span className="font-medium text-right">{val}</span>
                 </div>
               ))}
             </div>
@@ -269,13 +269,13 @@ function Credentials() {
 function About() {
   const {ref,v} = useVisible();
   return (
-    <section ref={ref} className="py-20 sm:py-28 px-5 sm:px-8">
+    <section ref={ref} className="py-14 sm:py-28 px-4 sm:px-8">
       <div className={`max-w-[1140px] mx-auto ${v?"":"opacity-0"}`}>
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-20 items-center">
 
           <div className={v?"a-sl":""}>
             <div className="rounded-2xl overflow-hidden">
-              <Image src="/images/client-result.jpg" alt="Doboș Dumitrița — portret" width={480} height={640} className="w-full h-auto"/>
+              <Image src="/images/client-result.jpg" alt="Doboș Dumitrița — portret" width={480} height={640} className="w-full h-auto" sizes="(max-width: 768px) 90vw, 45vw"/>
             </div>
           </div>
 
@@ -295,16 +295,16 @@ function About() {
               reale, cu un plan clar, suport și consistență.</p>
             </div>
 
-            <div className="mt-8 grid grid-cols-2 gap-3">
+            <div className="mt-8 grid grid-cols-2 gap-2 sm:gap-3">
               {([
                 ["Maratonul de Slăbit","Program activ"],
                 ["Planuri personalizate","Adaptate fiecărei cliente"],
                 ["Rețete sănătoase","Gustoase, rapide"],
                 ["Comunitate activă","136+ membri"],
               ] as [string,string][]).map(([t,s])=>(
-                <div key={t} className="border border-line rounded-lg px-4 py-3 card-hover">
-                  <p className="text-sm font-medium">{t}</p>
-                  <p className="text-xs text-fg-4 mt-0.5">{s}</p>
+                <div key={t} className="border border-line rounded-lg px-3 sm:px-4 py-3 card-hover">
+                  <p className="text-[13px] sm:text-sm font-medium">{t}</p>
+                  <p className="text-[11px] sm:text-xs text-fg-4 mt-0.5">{s}</p>
                 </div>
               ))}
             </div>
@@ -319,10 +319,10 @@ function About() {
 function Maraton({go}:{go:()=>void}) {
   const {ref,v} = useVisible();
   return (
-    <section ref={ref} className="py-20 sm:py-28 px-5 sm:px-8 bg-surface-raised">
-      <div className="sep mb-20"/>
+    <section ref={ref} className="py-14 sm:py-28 px-4 sm:px-8 bg-surface-raised">
+      <div className="sep mb-14 sm:mb-20"/>
       <div className={`max-w-[1140px] mx-auto ${v?"":"opacity-0"}`}>
-        <div className="grid md:grid-cols-[1fr,0.9fr] gap-12 lg:gap-20 items-center">
+        <div className="grid md:grid-cols-[1fr,0.9fr] gap-8 lg:gap-20 items-center">
 
           <div className={v?"a-sl":""}>
             <p className="text-xs font-medium uppercase tracking-[.2em] text-brand mb-4">Programul principal</p>
@@ -352,10 +352,10 @@ function Maraton({go}:{go:()=>void}) {
             </div>
 
             <div className="mt-10 flex flex-col sm:flex-row gap-3">
-              <button onClick={go} className="bg-brand hover:bg-brand-hover text-white text-sm font-semibold px-7 py-3.5 rounded-xl transition-all cursor-pointer flex items-center justify-center gap-2">
+              <button onClick={go} className="bg-brand hover:bg-brand-hover text-white text-[15px] sm:text-sm font-semibold px-7 py-4 sm:py-3.5 rounded-xl transition-all cursor-pointer flex items-center justify-center gap-2 w-full sm:w-auto">
                 Începe quiz-ul <Arrow/>
               </button>
-              <a href={`https://wa.me/${WA}?text=${encodeURIComponent("Bună! Vreau detalii despre Maratonul de Slăbit. 🙏")}`} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-fg-2 border border-line hover:border-fg-4 px-6 py-3.5 rounded-xl transition-all flex items-center justify-center gap-2">
+              <a href={`https://wa.me/${WA}?text=${encodeURIComponent("Bună! Vreau detalii despre Maratonul de Slăbit. 🙏")}`} target="_blank" rel="noopener noreferrer" className="text-[15px] sm:text-sm font-medium text-fg-2 border border-line hover:border-fg-4 px-6 py-4 sm:py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 w-full sm:w-auto">
                 <WaIco c="w-4 h-4 text-wa"/> Detalii Maraton
               </a>
             </div>
@@ -364,14 +364,14 @@ function Maraton({go}:{go:()=>void}) {
           {/* Stats card */}
           <div className={v?"a-sr":""}>
             <div className="border border-line rounded-xl overflow-hidden">
-              <div className="bg-fg text-surface px-6 py-6">
+              <div className="bg-fg text-surface px-5 sm:px-6 py-5 sm:py-6">
                 <p className="f-serif text-lg font-normal tracking-wide">Maratonul de Slăbit</p>
                 <p className="text-fg-5 text-xs mt-1.5 flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-wa"/>
                   Rezultate verificate pe Instagram
                 </p>
               </div>
-              <div className="p-6 space-y-6">
+              <div className="p-5 sm:p-6 space-y-5 sm:space-y-6">
                 <div className="grid grid-cols-3 gap-4 text-center">
                   <div>
                     <p className="text-2xl font-semibold text-fg"><Counter n={136} s="+"/></p>
@@ -416,10 +416,10 @@ function Maraton({go}:{go:()=>void}) {
 function Results() {
   const {ref,v} = useVisible();
   return (
-    <section ref={ref} className="py-20 sm:py-28 px-5 sm:px-8">
+    <section ref={ref} className="py-14 sm:py-28 px-4 sm:px-8">
       <div className={`max-w-[1140px] mx-auto ${v?"":"opacity-0"}`}>
 
-        <div className="max-w-2xl mb-16">
+        <div className="max-w-2xl mb-10 sm:mb-16">
           <div className={`flex items-center gap-3 mb-4 ${v?"a-up":""}`}>
             <p className="text-xs font-medium uppercase tracking-[.2em] text-brand">Rezultate verificate</p>
             <span className="text-[10px] font-medium text-olive bg-olive-subtle px-2 py-0.5 rounded-full">Documentat pe Instagram</span>
@@ -430,32 +430,32 @@ function Results() {
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 items-start mb-16">
+        <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-start mb-10 sm:mb-16">
           {/* Transformation photos — real clients from Instagram */}
           <div className={`space-y-3 ${v?"a-up d2":""}`}>
             <div className="rounded-xl overflow-hidden">
-              <Image src="/images/client-beforeafter.jpg" alt="Transformare clientă — postare fixată @dobos_dumitrita, Octombrie 2025" width={540} height={540} className="w-full h-auto"/>
+              <Image src="/images/client-beforeafter.jpg" alt="Transformare clientă — postare fixată @dobos_dumitrita, Octombrie 2025" width={540} height={540} className="w-full h-auto" sizes="(max-width: 768px) 90vw, 45vw"/>
             </div>
             <div className="rounded-xl overflow-hidden">
-              <Image src="/images/food1.jpg" alt="Transformare Reală — Maraton de Slăbit — @veradurnea7 și @dobos_dumitrita" width={540} height={540} className="w-full h-auto"/>
+              <Image src="/images/food1.jpg" alt="Transformare Reală — Maraton de Slăbit — @veradurnea7 și @dobos_dumitrita" width={540} height={540} className="w-full h-auto" sizes="(max-width: 768px) 90vw, 45vw"/>
             </div>
             <div className="rounded-xl overflow-hidden">
-              <Image src="/images/client-result-2.jpg" alt="Rezultat clientă — Maratonul de Slăbit, Decembrie 2025" width={540} height={540} className="w-full h-auto"/>
+              <Image src="/images/client-result-2.jpg" alt="Rezultat clientă — Maratonul de Slăbit, Decembrie 2025" width={540} height={540} className="w-full h-auto" sizes="(max-width: 768px) 90vw, 45vw"/>
             </div>
             <p className="text-[11px] text-fg-5">Fotografii reale de pe Instagram @dobos_dumitrita · Postări verificate</p>
           </div>
 
           {/* Data table — clean, no color headers */}
           <div className={`border border-line rounded-xl overflow-hidden ${v?"a-up d3":""}`}>
-            <div className="px-5 py-3 border-b border-line bg-bg">
-              <p className="text-xs font-medium text-fg-4 uppercase tracking-wider">Măsurători verificate · Postare fixată Instagram</p>
+            <div className="px-4 sm:px-5 py-3 border-b border-line bg-bg">
+              <p className="text-[10px] sm:text-xs font-medium text-fg-4 uppercase tracking-wider">Măsurători verificate · Instagram</p>
             </div>
             <div className="divide-y divide-line-subtle text-sm">
               <div className="grid grid-cols-4 px-3 sm:px-5 py-2.5 text-[10px] sm:text-[11px] font-medium text-fg-4 uppercase tracking-wider">
-                <span>Măsură</span><span className="text-center">Înainte</span><span className="text-center">După</span><span className="text-right">Diferență</span>
+                <span>Măsură</span><span className="text-center">Înainte</span><span className="text-center">După</span><span className="text-right">Dif.</span>
               </div>
               {measurements.map(r=>(
-                <div key={r.m} className="grid grid-cols-4 px-3 sm:px-5 py-3 hover:bg-surface-raised transition-colors text-[13px] sm:text-sm">
+                <div key={r.m} className="grid grid-cols-4 px-3 sm:px-5 py-2.5 sm:py-3 hover:bg-surface-raised transition-colors text-[12px] sm:text-sm">
                   <span className="font-medium">{r.m}</span>
                   <span className="text-center text-fg-3">{r.b}</span>
                   <span className="text-center">{r.a}</span>
@@ -473,13 +473,13 @@ function Results() {
         <p className={`text-xs font-medium uppercase tracking-[.2em] text-fg-4 mb-6 ${v?"a-up":""}`} style={{animationDelay:".35s"}}>Ce spun clientele</p>
         <div className="grid sm:grid-cols-3 gap-px bg-line rounded-xl overflow-hidden">
           {reviews.map((r,i)=>(
-            <div key={i} className={`bg-surface p-6 sm:p-8 ${v?"a-up":""}`} style={{animationDelay:`${.3+i*.1}s`}}>
-              <p className="f-serif text-[15px] text-fg-2 leading-relaxed italic mb-4">
+            <div key={i} className={`bg-surface p-5 sm:p-8 ${v?"a-up":""}`} style={{animationDelay:`${.3+i*.1}s`}}>
+              <p className="f-serif text-[14px] sm:text-[15px] text-fg-2 leading-relaxed italic mb-4">
                 &ldquo;{r.q}&rdquo;
               </p>
-              <div className="flex items-center justify-between text-xs">
-                <span className="text-fg-4">{r.name}</span>
-                <span className="font-semibold text-brand">{r.kg}</span>
+              <div className="flex items-center justify-between text-xs gap-2">
+                <span className="text-fg-4 truncate">{r.name}</span>
+                <span className="font-semibold text-brand shrink-0">{r.kg}</span>
               </div>
               <p className="text-[10px] text-fg-5 mt-1">{r.src}</p>
             </div>
@@ -495,10 +495,10 @@ function Results() {
 function Gallery() {
   const {ref,v} = useVisible();
   return (
-    <section ref={ref} className="py-16 sm:py-24 px-5 sm:px-8 bg-surface-raised">
-      <div className="sep mb-16"/>
+    <section ref={ref} className="py-12 sm:py-24 px-4 sm:px-8 bg-surface-raised">
+      <div className="sep mb-10 sm:mb-16"/>
       <div className={`max-w-[1140px] mx-auto ${v?"":"opacity-0"}`}>
-        <div className="flex items-end justify-between mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-6 sm:mb-8">
           <div>
             <p className="text-xs font-medium uppercase tracking-[.2em] text-brand mb-2">Instagram</p>
             <h2 className="f-serif text-xl sm:text-2xl font-normal">Rețete sănătoase și gustoase</h2>
@@ -513,7 +513,7 @@ function Gallery() {
         <div className={`grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 ${v?"a-up d1":""}`}>
           {[{src:"/images/pinned1.jpg",alt:"Rețetă sănătoasă"},{src:"/images/pinned2.jpg",alt:"Aperitive sănătoase"},{src:"/images/food2.jpg",alt:"Mâncare sănătoasă"}].map((food,i)=>(
             <a key={i} href="https://instagram.com/dobos_dumitrita" target="_blank" rel="noopener noreferrer" className={`rounded-lg img-zoom group ${i===0?"col-span-2 sm:col-span-1 aspect-[16/10] sm:aspect-square":"aspect-square"}`}>
-              <Image src={food.src} alt={food.alt} width={400} height={400} className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"/>
+              <Image src={food.src} alt={food.alt} width={400} height={400} className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" sizes="(max-width: 640px) 45vw, 30vw"/>
             </a>
           ))}
         </div>
@@ -527,20 +527,20 @@ function FAQ() {
   const {ref,v} = useVisible();
   const [open,setOpen] = useState<number|null>(null);
   return (
-    <section ref={ref} className="py-20 sm:py-28 px-5 sm:px-8">
+    <section ref={ref} className="py-14 sm:py-28 px-4 sm:px-8">
       <div className={`max-w-2xl mx-auto ${v?"":"opacity-0"}`}>
         <p className={`text-xs font-medium uppercase tracking-[.2em] text-brand mb-4 ${v?"a-up":""}`}>Întrebări frecvente</p>
-        <h2 className={`f-serif text-2xl sm:text-3xl font-normal mb-10 ${v?"a-up d1":""}`}>Întrebări și răspunsuri</h2>
+        <h2 className={`f-serif text-2xl sm:text-3xl font-normal mb-8 sm:mb-10 ${v?"a-up d1":""}`}>Întrebări și răspunsuri</h2>
 
         <div className={`divide-y divide-line border-t border-b border-line ${v?"a-up d2":""}`}>
           {faqs.map((f,i)=>(
             <div key={i}>
-              <button onClick={()=>setOpen(open===i?null:i)} className="w-full flex items-center justify-between py-5 text-left cursor-pointer group">
-                <span className="text-[15px] font-medium pr-8 group-hover:text-brand transition-colors">{f.q}</span>
+              <button onClick={()=>setOpen(open===i?null:i)} className="w-full flex items-center justify-between py-4 sm:py-5 text-left cursor-pointer group" aria-expanded={open===i} aria-controls={`faq-${i}`}>
+                <span className="text-[14px] sm:text-[15px] font-medium pr-6 sm:pr-8 group-hover:text-brand transition-colors">{f.q}</span>
                 <ChevD open={open===i}/>
               </button>
-              <div className={`overflow-hidden transition-all duration-300 ${open===i?"max-h-48 pb-5 opacity-100":"max-h-0 opacity-0"}`}>
-                <p className="text-sm text-fg-3 leading-relaxed">{f.a}</p>
+              <div id={`faq-${i}`} role="region" className={`overflow-hidden transition-all duration-300 ${open===i?"max-h-60 pb-5 opacity-100":"max-h-0 opacity-0"}`}>
+                <p className="text-[13px] sm:text-sm text-fg-3 leading-relaxed">{f.a}</p>
               </div>
             </div>
           ))}
@@ -554,10 +554,10 @@ function FAQ() {
 function CTA({go}:{go:()=>void}) {
   const {ref,v} = useVisible();
   return (
-    <section ref={ref} className="py-24 sm:py-32 px-5 sm:px-8 text-center relative overflow-hidden">
+    <section ref={ref} className="py-16 sm:py-32 px-4 sm:px-8 text-center relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-brand-subtle/40 via-bg to-bg"/>
       <div className={`relative max-w-lg mx-auto ${v?"a-up":"opacity-0"}`}>
-        <h2 className="f-serif text-2xl sm:text-3xl lg:text-4xl font-normal leading-tight mb-4">
+        <h2 className="f-serif text-[1.375rem] sm:text-3xl lg:text-4xl font-normal leading-tight mb-4">
           Aceeași persoană.<br/>Altă energie. Altă viață.
         </h2>
         <p className="text-fg-3 text-[15px] mb-2 italic f-serif">
@@ -567,10 +567,10 @@ function CTA({go}:{go:()=>void}) {
           Quiz gratuit · 1 minut · Fără date personale
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <button onClick={go} className="group bg-brand hover:bg-brand-hover text-white text-sm font-semibold px-8 py-4 rounded-xl transition-all cursor-pointer flex items-center justify-center gap-2">
+          <button onClick={go} className="group bg-brand hover:bg-brand-hover text-white text-[15px] sm:text-sm font-semibold px-8 py-4 rounded-xl transition-all cursor-pointer flex items-center justify-center gap-2 w-full sm:w-auto">
             Începe quiz-ul <Arrow/>
           </button>
-          <a href={`https://wa.me/${WA}`} target="_blank" rel="noopener noreferrer" className="bg-wa hover:bg-wa-hover text-white text-sm font-semibold px-8 py-4 rounded-xl transition-all flex items-center justify-center gap-2">
+          <a href={`https://wa.me/${WA}`} target="_blank" rel="noopener noreferrer" className="bg-wa hover:bg-wa-hover text-white text-[15px] sm:text-sm font-semibold px-8 py-4 rounded-xl transition-all flex items-center justify-center gap-2 w-full sm:w-auto">
             <WaIco c="w-4 h-4"/> WhatsApp
           </a>
         </div>
@@ -582,25 +582,27 @@ function CTA({go}:{go:()=>void}) {
 /* ─── Footer ─── */
 function Foot() {
   return (
-    <footer className="border-t border-line px-5 sm:px-8 py-8">
+    <footer className="border-t border-line px-4 sm:px-8 py-8">
       <div className="max-w-[1140px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full overflow-hidden ring-1 ring-line">
+          <div className="w-8 h-8 rounded-full overflow-hidden ring-1 ring-line shrink-0">
             <Image src="/images/profile.jpg" alt="" width={32} height={32} className="w-full h-full object-cover"/>
           </div>
           <div className="text-xs text-fg-4">
-            <span className="text-fg font-medium">Doboș Dumitrița</span> · Consultant Nutriție Generală · AIPNSF
+            <span className="text-fg font-medium">Doboș Dumitrița</span>
+            <span className="hidden sm:inline"> · Consultant Nutriție Generală · AIPNSF</span>
+            <span className="sm:hidden block mt-0.5">Consultant Nutriție · AIPNSF</span>
           </div>
         </div>
-        <div className="flex items-center gap-4">
-          <a href="https://instagram.com/dobos_dumitrita" target="_blank" rel="noopener noreferrer" className="text-fg-4 hover:text-fg-2 transition-colors" aria-label="Instagram"><IgIco c="w-4 h-4"/></a>
-          <a href="https://www.threads.com/@dobos_dumitrita" target="_blank" rel="noopener noreferrer" className="text-fg-4 hover:text-fg-2 transition-colors" aria-label="Threads"><ThreadsIco c="w-4 h-4"/></a>
-          <a href={`https://wa.me/${WA}`} target="_blank" rel="noopener noreferrer" className="text-fg-4 hover:text-wa transition-colors" aria-label="WhatsApp"><WaIco c="w-4 h-4"/></a>
+        <div className="flex items-center gap-5 sm:gap-4">
+          <a href="https://instagram.com/dobos_dumitrita" target="_blank" rel="noopener noreferrer" className="text-fg-4 hover:text-fg-2 transition-colors p-1" aria-label="Instagram"><IgIco c="w-5 h-5 sm:w-4 sm:h-4"/></a>
+          <a href="https://www.threads.com/@dobos_dumitrita" target="_blank" rel="noopener noreferrer" className="text-fg-4 hover:text-fg-2 transition-colors p-1" aria-label="Threads"><ThreadsIco c="w-5 h-5 sm:w-4 sm:h-4"/></a>
+          <a href={`https://wa.me/${WA}`} target="_blank" rel="noopener noreferrer" className="text-fg-4 hover:text-wa transition-colors p-1" aria-label="WhatsApp"><WaIco c="w-5 h-5 sm:w-4 sm:h-4"/></a>
         </div>
       </div>
-      <div className="max-w-[1140px] mx-auto mt-6 pt-4 border-t border-line-subtle flex flex-col sm:flex-row items-center justify-between gap-2">
-        <p className="text-[11px] text-fg-5">© {new Date().getFullYear()} Doboș Dumitrița. Toate drepturile rezervate.</p>
-        <p className="text-[11px] text-fg-5">Aviz Liberă Practică · Serie NG Nr. 598 · AIPNSF 2025</p>
+      <div className="max-w-[1140px] mx-auto mt-6 pt-4 border-t border-line-subtle flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
+        <p className="text-[12px] sm:text-[11px] text-fg-5">© {new Date().getFullYear()} Doboș Dumitrița. Toate drepturile rezervate.</p>
+        <p className="text-[12px] sm:text-[11px] text-fg-5">Aviz Liberă Practică · Serie NG Nr. 598 · AIPNSF 2025</p>
       </div>
     </footer>
   );
@@ -634,10 +636,10 @@ function QCard({q,qi,pick}:{q:Q;qi:number;pick:(v:string)=>void}) {
     <div className="a-up max-w-md mx-auto">
       <h2 className="f-serif text-xl sm:text-2xl font-normal text-center mb-2">{q.question}</h2>
       {q.sub && <p className="text-sm text-fg-4 text-center mb-8">{q.sub}</p>}
-      <div className="space-y-2">
+      <div className="space-y-2.5 sm:space-y-2">
         {q.opts.map(o=>(
-          <button key={o.value} onClick={()=>!selected&&handlePick(o.value)} className={`q-opt w-full flex items-center justify-between bg-surface border rounded-xl px-5 py-4 text-left cursor-pointer ${selected===o.value?"border-brand bg-brand-subtle":"border-line"} ${selected&&selected!==o.value?"opacity-50":""}`}>
-            <span className="text-[15px] text-fg-2">{o.label}</span>
+          <button key={o.value} onClick={()=>!selected&&handlePick(o.value)} className={`q-opt w-full flex items-center justify-between bg-surface border rounded-xl px-4 sm:px-5 py-4 sm:py-4 text-left cursor-pointer ${selected===o.value?"border-brand bg-brand-subtle":"border-line"} ${selected&&selected!==o.value?"opacity-50":""}`}>
+            <span className="text-[14px] sm:text-[15px] text-fg-2">{o.label}</span>
             {selected===o.value ? (
               <svg className="w-4 h-4 text-brand shrink-0 a-scl" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7"/></svg>
             ) : (
@@ -673,14 +675,14 @@ function Done({answers}:{answers:Record<string,string>}) {
 
       <div className="border border-line rounded-xl divide-y divide-line mb-8">
         {([["Obiectiv",gl[answers.goal]||answers.goal],["Provocare",cl[answers.challenge]||answers.challenge],["Suport dorit",sl[answers.support]||answers.support]] as [string,string][]).map(([k,val])=>(
-          <div key={k} className="flex justify-between px-5 py-3.5 text-sm row-hover">
-            <span className="text-fg-4">{k}</span>
-            <span className="font-medium">{val}</span>
+          <div key={k} className="flex justify-between px-4 sm:px-5 py-3.5 text-[13px] sm:text-sm row-hover gap-2">
+            <span className="text-fg-4 shrink-0">{k}</span>
+            <span className="font-medium text-right">{val}</span>
           </div>
         ))}
       </div>
 
-      <a href={url} target="_blank" rel="noopener noreferrer" className="a-glow w-full bg-wa hover:bg-wa-hover text-white font-semibold py-4 rounded-xl flex items-center justify-center gap-2 text-sm transition-all">
+      <a href={url} target="_blank" rel="noopener noreferrer" className="a-glow w-full bg-wa hover:bg-wa-hover text-white font-semibold py-4 rounded-xl flex items-center justify-center gap-2 text-[15px] sm:text-sm transition-all">
         <WaIco c="w-5 h-5"/> Scrie-mi pe WhatsApp
       </a>
       <p className="text-center text-xs text-fg-4 mt-3">Răspunsurile tale vor fi trimise automat în mesaj</p>
@@ -700,9 +702,9 @@ function FloatWA() {
   useEffect(()=>{const h=()=>setShow(scrollY>500);addEventListener("scroll",h,{passive:true});return()=>removeEventListener("scroll",h)},[]);
   if(!show) return null;
   return (
-    <a href={`https://wa.me/${WA}`} target="_blank" rel="noopener noreferrer" className="fixed bottom-5 right-5 z-50 a-scl" aria-label="WhatsApp">
-      <div className="w-12 h-12 bg-wa hover:bg-wa-hover rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110">
-        <WaIco c="w-6 h-6 text-white"/>
+    <a href={`https://wa.me/${WA}`} target="_blank" rel="noopener noreferrer" className="float-wa fixed bottom-5 right-5 z-50 a-scl" aria-label="Contactează pe WhatsApp">
+      <div className="w-14 h-14 sm:w-12 sm:h-12 bg-wa hover:bg-wa-hover rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110">
+        <WaIco c="w-7 h-7 sm:w-6 sm:h-6 text-white"/>
       </div>
     </a>
   );
@@ -739,7 +741,7 @@ export default function Home() {
       </>}
 
       {stage==="quiz" && (
-        <main className="flex-1 flex flex-col justify-center px-5 sm:px-8 py-12 sm:py-20">
+        <main className="flex-1 flex flex-col justify-center px-4 sm:px-8 py-10 sm:py-20">
           {/* Trust element during quiz */}
           <div className="flex items-center gap-2 justify-center mb-8 a-fade">
             <div className="w-6 h-6 rounded-full overflow-hidden ring-1 ring-line">
@@ -756,7 +758,7 @@ export default function Home() {
       )}
 
       {stage==="done" && (
-        <main className="flex-1 flex flex-col justify-center px-5 sm:px-8 py-12 sm:py-20">
+        <main className="flex-1 flex flex-col justify-center px-4 sm:px-8 py-10 sm:py-20">
           <Done answers={ans}/>
         </main>
       )}

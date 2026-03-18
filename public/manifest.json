@@ -6,11 +6,17 @@
   "display": "standalone",
   "background_color": "#FDFBF7",
   "theme_color": "#B26A35",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "/images/profile.jpg",
       "sizes": "192x192",
       "type": "image/jpeg"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
     }
   ]
 }

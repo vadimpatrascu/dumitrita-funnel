@@ -12,6 +12,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   userScalable: true,
+  viewportFit: "cover",
   themeColor: "#B26A35",
 };
 
@@ -31,7 +32,8 @@ export const metadata: Metadata = {
   },
   twitter: { card: "summary_large_image", title: "Doboș Dumitrița — Nutriție", description: "Quiz gratuit de nutriție + consultație personalizată." },
   robots: { index: true, follow: true },
-  appleWebApp: { capable: true, statusBarStyle: "default", title: "Dumitrița Nutriție" },
+  appleWebApp: { capable: true, statusBarStyle: "black-translucent", title: "Dumitrița Nutriție" },
+  formatDetection: { telephone: false },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
