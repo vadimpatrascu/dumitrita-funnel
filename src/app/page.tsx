@@ -190,7 +190,7 @@ function Hero({go}:{go:()=>void}) {
 
           {/* Photo — asymmetric, no floating badges */}
           <div className="order-1 lg:order-2 a-up">
-            <div className="relative">
+            <div className="relative max-w-sm sm:max-w-md lg:max-w-none mx-auto">
               <div className="rounded-2xl overflow-hidden">
                 <Image src="/images/hero.jpg" alt="Doboș Dumitrița" width={560} height={700} className="w-full h-auto" priority/>
               </div>
