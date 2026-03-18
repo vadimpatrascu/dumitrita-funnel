@@ -44,6 +44,7 @@ const quiz: Q[] = [
 
 const measurements = [
   {m:"Greutate",b:"99.8 kg",a:"81.5 kg",d:"-18.3 kg"},
+  {m:"Mana",b:"41 cm",a:"35 cm",d:"-6 cm"},
   {m:"Bust",b:"120 cm",a:"102 cm",d:"-18 cm"},
   {m:"Sub bust",b:"101 cm",a:"88 cm",d:"-13 cm"},
   {m:"Talie",b:"103 cm",a:"87 cm",d:"-16 cm"},
@@ -211,11 +212,12 @@ function Credentials() {
       <div className={`max-w-[1140px] mx-auto ${v?"":"opacity-0"}`}>
         <div className="grid md:grid-cols-[0.55fr,1fr] gap-10 lg:gap-16 items-start">
 
-          {/* Certificate — clean, no decorative glow */}
+          {/* Certificate — contained height */}
           <div className={v?"a-sl":""}>
-            <div className="rounded-xl overflow-hidden shadow-sm border border-line">
-              <Image src="/images/aviz-certificate.jpg" alt="Aviz Liberă Practică — AIPNSF" width={440} height={780} className="w-full h-auto" unoptimized/>
+            <div className="rounded-xl overflow-hidden shadow-sm border border-line max-h-[500px] flex items-start">
+              <Image src="/images/aviz-certificate.jpg" alt="Aviz Liberă Practică — AIPNSF" width={440} height={780} className="w-full h-auto object-cover object-top" unoptimized/>
             </div>
+            <p className="text-[11px] text-fg-5 mt-2">Certificat original · Vizibil pe Instagram @dobos_dumitrita → Studii</p>
           </div>
 
           {/* Details — editorial, no emojis */}
@@ -267,7 +269,8 @@ function About() {
           <div className={v?"a-sr":""}>
             <p className="text-xs font-medium uppercase tracking-[.2em] text-brand mb-4">Despre mine</p>
             <h2 className="f-serif text-2xl sm:text-3xl font-normal mb-6 leading-tight">
-              Bună, sunt Dumitrița.
+              Bună, sunt Dumitrița.<br/>
+              <span className="text-fg-3 font-light text-lg sm:text-xl">Nutritionistă.</span>
             </h2>
             <div className="space-y-4 text-fg-3 text-[15px] leading-relaxed">
               <p>Sunt <strong className="text-fg font-medium">Consultant Nutriție Generală</strong> acreditată
@@ -333,7 +336,7 @@ function Results() {
           {/* Data table — clean, no color headers */}
           <div className={`border border-line rounded-xl overflow-hidden ${v?"a-up d3":""}`}>
             <div className="px-5 py-3 border-b border-line bg-bg">
-              <p className="text-xs font-medium text-fg-4 uppercase tracking-wider">Transformare clientă — 5 luni</p>
+              <p className="text-xs font-medium text-fg-4 uppercase tracking-wider">Măsurători verificate · Postare fixată Instagram</p>
             </div>
             <div className="divide-y divide-line-subtle text-sm">
               <div className="grid grid-cols-4 px-3 sm:px-5 py-2.5 text-[10px] sm:text-[11px] font-medium text-fg-4 uppercase tracking-wider">
@@ -601,6 +604,13 @@ export default function Home() {
 
       {stage==="quiz" && (
         <main className="flex-1 flex flex-col justify-center px-5 sm:px-8 py-12 sm:py-20">
+          {/* Trust element during quiz */}
+          <div className="flex items-center gap-2 justify-center mb-8 a-fade">
+            <div className="w-6 h-6 rounded-full overflow-hidden ring-1 ring-line">
+              <Image src="/images/profile.jpg" alt="" width={24} height={24} className="w-full h-full object-cover"/>
+            </div>
+            <span className="text-xs text-fg-4">Quiz de nutriție · Doboș Dumitrița</span>
+          </div>
           <Progress i={qi} t={quiz.length}/>
           <QCard q={quiz[qi]} qi={qi} pick={pick} key={quiz[qi].id}/>
           <button onClick={back} className="mt-10 mx-auto flex items-center gap-1.5 text-sm text-fg-4 hover:text-fg-2 transition-colors cursor-pointer">
