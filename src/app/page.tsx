@@ -222,12 +222,15 @@ function Credentials() {
       <div className={`max-w-[1140px] mx-auto ${v?"":"opacity-0"}`}>
         <div className="grid md:grid-cols-[0.55fr,1fr] gap-10 lg:gap-16 items-start">
 
-          {/* Certificate — contained height */}
+          {/* Certificate — clean presentation */}
           <div className={v?"a-sl":""}>
-            <div className="rounded-xl overflow-hidden shadow-sm border border-line max-h-[500px] flex items-start">
-              <Image src="/images/aviz-certificate.jpg" alt="Aviz Liberă Practică — AIPNSF" width={440} height={780} className="w-full h-auto object-cover object-top"/>
+            <div className="rounded-xl overflow-hidden shadow-sm border border-line">
+              <Image src="/images/aviz-certificate.jpg" alt="Aviz Liberă Practică — AIPNSF" width={440} height={780} className="w-full h-auto"/>
             </div>
-            <p className="text-[11px] text-fg-5 mt-2">Certificat original · Vizibil pe Instagram @dobos_dumitrita → Studii</p>
+            <p className="text-[11px] text-fg-5 mt-2 flex items-center gap-1.5">
+              <span className="w-1 h-1 rounded-full bg-olive"/>
+              Certificat original · Vizibil pe Instagram → Highlight Studii
+            </p>
           </div>
 
           {/* Details — editorial, no emojis */}
@@ -410,8 +413,7 @@ function Maraton({go}:{go:()=>void}) {
 function Results() {
   const {ref,v} = useVisible();
   return (
-    <section ref={ref} className="py-20 sm:py-28 px-5 sm:px-8 bg-surface-raised">
-      <div className="sep mb-20"/>
+    <section ref={ref} className="py-20 sm:py-28 px-5 sm:px-8">
       <div className={`max-w-[1140px] mx-auto ${v?"":"opacity-0"}`}>
 
         <div className="max-w-2xl mb-16">
@@ -489,7 +491,8 @@ function Results() {
 function Gallery() {
   const {ref,v} = useVisible();
   return (
-    <section ref={ref} className="py-16 sm:py-24 px-5 sm:px-8">
+    <section ref={ref} className="py-16 sm:py-24 px-5 sm:px-8 bg-surface-raised">
+      <div className="sep mb-16"/>
       <div className={`max-w-[1140px] mx-auto ${v?"":"opacity-0"}`}>
         <div className="flex items-end justify-between mb-8">
           <div>
@@ -520,8 +523,7 @@ function FAQ() {
   const {ref,v} = useVisible();
   const [open,setOpen] = useState<number|null>(null);
   return (
-    <section ref={ref} className="py-20 sm:py-28 px-5 sm:px-8 bg-surface-raised">
-      <div className="sep mb-20"/>
+    <section ref={ref} className="py-20 sm:py-28 px-5 sm:px-8">
       <div className={`max-w-2xl mx-auto ${v?"":"opacity-0"}`}>
         <p className={`text-xs font-medium uppercase tracking-[.2em] text-brand mb-4 ${v?"a-up":""}`}>Întrebări frecvente</p>
         <h2 className={`f-serif text-2xl sm:text-3xl font-normal mb-10 ${v?"a-up d1":""}`}>Întrebări și răspunsuri</h2>
