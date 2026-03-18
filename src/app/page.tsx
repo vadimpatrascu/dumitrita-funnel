@@ -45,15 +45,17 @@ const quiz: Q[] = [
 const measurements = [
   {m:"Greutate",b:"99.8 kg",a:"81.5 kg",d:"-18.3 kg"},
   {m:"Bust",b:"120 cm",a:"102 cm",d:"-18 cm"},
+  {m:"Sub bust",b:"101 cm",a:"88 cm",d:"-13 cm"},
   {m:"Talie",b:"103 cm",a:"87 cm",d:"-16 cm"},
   {m:"Abdomen",b:"114 cm",a:"99 cm",d:"-15 cm"},
   {m:"Fund",b:"111 cm",a:"100 cm",d:"-11 cm"},
+  {m:"Picior",b:"67 cm",a:"59 cm",d:"-8 cm"},
 ];
 
 const reviews = [
-  { name:"Clientă din Maraton", q:"Aceasta a fost cea mai bună decizie pe care am luat-o. La 40 de ani pot arăta bine!", kg:"-18.3 kg", span:"5 luni" },
-  { name:"Participantă Ed. 2", q:"Unicul maraton unde am o plăcere enormă să citesc mesajele din grup. Mulțumesc!", kg:"-4.4 kg", span:"7 zile" },
-  { name:"Clientă verificată", q:"Drumul nu e ușor, dar rezultatele vorbesc de la sine. Bravo!", kg:"-26 kg", span:"5 luni" },
+  { name:"Clientă din Maraton", q:"Aceasta a fost cea mai bună decizie pe care am luat-o. La 40 de ani pot arăta bine!", kg:"-18.3 kg", span:"5 luni", src:"Postare fixată IG" },
+  { name:"Participantă Maraton", q:"Unicul maraton unde am o plăcere enormă să citesc mesajele din grup. Mulțumesc Dumitriței!", kg:"Rezultat vizibil", span:"Ediția 1", src:"Highlight Rezultate" },
+  { name:"Clientă @dobos_dumitrita", q:"Schimbarea este posibilă atunci când ai ghidare, un plan clar și susținere.", kg:"-18.3 kg", span:"Documentat", src:"Postare verificată IG" },
 ];
 
 const faqs = [
@@ -61,7 +63,7 @@ const faqs = [
   {q:"Trebuie să renunț la alimentele preferate?", a:"Nu. Slăbirea sănătoasă nu înseamnă foame sau restricții. Înveți să mănânci corect, gustos și cu plăcere."},
   {q:"Cât costă un plan alimentar?", a:"Depinde de nevoile tale. Completează quiz-ul și scrie-mi pe WhatsApp — discutăm gratuit despre situația ta."},
   {q:"Am o condiție medicală. Mă poți ajuta?", a:"Ca Consultant Nutriție Generală acreditat AIPNSF, am competențe pentru alimentație adaptată. Discutăm pe WhatsApp."},
-  {q:"Cât de repede voi vedea rezultate?", a:"Clientele mele văd rezultate din prima săptămână. De la -4.4 kg în 7 zile la -26 kg în 5 luni — depinde de consistență."},
+  {q:"Cât de repede voi vedea rezultate?", a:"Clientele mele văd rezultate din prima săptămână. Cea mai documentată transformare: -18.3 kg în 5 luni, cu măsurători verificate pe Instagram."},
 ];
 
 /* ═══════ Utils ═══════ */
@@ -173,7 +175,7 @@ function Hero({go}:{go:()=>void}) {
             <div className="a-up d4 mt-12 flex flex-wrap gap-x-8 gap-y-4 text-sm">
               <div><p className="text-lg sm:text-xl font-semibold text-fg"><Counter n={16700} s="+"/></p><p className="text-fg-4 mt-0.5">urmăritori</p></div>
               <div><p className="text-lg sm:text-xl font-semibold text-fg"><Counter n={108} ms={1200}/></p><p className="text-fg-4 mt-0.5">rețete postate</p></div>
-              <div><p className="text-lg sm:text-xl font-semibold text-fg">Ed. 3</p><p className="text-fg-4 mt-0.5">Maraton activ</p></div>
+              <div><p className="text-lg sm:text-xl font-semibold text-fg">136+</p><p className="text-fg-4 mt-0.5">membri comunitate</p></div>
             </div>
           </div>
 
@@ -275,7 +277,7 @@ function About() {
 
             <div className="mt-8 grid grid-cols-2 gap-3">
               {([
-                ["Maratonul de Slăbit","Ediția 3 — înscrieri"],
+                ["Maratonul de Slăbit","Program activ"],
                 ["Planuri personalizate","Adaptate fiecărei cliente"],
                 ["Rețete sănătoase","Gustoase, rapide"],
                 ["Comunitate activă","136+ membri"],
@@ -310,9 +312,15 @@ function Results() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 items-start mb-16">
-          {/* Transformation photo */}
-          <div className={`rounded-xl overflow-hidden ${v?"a-up d2":""}`}>
-            <Image src="/images/food1.jpg" alt="Transformare Reală — Maraton de Slăbit" width={540} height={540} className="w-full h-auto" unoptimized/>
+          {/* Transformation photos — real clients */}
+          <div className={`space-y-3 ${v?"a-up d2":""}`}>
+            <div className="rounded-xl overflow-hidden">
+              <Image src="/images/food1.jpg" alt="Transformare Reală — Maraton de Slăbit @veradurnea7" width={540} height={540} className="w-full h-auto" unoptimized/>
+            </div>
+            <div className="rounded-xl overflow-hidden">
+              <Image src="/images/client-result-2.jpg" alt="Rezultat clientă — before and after — Maraton de Slăbit" width={540} height={540} className="w-full h-auto" unoptimized/>
+            </div>
+            <p className="text-[11px] text-fg-5">Fotografii reale ale clientelor din Maratonul de Slăbit</p>
           </div>
 
           {/* Data table — clean, no color headers */}
@@ -347,9 +355,10 @@ function Results() {
                 &ldquo;{r.q}&rdquo;
               </p>
               <div className="flex items-center justify-between text-xs">
-                <span className="text-fg-4">{r.name} · {r.span}</span>
+                <span className="text-fg-4">{r.name}</span>
                 <span className="font-semibold text-brand">{r.kg}</span>
               </div>
+              <p className="text-[10px] text-fg-5 mt-1">{r.src}</p>
             </div>
           ))}
         </div>
