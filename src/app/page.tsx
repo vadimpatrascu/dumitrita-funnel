@@ -306,6 +306,100 @@ function About() {
   );
 }
 
+/* ─── Maraton de Slăbit — dedicated product section ─── */
+function Maraton({go}:{go:()=>void}) {
+  const {ref,v} = useVisible();
+  return (
+    <section ref={ref} className="py-20 sm:py-28 px-5 sm:px-8 bg-surface-raised">
+      <div className="sep mb-20"/>
+      <div className={`max-w-[1140px] mx-auto ${v?"":"opacity-0"}`}>
+        <div className="grid md:grid-cols-[1fr,0.9fr] gap-12 lg:gap-20 items-center">
+
+          <div className={v?"a-sl":""}>
+            <p className="text-xs font-medium uppercase tracking-[.2em] text-brand mb-4">Programul principal</p>
+            <h2 className="f-serif text-2xl sm:text-3xl font-normal mb-6 leading-tight">
+              Maratonul de Slăbit
+            </h2>
+            <div className="space-y-4 text-fg-3 text-[15px] leading-relaxed">
+              <p>Rezultatele fetelor din Maratonul de Slăbit Ediția 2 sunt <strong className="text-fg font-medium">absolut incredibile</strong>.</p>
+              <p>Transformări reale, fără înfometare, fără diete extreme — doar un plan clar, suport și consistență.</p>
+            </div>
+
+            <div className="mt-8 space-y-3">
+              {([
+                ["Grup WhatsApp dedicat","136+ membri, suport zilnic"],
+                ["Plan alimentar personalizat","Adaptat fiecărei participante"],
+                ["Rețete noi săptămânal","Simple, gustoase, rapide"],
+                ["Locuri limitate","Scrie-mi pentru următoarea ediție"],
+              ] as [string,string][]).map(([t,s])=>(
+                <div key={t} className="flex items-start gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand mt-2 shrink-0"/>
+                  <div>
+                    <p className="text-sm font-medium">{t}</p>
+                    <p className="text-xs text-fg-4">{s}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-10 flex flex-col sm:flex-row gap-3">
+              <button onClick={go} className="bg-brand hover:bg-brand-hover text-white text-sm font-semibold px-7 py-3.5 rounded-xl transition-all cursor-pointer flex items-center justify-center gap-2">
+                Începe quiz-ul <Arrow/>
+              </button>
+              <a href={`https://wa.me/${WA}?text=${encodeURIComponent("Bună! Vreau detalii despre Maratonul de Slăbit. 🙏")}`} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-fg-2 border border-line hover:border-fg-4 px-6 py-3.5 rounded-xl transition-all flex items-center justify-center gap-2">
+                <WaIco c="w-4 h-4 text-wa"/> Detalii Maraton
+              </a>
+            </div>
+          </div>
+
+          {/* Stats card */}
+          <div className={v?"a-sr":""}>
+            <div className="border border-line rounded-xl overflow-hidden">
+              <div className="bg-fg text-surface px-6 py-5">
+                <p className="f-serif text-lg font-normal">Maraton de Slăbit</p>
+                <p className="text-fg-5 text-xs mt-1">Ediția 2 · Rezultate verificate pe Instagram</p>
+              </div>
+              <div className="p-6 space-y-6">
+                <div className="grid grid-cols-3 gap-4 text-center">
+                  <div>
+                    <p className="text-2xl font-semibold text-fg"><Counter n={136} s="+"/></p>
+                    <p className="text-[11px] text-fg-4 mt-1">membri grup</p>
+                  </div>
+                  <div>
+                    <p className="text-2xl font-semibold text-fg"><Counter n={113} ms={1200}/></p>
+                    <p className="text-[11px] text-fg-4 mt-1">likes pe rezultate</p>
+                  </div>
+                  <div>
+                    <p className="text-2xl font-semibold text-fg"><Counter n={83} ms={1200}/></p>
+                    <p className="text-[11px] text-fg-4 mt-1">likes transformare</p>
+                  </div>
+                </div>
+
+                <div className="sep"/>
+
+                <div className="space-y-3">
+                  <p className="text-xs font-medium text-fg-4 uppercase tracking-wider">Ce include</p>
+                  {["Plan alimentar personalizat","Rețete noi în fiecare săptămână","Suport zilnic prin WhatsApp","Ghidare nutrițională continuă","Comunitate de susținere"].map(item=>(
+                    <div key={item} className="flex items-center gap-2 text-sm">
+                      <svg className="w-4 h-4 text-olive shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7"/></svg>
+                      <span>{item}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <p className="text-xs text-fg-4 italic f-serif text-center pt-2">
+                  &ldquo;Fără diete drastice. Fără suplimente. Doar mâncare reală.&rdquo;
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ─── Results — transformation photo + data table + testimonials ─── */
 function Results() {
   const {ref,v} = useVisible();
@@ -445,8 +539,9 @@ function FAQ() {
 function CTA({go}:{go:()=>void}) {
   const {ref,v} = useVisible();
   return (
-    <section ref={ref} className="py-24 sm:py-32 px-5 sm:px-8 text-center">
-      <div className={`max-w-lg mx-auto ${v?"a-up":"opacity-0"}`}>
+    <section ref={ref} className="py-24 sm:py-32 px-5 sm:px-8 text-center relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-brand-subtle/40 via-bg to-bg"/>
+      <div className={`relative max-w-lg mx-auto ${v?"a-up":"opacity-0"}`}>
         <h2 className="f-serif text-2xl sm:text-3xl lg:text-4xl font-normal leading-tight mb-4">
           Aceeași persoană.<br/>Altă energie. Altă viață.
         </h2>
@@ -512,15 +607,26 @@ function Progress({i,t}:{i:number;t:number}) {
 }
 
 function QCard({q,qi,pick}:{q:Q;qi:number;pick:(v:string)=>void}) {
+  const [selected,setSelected] = useState<string|null>(null);
+
+  const handlePick = (v:string) => {
+    setSelected(v);
+    setTimeout(() => pick(v), 300);
+  };
+
   return (
     <div className="a-up max-w-md mx-auto">
       <h2 className="f-serif text-xl sm:text-2xl font-normal text-center mb-2">{q.question}</h2>
       {q.sub && <p className="text-sm text-fg-4 text-center mb-8">{q.sub}</p>}
       <div className="space-y-2">
         {q.opts.map(o=>(
-          <button key={o.value} onClick={()=>pick(o.value)} className="q-opt w-full flex items-center justify-between bg-surface border border-line rounded-xl px-5 py-4 text-left cursor-pointer">
+          <button key={o.value} onClick={()=>!selected&&handlePick(o.value)} className={`q-opt w-full flex items-center justify-between bg-surface border rounded-xl px-5 py-4 text-left cursor-pointer ${selected===o.value?"border-brand bg-brand-subtle":"border-line"} ${selected&&selected!==o.value?"opacity-50":""}`}>
             <span className="text-[15px] text-fg-2">{o.label}</span>
-            <svg className="w-4 h-4 text-fg-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7"/></svg>
+            {selected===o.value ? (
+              <svg className="w-4 h-4 text-brand shrink-0 a-scl" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7"/></svg>
+            ) : (
+              <svg className="w-4 h-4 text-fg-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7"/></svg>
+            )}
           </button>
         ))}
       </div>
@@ -609,6 +715,7 @@ export default function Home() {
         <Hero go={go}/>
         <Credentials/>
         <About/>
+        <Maraton go={go}/>
         <Results/>
         <Gallery/>
         <FAQ/>
