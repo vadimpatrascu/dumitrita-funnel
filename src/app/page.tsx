@@ -53,18 +53,20 @@ const measurements = [
   {m:"Picior",b:"67 cm",a:"59 cm",d:"-8 cm"},
 ];
 
+/* FIX: removed empty 3rd "testimonial" that was just a comment ("Bravo!") — not real social proof */
 const reviews = [
-  { name:"Clientă Maraton, 40 ani", q:"Rezultatul meu în poze și cifre. Aceasta a fost cea mai bună decizie pe care am luat-o în noiembrie, acum sunt mândră că la 40 ani pot arăta bine! Succes tuturor!", kg:"-18.3 kg", src:"Postare fixată · 10 likes · Mar 2026" },
-  { name:"Clientă transformare", q:"Drumul nu e ușor, dar rezultatele vorbesc de la sine. Această poveste arată ce se întâmplă când nu mai cauți scuze, ci soluții.", kg:"Vizibil", src:"Postare fixată · 37 likes · Oct 2025" },
-  { name:"@sanduta_stepan", q:"Ce transformare frumoasă! Bravo!", kg:"—", src:"Comentariu verificat pe Instagram" },
+  { name:"Clientă Maraton, 40 ani", q:"Aceasta a fost cea mai bună decizie pe care am luat-o în noiembrie. Acum sunt mândră că la 40 de ani pot arăta bine! Rezultatul meu este în poze și cifre — succes tuturor!", kg:"-18.3 kg", src:"Postare fixată pe Instagram · Mar 2026" },
+  { name:"@veradurnea7", q:"Drumul nu e ușor, dar rezultatele vorbesc de la sine. Ce se întâmplă când nu mai cauți scuze, ci soluții.", kg:"Transformare vizibilă", src:"Postare fixată pe Instagram · Oct 2025" },
 ];
 
 const faqs = [
-  {q:"Cum funcționează Maratonul de Slăbit?", a:"Program cu suport zilnic prin grupul de WhatsApp (136+ membri), rețete noi săptămânal și plan alimentar personalizat. Fără diete drastice, fără suplimente — doar mâncare reală, susținere zilnică și rezultate vizibile."},
+  {q:"Cum funcționează Maratonul de Slăbit?", a:"Este un program cu suport zilnic prin grupul de WhatsApp (136+ membri), rețete noi în fiecare săptămână și plan alimentar personalizat. Fără diete drastice, fără suplimente — doar mâncare reală, susținere și rezultate vizibile."},
   {q:"Trebuie să renunț la alimentele preferate?", a:"Nu. Cu mine înveți să te alimentezi sănătos și gustos. Slăbirea sănătoasă nu înseamnă foame — înseamnă un plan clar și consistență."},
-  {q:"Ce rezultate au avut participantele?", a:"Cea mai documentată transformare pe Instagram: -18.3 kg, -16 cm talie, -18 cm bust, de la 99.8 la 81.5 kg. Toate măsurătorile sunt publice pe pagina @dobos_dumitrita."},
+  /* FIX: changed to match documented 18.3 kg (not 26 kg), consistent with hero + measurements table */
+  {q:"Ce rezultate au avut participantele?", a:"Cea mai documentată transformare: -18.3 kg, -16 cm talie, -18 cm bust, de la 99.8 la 81.5 kg. Toate măsurătorile sunt publice pe pagina mea de Instagram @dobos_dumitrita."},
   {q:"Cât costă un plan alimentar?", a:"Depinde de nevoile tale. Completează quiz-ul și scrie-mi pe WhatsApp — discutăm gratuit despre situația ta și găsim varianta potrivită."},
-  {q:"Am o condiție medicală. Mă poți ajuta?", a:"Ca Consultant Nutriție Generală acreditat AIPNSF, Dumitrița are competențe în alimentația adaptată diferitelor condiții. Discuți pe WhatsApp despre situația ta specifică."},
+  /* FIX: changed from 3rd person ("Dumitrița are competențe") to 1st person, matching rest of page */
+  {q:"Am o condiție medicală. Mă poți ajuta?", a:"Ca Consultant Nutriție Generală acreditat AIPNSF, am competențe în alimentația adaptată diferitelor condiții. Scrie-mi pe WhatsApp și discutăm despre situația ta specifică."},
 ];
 
 /* ═══════ Utils ═══════ */
@@ -140,6 +142,8 @@ function Nav({stage,qi,qt,reset}:{stage:string;qi:number;qt:number;reset:()=>voi
 }
 
 /* ─── Hero ─── */
+/* FIX: headline now uses documented -18.3 kg (matches measurements table + testimonial)
+   instead of unsubstantiated "26 kg" claim. Removed generic filler quote. */
 function Hero({go}:{go:()=>void}) {
   return (
     <section className="relative">
@@ -157,17 +161,16 @@ function Hero({go}:{go:()=>void}) {
             </div>
 
             <h1 className="a-up d1 f-serif text-[1.625rem] xs:text-[1.875rem] sm:text-[2.75rem] lg:text-[3.25rem] font-normal leading-[1.15] sm:leading-[1.1] mb-5 sm:mb-6">
-              Clienta mea a slăbit{" "}
-              <span className="font-bold text-grad">26 kg în doar 5 luni</span>{" "}
-              <span className="text-fg-3 text-[0.65em] font-light italic">fără înfometare!</span>
+              De la 99.8 la{" "}
+              <span className="font-bold text-grad">81.5 kg — fără înfometare</span>
             </h1>
 
-            <p className="a-up d2 text-fg-3 text-[15px] sm:text-base leading-relaxed mb-4 max-w-md">
-              Cu mine înveți să te alimentezi sănătos și gustos.
-              Transformări reale, fără diete extreme — doar un plan clar, suport și consistență.
+            <p className="a-up d2 text-fg-3 text-[15px] sm:text-base leading-relaxed mb-3 max-w-md">
+              Transformare documentată: <strong className="text-fg font-medium">-18.3 kg, -16 cm talie, -18 cm bust.</strong>{" "}
+              Cu mâncare reală, un plan personalizat și suport zilnic.
             </p>
-            <p className="a-up d2 text-fg-4 text-sm italic mb-10 max-w-md f-serif">
-              &ldquo;Schimbarea începe cu un singur pas.&rdquo;
+            <p className="a-up d2 text-fg-4 text-sm mb-10 max-w-md">
+              Toate măsurătorile sunt publice pe Instagram @dobos_dumitrita
             </p>
 
             {/* WhatsApp is PRIMARY, Quiz is SECONDARY */}
@@ -175,25 +178,24 @@ function Hero({go}:{go:()=>void}) {
               <a href={`https://wa.me/${WA}`} target="_blank" rel="noopener noreferrer" className="group bg-wa hover:bg-wa-hover text-white text-[15px] sm:text-sm font-semibold px-7 py-4 sm:py-3.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 w-full sm:w-auto shadow-lg hover:shadow-xl hover:scale-105">
                 <WaIco c="w-5 h-5"/> Consultație gratuită pe WhatsApp
               </a>
-              <button onClick={go} className="text-[15px] sm:text-sm font-medium text-fg-2 border border-line hover:border-fg-4 px-6 py-4 sm:py-3.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 w-full sm:w-auto">
+              <button onClick={go} className="text-[15px] sm:text-sm font-medium text-fg-2 border border-line hover:border-fg-4 px-6 py-4 sm:py-3.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 w-full sm:w-auto cursor-pointer">
                 Sau fă quiz-ul <Arrow/>
               </button>
             </div>
 
-            {/* Urgency elements */}
             <div className="a-up d3 mt-6 flex flex-col xs:flex-row items-start xs:items-center gap-3 text-xs text-fg-4 font-medium">
-              <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-wa animate-pulse"/></span> Consultație gratuită
+              <span>Consultație gratuită</span>
               <span className="hidden xs:inline">·</span>
               <span>Răspuns în 24h</span>
               <span className="hidden xs:inline">·</span>
               <span>Fără obligații</span>
             </div>
 
-            {/* Stats */}
+            {/* Stats — FIX: replaced vanity metrics (likes) with meaningful ones */}
             <div className="a-up d4 mt-10 sm:mt-12 grid grid-cols-3 gap-3 sm:gap-6 text-sm">
-              <div><p className="text-base sm:text-xl font-semibold text-fg"><Counter n={16700} s="+"/></p><p className="text-fg-4 text-xs sm:text-sm mt-0.5">urmăritori</p></div>
+              <div><p className="text-base sm:text-xl font-semibold text-fg">-<Counter n={18} ms={800}/>.3 kg</p><p className="text-fg-4 text-xs sm:text-sm mt-0.5">cea mai documentată transformare</p></div>
+              <div><p className="text-base sm:text-xl font-semibold text-fg"><Counter n={136} s="+"/></p><p className="text-fg-4 text-xs sm:text-sm mt-0.5">membri comunitate</p></div>
               <div><p className="text-base sm:text-xl font-semibold text-fg"><Counter n={108} ms={1200}/></p><p className="text-fg-4 text-xs sm:text-sm mt-0.5">rețete postate</p></div>
-              <div><p className="text-base sm:text-xl font-semibold text-fg">136+</p><p className="text-fg-4 text-xs sm:text-sm mt-0.5">membri comunitate</p></div>
             </div>
           </div>
 
@@ -201,7 +203,7 @@ function Hero({go}:{go:()=>void}) {
           <div className="order-1 lg:order-2 a-up">
             <div className="relative max-w-sm sm:max-w-md lg:max-w-none mx-auto">
               <div className="rounded-2xl overflow-hidden">
-                <Image src="/images/hero.jpg" alt="Doboș Dumitrița" width={560} height={700} className="w-full h-auto" priority sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 480px"/>
+                <Image src="/images/hero.jpg" alt="Doboș Dumitrița — Consultant Nutriție Generală" width={560} height={700} className="w-full h-auto" priority sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 480px"/>
               </div>
               <div className="mt-3 flex items-center gap-2 text-[11px] text-fg-4">
                 <span className="w-8 h-px bg-brand"/>
@@ -221,14 +223,16 @@ function Hero({go}:{go:()=>void}) {
   );
 }
 
-/* ─── Credentials + WhatsApp Bridge ─── */
+/* ─── Credentials ─── */
+/* FIX: removed "Președinte" row (irrelevant to clients), removed forced bridge CTA
+   that asked about accreditation (nobody asks that). Cleaner, faster section. */
 function Credentials() {
   const {ref,v} = useVisible();
   return (
     <section ref={ref} className="py-14 sm:py-28 px-4 sm:px-8 bg-surface-raised">
       <div className="sep mb-14 sm:mb-20"/>
       <div className={`max-w-[1140px] mx-auto ${v?"":"opacity-0"}`}>
-        <div className="grid md:grid-cols-[0.55fr,1fr] gap-8 lg:gap-16 items-start mb-14">
+        <div className="grid md:grid-cols-[0.55fr,1fr] gap-8 lg:gap-16 items-start">
 
           {/* Certificate */}
           <div className={v?"a-sl":""}>
@@ -250,7 +254,7 @@ function Credentials() {
             </h2>
 
             <div className="border border-line rounded-xl divide-y divide-line mb-6">
-              {([["Nume","Doboș Dumitrița"],["Domeniu","Consultant Nutriție Generală"],["Emitent","AIPNSF"],["Președinte","Iulian Dinu"],["Registru","Serie NG · Nr. 598"],["An","2025"]] as [string,string][]).map(([k,val])=>(
+              {([["Nume","Doboș Dumitrița"],["Domeniu","Consultant Nutriție Generală"],["Emitent","AIPNSF"],["Registru","Serie NG · Nr. 598"],["An","2025"]] as [string,string][]).map(([k,val])=>(
                 <div key={k} className="flex justify-between px-4 sm:px-5 py-3 text-[13px] sm:text-sm row-hover gap-2">
                   <span className="text-fg-4 shrink-0">{k}</span>
                   <span className="font-medium text-right">{val}</span>
@@ -268,20 +272,15 @@ function Credentials() {
           </div>
 
         </div>
-
-        {/* WhatsApp Bridge CTA */}
-        <div className={`bg-brand/5 border border-brand/20 rounded-xl p-6 sm:p-8 text-center ${v?"a-up d3":""}`}>
-          <p className="text-sm text-fg-3 mb-4">Ai întrebări despre acreditare sau vrei să discutăm despre situația ta?</p>
-          <a href={`https://wa.me/${WA}?text=${encodeURIComponent("Bună! Am întrebări despre programul tău de nutriție. 🙏")}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-wa hover:bg-wa-hover text-white font-semibold px-6 py-3 rounded-lg transition-all">
-            <WaIco c="w-4 h-4"/> Scrie-mi pe WhatsApp
-          </a>
-        </div>
       </div>
     </section>
   );
 }
 
-/* ─── About + WhatsApp CTA ─── */
+/* ─── About ─── */
+/* FIX: Removed "Nutriționistă" (incorrect title — she's "Consultant Nutriție Generală").
+   Rewrote to not copy-paste Maraton text. Removed 4-card grid that duplicated Maraton features.
+   Made this section personal and distinct from the Maraton section below. */
 function About() {
   const {ref,v} = useVisible();
   return (
@@ -291,43 +290,28 @@ function About() {
 
           <div className={v?"a-sl":""}>
             <div className="rounded-2xl overflow-hidden">
-              <Image src="/images/client-result.jpg" alt="Doboș Dumitrița — portret" width={480} height={640} className="w-full h-auto" sizes="(max-width: 768px) 90vw, 45vw"/>
+              <Image src="/images/client-result.jpg" alt="Doboș Dumitrița — portret profesional" width={480} height={640} className="w-full h-auto" sizes="(max-width: 768px) 90vw, 45vw"/>
             </div>
           </div>
 
           <div className={v?"a-sr":""}>
             <p className="text-xs font-medium uppercase tracking-[.2em] text-brand mb-4">Despre mine</p>
             <h2 className="f-serif text-2xl sm:text-3xl font-normal mb-6 leading-tight">
-              Bună, sunt Dumitrița.<br/>
-              <span className="text-fg-3 font-light text-lg sm:text-xl">Nutriționistă.</span>
+              Bună, sunt Dumitrița.
             </h2>
             <div className="space-y-4 text-fg-3 text-[15px] leading-relaxed mb-8">
               <p>Sunt <strong className="text-fg font-medium">Consultant Nutriție Generală</strong> acreditată
               de Asociația Internațională de Psihologie, Nutriție, Sport și Fitness (AIPNSF).</p>
-              <p>Cu mine înveți să te alimentezi <strong className="text-fg font-medium">sănătos și gustos</strong>.
-              Fără diete drastice. Fără suplimente. Doar mâncare reală, susținere zilnică și
-              rezultate vizibile.</p>
-              <p>Rezultatele fetelor din Maratonul de Slăbit sunt absolut incredibile — transformări
-              reale, cu un plan clar, suport și consistență.</p>
+              <p>Am creat <strong className="text-fg font-medium">Maratonul de Slăbit</strong> pentru femeile care
+              au obosit de diete care nu funcționează. Nu promit miracole — promit un plan clar,
+              mâncare gustoasă și suport zilnic.</p>
+              <p>Cea mai documentată transformare din programul meu: de la 99.8 la 81.5 kg.
+              Dar fiecare clientă are povestea ei, iar eu sunt aici să te ajut să o scrii pe a ta.</p>
             </div>
 
-            <div className="mb-8 grid grid-cols-2 gap-2 sm:gap-3">
-              {([
-                ["Maratonul de Slăbit","Program activ"],
-                ["Planuri personalizate","Adaptate fiecărei cliente"],
-                ["Rețete sănătoase","Gustoase, rapide"],
-                ["Comunitate activă","136+ membri"],
-              ] as [string,string][]).map(([t,s])=>(
-                <div key={t} className="border border-line rounded-lg px-3 sm:px-4 py-3 card-hover">
-                  <p className="text-[13px] sm:text-sm font-medium">{t}</p>
-                  <p className="text-[11px] sm:text-xs text-fg-4 mt-0.5">{s}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* WhatsApp CTA */}
+            {/* WhatsApp CTA — natural at end of personal section */}
             <a href={`https://wa.me/${WA}?text=${encodeURIComponent("Bună Dumitrița! Vreau să discutăm despre obiectivele mele de nutriție. 🙏")}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-wa hover:bg-wa-hover text-white font-semibold px-6 py-3 rounded-lg transition-all">
-              <WaIco c="w-4 h-4"/> Vrei să discutăm?
+              <WaIco c="w-4 h-4"/> Hai să discutăm
             </a>
           </div>
         </div>
@@ -336,7 +320,10 @@ function About() {
   );
 }
 
-/* ─── Maraton + WhatsApp Bridge ─── */
+/* ─── Maraton ─── */
+/* FIX: completely fresh copy (no longer copy-paste from About). Removed fake hardcoded
+   urgency ("Doar 12 locuri", "Primele 3 primesc reducere 20%") — that's obviously
+   fake to any returning visitor. Replaced with honest, softer call to action. */
 function Maraton({go}:{go:()=>void}) {
   const {ref,v} = useVisible();
   return (
@@ -351,16 +338,19 @@ function Maraton({go}:{go:()=>void}) {
               Maratonul de Slăbit
             </h2>
             <div className="space-y-4 text-fg-3 text-[15px] leading-relaxed">
-              <p>Rezultatele fetelor din Maratonul de Slăbit Ediția 2 sunt <strong className="text-fg font-medium">absolut incredibile</strong>.</p>
-              <p>Transformări reale, fără înfometare, fără diete extreme — doar un plan clar, suport și consistență.</p>
+              <p>Un program de grup prin WhatsApp, cu tot ce ai nevoie ca să slăbești sănătos:
+              plan alimentar personalizat, rețete noi în fiecare săptămână și un grup de femei
+              care se susțin reciproc.</p>
+              <p>Nu e o dietă de 2 săptămâni. E o schimbare de abordare — înveți ce, cât
+              și cum să mănânci, iar rezultatele vin natural.</p>
             </div>
 
             <div className="mt-8 space-y-3 mb-10">
               {([
-                ["Grup WhatsApp dedicat","136+ membri, suport zilnic"],
-                ["Plan alimentar personalizat","Adaptat fiecărei participante"],
-                ["Rețete noi săptămânal","Simple, gustoase, rapide"],
-                ["Locuri limitate","Scrie-mi pentru următoarea ediție"],
+                ["Grup WhatsApp dedicat","136+ membre, suport și motivare zilnică"],
+                ["Plan alimentar personalizat","Adaptat greutății, stilului de viață și preferințelor tale"],
+                ["Rețete noi săptămânal","Simple, gustoase, cu ingrediente accesibile"],
+                ["Ghidare continuă","Întrebări, ajustări, feedback — oricând ai nevoie"],
               ] as [string,string][]).map(([t,s])=>(
                 <div key={t} className="flex items-start gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-brand mt-2 shrink-0"/>
@@ -374,9 +364,9 @@ function Maraton({go}:{go:()=>void}) {
 
             <div className="flex flex-col sm:flex-row gap-3">
               <a href={`https://wa.me/${WA}?text=${encodeURIComponent("Bună! Vreau detalii despre Maratonul de Slăbit. 🙏")}`} target="_blank" rel="noopener noreferrer" className="bg-wa hover:bg-wa-hover text-white text-[15px] sm:text-sm font-semibold px-7 py-4 sm:py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 w-full sm:w-auto">
-                <WaIco c="w-5 h-5"/> Rezervă locul tău
+                <WaIco c="w-5 h-5"/> Întreabă despre program
               </a>
-              <button onClick={go} className="text-[15px] sm:text-sm font-medium text-fg-2 border border-line hover:border-fg-4 px-6 py-4 sm:py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 w-full sm:w-auto">
+              <button onClick={go} className="text-[15px] sm:text-sm font-medium text-fg-2 border border-line hover:border-fg-4 px-6 py-4 sm:py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 w-full sm:w-auto cursor-pointer">
                 Sau fă quiz-ul <Arrow/>
               </button>
             </div>
@@ -396,15 +386,15 @@ function Maraton({go}:{go:()=>void}) {
                 <div className="grid grid-cols-3 gap-4 text-center">
                   <div>
                     <p className="text-2xl font-semibold text-fg"><Counter n={136} s="+"/></p>
-                    <p className="text-[11px] text-fg-4 mt-1">membri grup</p>
+                    <p className="text-[11px] text-fg-4 mt-1">membre grup</p>
                   </div>
                   <div>
-                    <p className="text-2xl font-semibold text-fg"><Counter n={113} ms={1200}/></p>
-                    <p className="text-[11px] text-fg-4 mt-1">likes pe rezultate</p>
+                    <p className="text-2xl font-semibold text-fg"><Counter n={108} ms={1200}/></p>
+                    <p className="text-[11px] text-fg-4 mt-1">rețete postate</p>
                   </div>
                   <div>
-                    <p className="text-2xl font-semibold text-fg"><Counter n={83} ms={1200}/></p>
-                    <p className="text-[11px] text-fg-4 mt-1">likes transformare</p>
+                    <p className="text-2xl font-semibold text-fg f-serif">Ed. 2</p>
+                    <p className="text-[11px] text-fg-4 mt-1">ediție curentă</p>
                   </div>
                 </div>
 
@@ -419,30 +409,19 @@ function Maraton({go}:{go:()=>void}) {
                     </div>
                   ))}
                 </div>
-
-                <div className="pt-3 border-t border-line-subtle">
-                  <p className="text-[10px] text-fg-4 text-center font-medium">LOCURI LIMITATE</p>
-                </div>
               </div>
             </div>
           </div>
 
-        </div>
-
-        {/* Urgency Bridge */}
-        <div className={`bg-wa/10 border border-wa/30 rounded-xl p-6 sm:p-8 text-center ${v?"a-up d3":""}`}>
-          <p className="text-sm font-semibold text-wa mb-3">Locuri limitate pentru următoarea ediție</p>
-          <p className="text-fg-3 text-sm mb-4">Doar 12 locuri disponibile. Primele 3 care scriu pe WhatsApp primesc reducere de 20%.</p>
-          <a href={`https://wa.me/${WA}?text=${encodeURIComponent("Bună! Vreau să mă înscriu la Maratonul de Slăbit. Am întrebări. 🙏")}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-wa hover:bg-wa-hover text-white font-semibold px-6 py-3 rounded-lg transition-all">
-            <WaIco c="w-4 h-4"/> Scrie acum
-          </a>
         </div>
       </div>
     </section>
   );
 }
 
-/* ─── Results + Powerful WhatsApp CTA ─── */
+/* ─── Results ─── */
+/* FIX: testimonials now 2-column (removed empty 3rd).
+   Kept all transformation photos — they're the strongest part of the page. */
 function Results() {
   const {ref,v} = useVisible();
   return (
@@ -464,13 +443,13 @@ function Results() {
           {/* Transformation photos */}
           <div className={`space-y-3 ${v?"a-up d2":""}`}>
             <div className="rounded-xl overflow-hidden">
-              <Image src="/images/client-beforeafter.jpg" alt="Transformare clientă — postare fixată @dobos_dumitrita, Octombrie 2025" width={540} height={540} className="w-full h-auto" sizes="(max-width: 768px) 90vw, 45vw"/>
+              <Image src="/images/client-beforeafter.jpg" alt="Transformare clientă — înainte și după, Maratonul de Slăbit" width={540} height={540} className="w-full h-auto" sizes="(max-width: 768px) 90vw, 45vw"/>
             </div>
             <div className="rounded-xl overflow-hidden">
-              <Image src="/images/food1.jpg" alt="Transformare Reală — Maraton de Slăbit — @veradurnea7 și @dobos_dumitrita" width={540} height={540} className="w-full h-auto" sizes="(max-width: 768px) 90vw, 45vw"/>
+              <Image src="/images/food1.jpg" alt="Transformare @veradurnea7 — Maratonul de Slăbit" width={540} height={540} className="w-full h-auto" sizes="(max-width: 768px) 90vw, 45vw"/>
             </div>
             <div className="rounded-xl overflow-hidden">
-              <Image src="/images/client-result-2.jpg" alt="Rezultat clientă — Maratonul de Slăbit, Decembrie 2025" width={540} height={540} className="w-full h-auto" sizes="(max-width: 768px) 90vw, 45vw"/>
+              <Image src="/images/client-result-2.jpg" alt="Transformare clientă — înainte și după" width={540} height={540} className="w-full h-auto" sizes="(max-width: 768px) 90vw, 45vw"/>
             </div>
             <p className="text-[11px] text-fg-5">Fotografii reale de pe Instagram @dobos_dumitrita · Postări verificate</p>
           </div>
@@ -499,9 +478,9 @@ function Results() {
           </div>
         </div>
 
-        {/* Testimonials */}
+        {/* Testimonials — FIX: 2-column layout for 2 real testimonials */}
         <p className={`text-xs font-medium uppercase tracking-[.2em] text-fg-4 mb-6 ${v?"a-up":""}`} style={{animationDelay:".35s"}}>Ce spun clientele</p>
-        <div className="grid sm:grid-cols-3 gap-px bg-line rounded-xl overflow-hidden mb-14">
+        <div className="grid sm:grid-cols-2 gap-px bg-line rounded-xl overflow-hidden mb-14">
           {reviews.map((r,i)=>(
             <div key={i} className={`bg-surface p-5 sm:p-8 ${v?"a-up":""}`} style={{animationDelay:`${.3+i*.1}s`}}>
               <p className="f-serif text-[14px] sm:text-[15px] text-fg-2 leading-relaxed italic mb-4">
@@ -516,15 +495,14 @@ function Results() {
           ))}
         </div>
 
-        {/* POWERFUL WhatsApp CTA after Results */}
+        {/* WhatsApp CTA — emotional peak after seeing results */}
         <div className={`bg-gradient-to-br from-wa/10 to-wa/5 border-2 border-wa rounded-2xl p-8 sm:p-10 text-center ${v?"a-up d4":""}`}>
-          <p className="text-xs font-medium uppercase tracking-[.2em] text-wa mb-3">Transformări reale</p>
           <h3 className="f-serif text-2xl sm:text-3xl font-normal mb-4">Vrei rezultate similare?</h3>
           <p className="text-fg-3 text-[15px] mb-8 max-w-lg mx-auto">
-            Primul pas e o discuție gratuită pe WhatsApp. Voi crea un plan personalizat pentru obiectivele tale.
+            Primul pas e o discuție gratuită pe WhatsApp. Îți voi crea un plan personalizat pentru obiectivele tale.
           </p>
-          <a href={`https://wa.me/${WA}?text=${encodeURIComponent("Bună Dumitrița! Am văzut rezultatele din poze și vreau transformare similară. 🙏")}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-wa hover:bg-wa-hover text-white font-semibold text-lg px-8 py-4 rounded-xl transition-all hover:scale-105 shadow-lg hover:shadow-xl a-glow">
-            <WaIco c="w-5 h-5"/> Discutăm pe WhatsApp
+          <a href={`https://wa.me/${WA}?text=${encodeURIComponent("Bună Dumitrița! Am văzut rezultatele de pe site și vreau să discutăm. 🙏")}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-wa hover:bg-wa-hover text-white font-semibold text-lg px-8 py-4 rounded-xl transition-all hover:scale-105 shadow-lg hover:shadow-xl a-glow">
+            <WaIco c="w-5 h-5"/> Scrie-mi pe WhatsApp
           </a>
           <p className="text-xs text-fg-4 mt-4">Consultație gratuită · Fără obligații · Răspuns în 24h</p>
         </div>
@@ -534,7 +512,10 @@ function Results() {
   );
 }
 
-/* ─── Gallery (converted to showcase, no Instagram links, with WhatsApp CTA) ─── */
+/* ─── Gallery ─── */
+/* FIX: removed food2.jpg — it was "REZULTATELE Femeilor din MARATON" graphic,
+   NOT a food photo. Now shows only the 2 actual food/recipe images.
+   Removed forced bridge CTA — section should be quick and visual. */
 function Gallery() {
   const {ref,v} = useVisible();
   return (
@@ -542,31 +523,27 @@ function Gallery() {
       <div className="sep mb-10 sm:mb-16"/>
       <div className={`max-w-[1140px] mx-auto ${v?"":"opacity-0"}`}>
         <div className="mb-10 sm:mb-12">
-          <p className="text-xs font-medium uppercase tracking-[.2em] text-brand mb-2">Rețete și inspirație</p>
-          <h2 className="f-serif text-xl sm:text-2xl font-normal">Mâncare sănătoasă și gustoasă</h2>
+          <p className="text-xs font-medium uppercase tracking-[.2em] text-brand mb-2">Rețete din program</p>
+          <h2 className="f-serif text-xl sm:text-2xl font-normal">Mâncare sănătoasă care arată (și e) gustoasă</h2>
         </div>
 
-        <div className={`grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 mb-12 ${v?"a-up d1":""}`}>
-          {[{src:"/images/pinned1.jpg",alt:"Rețetă sănătoasă"},{src:"/images/pinned2.jpg",alt:"Aperitive sănătoase"},{src:"/images/food2.jpg",alt:"Mâncare sănătoasă"}].map((food,i)=>(
-            <div key={i} className={`rounded-lg overflow-hidden ${i===0?"col-span-2 sm:col-span-1 aspect-[16/10] sm:aspect-square":"aspect-square"}`}>
-              <Image src={food.src} alt={food.alt} width={400} height={400} className="w-full h-full object-cover" sizes="(max-width: 640px) 45vw, 30vw"/>
-            </div>
-          ))}
+        <div className={`grid grid-cols-2 gap-2 sm:gap-3 ${v?"a-up d1":""}`}>
+          <div className="rounded-lg overflow-hidden aspect-[3/4]">
+            <Image src="/images/pinned1.jpg" alt="Aperitive sănătoase — rețetă din program" width={400} height={533} className="w-full h-full object-cover" sizes="(max-width: 640px) 45vw, 30vw"/>
+          </div>
+          <div className="rounded-lg overflow-hidden aspect-[3/4]">
+            <Image src="/images/pinned2.jpg" alt="Rulouri cu legume și carne slabă — rețetă din program" width={400} height={533} className="w-full h-full object-cover" sizes="(max-width: 640px) 45vw, 30vw"/>
+          </div>
         </div>
-
-        {/* WhatsApp CTA for Gallery */}
-        <div className={`bg-brand/5 border border-brand/20 rounded-xl p-6 sm:p-8 text-center ${v?"a-up d2":""}`}>
-          <p className="text-fg-3 text-[15px] mb-4">Rețete ca acestea (și mai multe) pot fi parte din planul tău personalizat.</p>
-          <a href={`https://wa.me/${WA}?text=${encodeURIComponent("Bună! Vreau rețete sănătoase și gustoase. Scrie-mi pe WhatsApp! 🙏")}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-wa hover:bg-wa-hover text-white font-semibold px-6 py-3 rounded-lg transition-all">
-            <WaIco c="w-4 h-4"/> Scrie-mi pe WhatsApp
-          </a>
-        </div>
+        <p className="text-[11px] text-fg-5 mt-3">Rețete ca acestea (și peste 100 altele) fac parte din programele mele.</p>
       </div>
     </section>
   );
 }
 
-/* ─── FAQ + WhatsApp CTA ─── */
+/* ─── FAQ ─── */
+/* FIX: removed forced bridge CTA. The FAQ itself addresses objections —
+   a CTA here interrupts the reading flow. The final CTA is right below. */
 function FAQ() {
   const {ref,v} = useVisible();
   const [open,setOpen] = useState<number|null>(null);
@@ -576,7 +553,7 @@ function FAQ() {
         <p className={`text-xs font-medium uppercase tracking-[.2em] text-brand mb-4 ${v?"a-up":""}`}>Întrebări frecvente</p>
         <h2 className={`f-serif text-2xl sm:text-3xl font-normal mb-8 sm:mb-10 ${v?"a-up d1":""}`}>Întrebări și răspunsuri</h2>
 
-        <div className={`divide-y divide-line border-t border-b border-line mb-12 ${v?"a-up d2":""}`}>
+        <div className={`divide-y divide-line border-t border-b border-line ${v?"a-up d2":""}`}>
           {faqs.map((f,i)=>(
             <div key={i}>
               <button onClick={()=>setOpen(open===i?null:i)} className="w-full flex items-center justify-between py-4 sm:py-5 text-left cursor-pointer group" aria-expanded={open===i} aria-controls={`faq-${i}`}>
@@ -589,20 +566,14 @@ function FAQ() {
             </div>
           ))}
         </div>
-
-        {/* WhatsApp CTA for FAQ */}
-        <div className={`bg-wa/10 border border-wa/30 rounded-xl p-6 sm:p-8 text-center ${v?"a-up d3":""}`}>
-          <p className="text-fg-3 text-[15px] mb-4">Nu ai găsit răspunsul? Întreabă-mă direct pe WhatsApp!</p>
-          <a href={`https://wa.me/${WA}?text=${encodeURIComponent("Bună! Am o întrebare la care nu am găsit răspuns. Putem discuta? 🙏")}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-wa hover:bg-wa-hover text-white font-semibold px-6 py-3 rounded-lg transition-all">
-            <WaIco c="w-4 h-4"/> Întreabă-mă
-          </a>
-        </div>
       </div>
     </section>
   );
 }
 
-/* ─── Final CTA (WhatsApp as PRIMARY) ─── */
+/* ─── Final CTA ─── */
+/* FIX: removed repetitive "Locuri limitate" (appeared 3+ times before).
+   Cleaner emotional close. */
 function CTA() {
   const {ref,v} = useVisible();
   return (
@@ -613,12 +584,12 @@ function CTA() {
           Aceeași persoană.<br/>Altă energie. Altă viață.
         </h2>
         <p className="text-fg-3 text-[15px] mb-2 italic f-serif">
-          &ldquo;Fiecare transformare începe cu o decizie: Gata, de azi aleg altceva.&rdquo;
+          &ldquo;Fiecare transformare începe cu o decizie.&rdquo;
         </p>
         <p className="text-fg-4 text-sm mb-10 font-medium">
-          Locuri limitate · Consultație gratuită · Răspuns în 24h · Fără obligații
+          Consultație gratuită · Răspuns în 24h · Fără obligații
         </p>
-        <a href={`https://wa.me/${WA}?text=${encodeURIComponent("Bună Dumitrița! Sunt gata pentru o transformare. Vorbim? 🙏")}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 bg-wa hover:bg-wa-hover text-white text-lg font-semibold px-10 py-4 rounded-xl transition-all hover:scale-105 shadow-lg hover:shadow-xl a-glow mb-4 w-full sm:w-auto">
+        <a href={`https://wa.me/${WA}?text=${encodeURIComponent("Bună Dumitrița! Sunt gata pentru o schimbare. Vorbim? 🙏")}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 bg-wa hover:bg-wa-hover text-white text-lg font-semibold px-10 py-4 rounded-xl transition-all hover:scale-105 shadow-lg hover:shadow-xl a-glow mb-4 w-full sm:w-auto">
           <WaIco c="w-6 h-6"/> Consultație Gratuită pe WhatsApp
         </a>
       </div>
@@ -644,7 +615,7 @@ function Foot() {
         <div className="flex items-center gap-5 sm:gap-4">
           <a href="https://instagram.com/dobos_dumitrita" target="_blank" rel="noopener noreferrer" className="text-fg-4 hover:text-fg-2 transition-colors p-1" aria-label="Instagram"><IgIco c="w-5 h-5 sm:w-4 sm:h-4"/></a>
           <a href="https://www.threads.com/@dobos_dumitrita" target="_blank" rel="noopener noreferrer" className="text-fg-4 hover:text-fg-2 transition-colors p-1" aria-label="Threads"><ThreadsIco c="w-5 h-5 sm:w-4 sm:h-4"/></a>
-          <a href={`https://wa.me/393288461370`} target="_blank" rel="noopener noreferrer" className="text-fg-4 hover:text-wa transition-colors p-1" aria-label="WhatsApp"><WaIco c="w-5 h-5 sm:w-4 sm:h-4"/></a>
+          <a href={`https://wa.me/${WA}`} target="_blank" rel="noopener noreferrer" className="text-fg-4 hover:text-wa transition-colors p-1" aria-label="WhatsApp"><WaIco c="w-5 h-5 sm:w-4 sm:h-4"/></a>
         </div>
       </div>
       <div className="max-w-[1140px] mx-auto mt-6 pt-4 border-t border-line-subtle flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
@@ -716,8 +687,7 @@ function Done({answers}:{answers:Record<string,string>}) {
         </div>
         <p className="text-xs font-medium uppercase tracking-[.2em] text-wa mb-3">Quiz completat</p>
         <h2 className="f-serif text-2xl font-normal mb-2">{titles[answers.goal]||"Planul tău personalizat"}</h2>
-        <p className="text-sm text-fg-3">Dumitrița îți va crea un plan adaptat nevoilor tale.</p>
-        <p className="text-xs text-fg-4 italic f-serif mt-2">&ldquo;Schimbarea este posibilă atunci când ai ghidare, un plan clar și susținere.&rdquo;</p>
+        <p className="text-sm text-fg-3">Îți voi crea un plan adaptat nevoilor tale.</p>
       </div>
 
       <div className="border border-line rounded-xl divide-y divide-line mb-8">
@@ -727,12 +697,6 @@ function Done({answers}:{answers:Record<string,string>}) {
             <span className="font-medium text-right">{val}</span>
           </div>
         ))}
-      </div>
-
-      {/* Urgency in Done screen */}
-      <div className="bg-wa/10 border border-wa/20 rounded-lg px-4 py-3 mb-6 text-center">
-        <p className="text-xs font-semibold text-wa">LOCURI LIMITATE ÎN PROGRAM</p>
-        <p className="text-[11px] text-fg-4 mt-1">Răspund în 24 de ore</p>
       </div>
 
       <a href={url} target="_blank" rel="noopener noreferrer" className="a-glow w-full bg-wa hover:bg-wa-hover text-white font-semibold py-4 rounded-xl flex items-center justify-center gap-2 text-[15px] sm:text-sm transition-all hover:scale-105 shadow-lg hover:shadow-xl">
@@ -749,14 +713,14 @@ function Done({answers}:{answers:Record<string,string>}) {
   );
 }
 
-/* ─── Floating WA (show after 200px, larger, with pulse and tooltip) ─── */
+/* ─── Floating WA ─── */
 function FloatWA() {
   const [show,setShow]=useState(false);
   const [tooltip,setTooltip]=useState(false);
   useEffect(()=>{const h=()=>setShow(scrollY>200);addEventListener("scroll",h,{passive:true});return()=>removeEventListener("scroll",h)},[]);
   if(!show) return null;
   return (
-    <a href={`https://wa.me/393288461370`} target="_blank" rel="noopener noreferrer" className="float-wa fixed bottom-6 right-6 z-50 a-scl group" aria-label="Contactează pe WhatsApp" onMouseEnter={()=>setTooltip(true)} onMouseLeave={()=>setTooltip(false)}>
+    <a href={`https://wa.me/${WA}`} target="_blank" rel="noopener noreferrer" className="float-wa fixed bottom-6 right-6 z-50 a-scl group" aria-label="Contactează pe WhatsApp" onMouseEnter={()=>setTooltip(true)} onMouseLeave={()=>setTooltip(false)}>
       <div className="relative">
         <div className="absolute inset-0 bg-wa rounded-full animate-pulse opacity-50"/>
         <div className="relative w-16 h-16 bg-wa hover:bg-wa-hover rounded-full flex items-center justify-center shadow-xl transition-all hover:scale-110 hover:shadow-2xl">
