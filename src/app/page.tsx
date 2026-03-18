@@ -120,7 +120,7 @@ function Nav({stage,qi,qt,reset}:{stage:string;qi:number;qt:number;reset:()=>voi
   return (
     <header className={`sticky top-0 z-50 transition-all duration-300 ${s?"bg-surface/95 backdrop-blur-2xl border-b border-line":"bg-transparent"}`}>
       <nav className="max-w-[1140px] mx-auto px-5 sm:px-8 h-14 flex items-center justify-between">
-        <button onClick={reset} className="flex items-center gap-2.5 cursor-pointer">
+        <button onClick={reset} className="flex items-center gap-2.5 cursor-pointer" aria-label="Acasă — Doboș Dumitrița">
           <div className="w-8 h-8 rounded-full overflow-hidden ring-1 ring-line">
             <Image src="/images/profile.jpg" alt="" width={32} height={32} className="w-full h-full object-cover" />
           </div>
