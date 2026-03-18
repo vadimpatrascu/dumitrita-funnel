@@ -283,7 +283,7 @@ function About() {
             <p className="text-xs font-medium uppercase tracking-[.2em] text-brand mb-4">Despre mine</p>
             <h2 className="f-serif text-2xl sm:text-3xl font-normal mb-6 leading-tight">
               Bună, sunt Dumitrița.<br/>
-              <span className="text-fg-3 font-light text-lg sm:text-xl">Nutritionistă.</span>
+              <span className="text-fg-3 font-light text-lg sm:text-xl">Nutriționistă.</span>
             </h2>
             <div className="space-y-4 text-fg-3 text-[15px] leading-relaxed">
               <p>Sunt <strong className="text-fg font-medium">Consultant Nutriție Generală</strong> acreditată
