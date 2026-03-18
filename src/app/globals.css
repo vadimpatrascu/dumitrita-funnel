@@ -246,6 +246,53 @@ section {
   z-index: 1;
 }
 
+/* Quiz option selected pulse */
+@keyframes optionSelect {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.97); }
+  100% { transform: scale(1); }
+}
+.quiz-option:active {
+  animation: optionSelect 0.15s ease-out;
+}
+
+/* Card lift effect */
+.card-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+/* Focus visible for accessibility */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* Skip link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  background: var(--primary);
+  color: white;
+  padding: 0.5rem 1rem;
+  z-index: 100;
+  transition: top 0.2s;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* Selection color */
+::selection {
+  background: var(--primary-100);
+  color: var(--primary-dark);
+}
+
 /* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 6px;

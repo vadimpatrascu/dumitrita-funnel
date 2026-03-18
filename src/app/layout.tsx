@@ -68,7 +68,10 @@ export default function RootLayout({
       <head>
         <link rel="apple-touch-icon" href="/images/profile.jpg" />
       </head>
-      <body className={`${geistSans.variable} antialiased`}>{children}</body>
+      <body className={`${geistSans.variable} antialiased`}>
+        <a href="#main-content" className="skip-link">Sari la conținut</a>
+        {children}
+      </body>
     </html>
   );
 }

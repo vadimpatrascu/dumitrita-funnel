@@ -918,7 +918,7 @@ export default function Home() {
   const handleLogoClick = useCallback(() => { setStage("hero"); setCurrentQ(0); setAnswers({}); window.scrollTo({ top: 0, behavior: "smooth" }); }, []);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div id="main-content" className="min-h-screen flex flex-col">
       <Navbar stage={stage} currentQ={currentQ} totalQ={questions.length} onLogoClick={handleLogoClick} />
 
       {stage === "hero" && (
