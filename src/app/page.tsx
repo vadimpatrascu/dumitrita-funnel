@@ -364,9 +364,12 @@ function Maraton({go}:{go:()=>void}) {
           {/* Stats card */}
           <div className={v?"a-sr":""}>
             <div className="border border-line rounded-xl overflow-hidden">
-              <div className="bg-fg text-surface px-6 py-5">
-                <p className="f-serif text-lg font-normal">Maraton de Slăbit</p>
-                <p className="text-fg-5 text-xs mt-1">Ediția 2 · Rezultate verificate pe Instagram</p>
+              <div className="bg-fg text-surface px-6 py-6">
+                <p className="f-serif text-lg font-normal tracking-wide">Maratonul de Slăbit</p>
+                <p className="text-fg-5 text-xs mt-1.5 flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-wa"/>
+                  Rezultate verificate pe Instagram
+                </p>
               </div>
               <div className="p-6 space-y-6">
                 <div className="grid grid-cols-3 gap-4 text-center">
