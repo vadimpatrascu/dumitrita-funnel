@@ -12,67 +12,29 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   userScalable: true,
-  themeColor: "#B8703A",
+  themeColor: "#B26A35",
 };
 
 export const metadata: Metadata = {
-  title: "Quiz Nutriție | Dumitrița Doboș - Consultant Nutriție Generală",
+  title: "Doboș Dumitrița — Consultant Nutriție Generală",
   description:
-    "Descoperă planul de nutriție potrivit pentru tine. Completează quiz-ul gratuit și primește recomandări personalizate de la Doboș Dumitrița — Consultant Nutriție Generală, acreditată AIPNSF.",
-  keywords: [
-    "nutriție",
-    "slăbire sănătoasă",
-    "rețete sănătoase",
-    "plan alimentar",
-    "nutriționist",
-    "Dumitrița Doboș",
-    "dieta",
-    "alimentație sănătoasă",
-    "maraton de slăbit",
-    "consultant nutriție",
-  ],
+    "Descoperă planul de nutriție potrivit pentru tine. Quiz gratuit + consultație personalizată de la Doboș Dumitrița — Consultant Nutriție Generală, acreditată AIPNSF.",
+  keywords: ["nutriție","slăbire sănătoasă","plan alimentar","consultant nutriție","Dumitrița Doboș","AIPNSF","maraton de slăbit"],
   openGraph: {
-    title: "Quiz Nutriție | Doboș Dumitrița - Consultant Nutriție Generală",
-    description:
-      "Completează quiz-ul gratuit și descoperă ce tip de alimentație ți se potrivește. Acreditare AIPNSF.",
+    title: "Doboș Dumitrița — Consultant Nutriție Generală",
+    description: "Quiz gratuit de nutriție. Acreditare AIPNSF.",
     type: "website",
     locale: "ro_RO",
     url: "https://dumitrita-funnel.vercel.app",
-    siteName: "Doboș Dumitrița — Nutriție",
-    images: [
-      {
-        url: "https://dumitrita-funnel.vercel.app/images/hero.jpg",
-        width: 900,
-        height: 1125,
-        alt: "Doboș Dumitrița — Consultant Nutriție Generală",
-      },
-    ],
+    siteName: "Doboș Dumitrița",
+    images: [{ url: "https://dumitrita-funnel.vercel.app/images/hero.jpg", width: 900, height: 1125, alt: "Doboș Dumitrița" }],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Quiz Nutriție | Doboș Dumitrița",
-    description:
-      "Descoperă planul de nutriție potrivit pentru tine. Quiz gratuit + consultație personalizată.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "default",
-    title: "Dumitrița Nutriție",
-  },
-  formatDetection: {
-    telephone: true,
-  },
+  twitter: { card: "summary_large_image", title: "Doboș Dumitrița — Nutriție", description: "Quiz gratuit de nutriție + consultație personalizată." },
+  robots: { index: true, follow: true },
+  appleWebApp: { capable: true, statusBarStyle: "default", title: "Dumitrița Nutriție" },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ro">
       <head>
@@ -80,38 +42,19 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body className={`${geistSans.variable} antialiased`}>
-        <a href="#main-content" className="skip-link">Sari la conținut</a>
+        <a href="#main-content" className="skip">Sari la conținut</a>
         {children}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "HealthAndBeautyBusiness",
-              name: "Doboș Dumitrița — Consultant Nutriție Generală",
-              description:
-                "Consultant Nutriție Generală acreditat AIPNSF. Planuri alimentare personalizate, Maratonul de Slăbit și rețete sănătoase.",
-              url: "https://dumitrita-funnel.vercel.app",
-              image: "https://dumitrita-funnel.vercel.app/images/hero.jpg",
-              priceRange: "$$",
-              knowsAbout: [
-                "Nutriție",
-                "Slăbire sănătoasă",
-                "Plan alimentar",
-                "Rețete sănătoase",
-              ],
-              sameAs: [
-                "https://instagram.com/dobos_dumitrita",
-                "https://www.threads.com/@dobos_dumitrita",
-              ],
-              hasCredential: {
-                "@type": "EducationalOccupationalCredential",
-                credentialCategory: "Aviz Liberă Practică",
-                recognizedBy: {
-                  "@type": "Organization",
-                  name: "AIPNSF — Asociația Internațională de Psihologie, Nutriție, Sport și Fitness",
-                },
-              },
+              "@context":"https://schema.org","@type":"HealthAndBeautyBusiness",
+              name:"Doboș Dumitrița — Consultant Nutriție Generală",
+              description:"Consultant Nutriție Generală acreditat AIPNSF. Planuri alimentare personalizate, Maratonul de Slăbit și rețete sănătoase.",
+              url:"https://dumitrita-funnel.vercel.app",
+              image:"https://dumitrita-funnel.vercel.app/images/hero.jpg",
+              sameAs:["https://instagram.com/dobos_dumitrita","https://www.threads.com/@dobos_dumitrita"],
+              hasCredential:{"@type":"EducationalOccupationalCredential",credentialCategory:"Aviz Liberă Practică",recognizedBy:{"@type":"Organization",name:"AIPNSF"}},
             }),
           }}
         />

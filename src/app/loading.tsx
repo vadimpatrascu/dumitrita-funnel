@@ -1,10 +1,7 @@
 export default function Loading() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center">
-      <div className="relative">
-        <div className="w-12 h-12 rounded-full border-4 border-border-light border-t-primary animate-spin" />
-      </div>
-      <p className="text-sm text-muted mt-4">Se încarcă...</p>
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="w-8 h-8 rounded-full border-2 border-line border-t-brand animate-spin" />
     </div>
   );
 }
