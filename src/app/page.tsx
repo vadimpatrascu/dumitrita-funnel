@@ -202,6 +202,11 @@ function Hero({go}:{go:()=>void}) {
           </div>
 
         </div>
+
+        {/* Scroll indicator */}
+        <div className="hidden lg:flex justify-center mt-16 a-up d4">
+          <div className="w-px h-12 bg-gradient-to-b from-line to-transparent"/>
+        </div>
       </div>
     </section>
   );
