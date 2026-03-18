@@ -170,10 +170,10 @@ function Hero({go}:{go:()=>void}) {
             </div>
 
             {/* Stats — minimal, no emojis */}
-            <div className="a-up d4 mt-12 flex gap-10 text-sm">
-              <div><p className="text-xl font-semibold text-fg"><Counter n={16700} s="+"/></p><p className="text-fg-4 mt-0.5">urmăritori</p></div>
-              <div><p className="text-xl font-semibold text-fg"><Counter n={108} ms={1200}/></p><p className="text-fg-4 mt-0.5">rețete postate</p></div>
-              <div><p className="text-xl font-semibold text-fg">Ed. 3</p><p className="text-fg-4 mt-0.5">Maraton activ</p></div>
+            <div className="a-up d4 mt-12 flex flex-wrap gap-x-8 gap-y-4 text-sm">
+              <div><p className="text-lg sm:text-xl font-semibold text-fg"><Counter n={16700} s="+"/></p><p className="text-fg-4 mt-0.5">urmăritori</p></div>
+              <div><p className="text-lg sm:text-xl font-semibold text-fg"><Counter n={108} ms={1200}/></p><p className="text-fg-4 mt-0.5">rețete postate</p></div>
+              <div><p className="text-lg sm:text-xl font-semibold text-fg">Ed. 3</p><p className="text-fg-4 mt-0.5">Maraton activ</p></div>
             </div>
           </div>
 
@@ -321,11 +321,11 @@ function Results() {
               <p className="text-xs font-medium text-fg-4 uppercase tracking-wider">Transformare clientă — 5 luni</p>
             </div>
             <div className="divide-y divide-line-subtle text-sm">
-              <div className="grid grid-cols-4 px-5 py-2.5 text-[11px] font-medium text-fg-4 uppercase tracking-wider">
-                <span>Măsură</span><span className="text-center">Înainte</span><span className="text-center">După</span><span className="text-right">Δ</span>
+              <div className="grid grid-cols-4 px-3 sm:px-5 py-2.5 text-[10px] sm:text-[11px] font-medium text-fg-4 uppercase tracking-wider">
+                <span>Măsură</span><span className="text-center">Înainte</span><span className="text-center">După</span><span className="text-right">Diferență</span>
               </div>
               {measurements.map(r=>(
-                <div key={r.m} className="grid grid-cols-4 px-5 py-3 hover:bg-surface-raised transition-colors">
+                <div key={r.m} className="grid grid-cols-4 px-3 sm:px-5 py-3 hover:bg-surface-raised transition-colors text-[13px] sm:text-sm">
                   <span className="font-medium">{r.m}</span>
                   <span className="text-center text-fg-3">{r.b}</span>
                   <span className="text-center">{r.a}</span>
