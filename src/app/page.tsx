@@ -54,9 +54,9 @@ const measurements = [
 ];
 
 const reviews = [
-  { name:"Clientă Maraton, 40 ani", q:"Rezultatul meu în poze și cifre. Aceasta a fost cea mai bună decizie pe care am luat-o în noiembrie, acum sunt mândră că la 40 ani pot arăta bine! Succes tuturor!", kg:"-18.3 kg", src:"Postare fixată Instagram" },
-  { name:"Clientă transformare", q:"Drumul nu e ușor, dar rezultatele vorbesc de la sine. Această poveste arată ce se întâmplă când nu mai cauți scuze, ci soluții.", kg:"Vizibil", src:"Postare @dobos_dumitrita, Oct 2025" },
-  { name:"Comentariu verificat", q:"Ce transformare frumoasă! Bravo!", kg:"—", src:"@sanduta_stepan pe Instagram" },
+  { name:"Clientă Maraton, 40 ani", q:"Rezultatul meu în poze și cifre. Aceasta a fost cea mai bună decizie pe care am luat-o în noiembrie, acum sunt mândră că la 40 ani pot arăta bine! Succes tuturor!", kg:"-18.3 kg", src:"Postare fixată · 10 likes · Mar 2026" },
+  { name:"Clientă transformare", q:"Drumul nu e ușor, dar rezultatele vorbesc de la sine. Această poveste arată ce se întâmplă când nu mai cauți scuze, ci soluții.", kg:"Vizibil", src:"Postare fixată · 37 likes · Oct 2025" },
+  { name:"@sanduta_stepan", q:"Ce transformare frumoasă! Bravo!", kg:"—", src:"Comentariu verificat pe Instagram" },
 ];
 
 const faqs = [
@@ -149,9 +149,12 @@ function Hero({go}:{go:()=>void}) {
 
           {/* Copy */}
           <div className="order-2 lg:order-1 max-w-xl">
-            <p className="a-up text-xs font-medium uppercase tracking-[.2em] text-brand mb-6">
-              Consultant Nutriție Generală — AIPNSF
-            </p>
+            <div className="a-up flex items-center gap-3 mb-6">
+              <span className="w-10 h-px bg-brand"/>
+              <p className="text-xs font-medium uppercase tracking-[.2em] text-brand">
+                Consultant Nutriție Generală — AIPNSF
+              </p>
+            </div>
 
             <h1 className="a-up d1 f-serif text-[2rem] sm:text-[2.75rem] lg:text-[3.25rem] font-normal leading-[1.1] mb-6">
               Clienta mea a slăbit<br/>
