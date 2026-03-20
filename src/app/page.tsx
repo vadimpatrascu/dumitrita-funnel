@@ -135,9 +135,9 @@ function Nav({stage,qi,qt,reset}:{stage:string;qi:number;qt:number;reset:()=>voi
         </button>
         {stage==="quiz" && (
           <div className="flex items-center gap-2">
-            <div className="flex gap-1">
+            <div className="flex gap-1" role="progressbar" aria-valuenow={qi+1} aria-valuemin={1} aria-valuemax={qt} aria-label={`Întrebarea ${qi+1} din ${qt}`}>
               {Array.from({length:qt}).map((_,i)=>(
-                <div key={i} className={`w-2 h-2 rounded-full transition-all duration-300 ${i<=qi?"bg-wa":"bg-line"}`}/>
+                <div key={i} className={`w-2 h-2 rounded-full transition-all duration-300 ${i<=qi?"bg-wa":"bg-line"} ${i===qi?"scale-125":""}`}/>
               ))}
             </div>
             <span className="text-[11px] text-fg-4 font-mono ml-1.5">{qi+1}/{qt}</span>
