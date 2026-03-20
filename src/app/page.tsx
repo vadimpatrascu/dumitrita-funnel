@@ -464,7 +464,7 @@ function Maraton({go}:{go:()=>void}) {
           </div>
           <div className={v?"a-sr":""}>
             <div className="border border-line rounded-2xl overflow-hidden shadow-lg shadow-brand/5">
-              <div className="bg-gradient-to-br from-fg via-fg-2 to-fg text-surface px-6 py-6 relative overflow-hidden">
+              <div className="bg-gradient-to-br from-fg via-fg-2 to-fg text-surface px-6 py-6 relative overflow-hidden noise">
                 <div className="absolute inset-0 dot-pattern opacity-[0.03]"/>
                 <div className="absolute top-0 right-0 w-32 h-32 bg-brand/10 rounded-full blur-3xl"/>
                 <p className="f-serif text-xl font-normal tracking-wide relative">Maratonul de Slăbit</p>
@@ -499,7 +499,7 @@ function Maraton({go}:{go:()=>void}) {
 function TrustStrip() {
   const items = ["Acreditare AIPNSF","136+ membri în comunitate","108 rețete postate","-18.3 kg cea mai mare transformare","16.7K followers pe Instagram","Plan alimentar personalizat","Suport zilnic prin WhatsApp","Rețete noi săptămânal"];
   return (
-    <div className="bg-fg text-surface overflow-hidden py-3.5" aria-hidden="true">
+    <div className="bg-fg text-surface overflow-hidden py-3.5 relative noise" aria-hidden="true">
       <div className="marquee-track">
         {[...items,...items].map((t,i)=>(
           <span key={i} className="flex items-center gap-4 px-6 text-[11px] font-medium text-fg-5 whitespace-nowrap uppercase tracking-wider">
@@ -644,7 +644,7 @@ function Results() {
         </div>
         {/* Mid-page CTA — dark card for contrast */}
         <div className={`relative overflow-hidden rounded-3xl text-center ${v?"a-up d4":""}`}>
-          <div className="bg-fg text-surface p-8 sm:p-12 relative">
+          <div className="bg-fg text-surface p-8 sm:p-12 relative noise">
             <div className="absolute top-0 right-0 w-48 h-48 bg-wa/10 rounded-full blur-[80px] pointer-events-none"/>
             <h3 className="f-serif text-2xl sm:text-3xl font-normal mb-3">Vrei rezultate similare?</h3>
             <p className="text-fg-5 text-[15px] mb-8 max-w-lg mx-auto">Primul pas e o discuție gratuită pe WhatsApp. Îți voi crea un plan personalizat pentru obiectivele tale.</p>
@@ -757,8 +757,7 @@ function CTA() {
   const {ref,v} = useVisible();
   return (
     <section ref={ref} className="relative overflow-hidden" aria-label="Contact final">
-      <div className="bg-fg text-surface py-16 sm:py-28 px-4 sm:px-8 relative overflow-hidden">
-        <div className="absolute inset-0 dot-pattern opacity-[0.02] pointer-events-none"/>
+      <div className="bg-fg text-surface py-16 sm:py-28 px-4 sm:px-8 relative overflow-hidden noise">
         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-brand/5 rounded-full blur-[120px] pointer-events-none"/>
         <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-wa/5 rounded-full blur-[100px] pointer-events-none"/>
 
@@ -803,7 +802,7 @@ function CTA() {
 /* Footer — dark to match CTA flow */
 function Foot() {
   return (
-    <footer className="bg-fg text-surface px-4 sm:px-8 py-10 relative" role="contentinfo">
+    <footer className="bg-fg text-surface px-4 sm:px-8 py-10 relative noise" role="contentinfo">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"/>
       <div className="max-w-[1140px] mx-auto">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6 mb-8">
