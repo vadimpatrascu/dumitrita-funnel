@@ -2,3 +2,7 @@ User-agent: *
 Allow: /
 
 Sitemap: https://dumitrita-funnel.vercel.app/sitemap.xml
+
+# Change 97: block crawlers from Next.js internals
+Disallow: /_next/
+Disallow: /api/

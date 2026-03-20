@@ -1,9 +1,11 @@
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════════════════════
-   DOBOȘ DUMITRIȚA — Premium Brand System
+   DOBOȘ DUMITRIȚA — Premium Brand System v3
+   100-change upgrade · 2026-03-19
    ═══════════════════════════════════════════════════════════ */
 
+/* Change 1: refined color palette with new rose accent */
 :root {
   --bg: #FDFBF7;
   --fg: #1C1410;
@@ -23,6 +25,9 @@
   --gold: #B8952E;
   --gold-subtle: #FBF5E6;
 
+  --rose: #C4626A;
+  --rose-subtle: #FBF0F0;
+
   --surface: #FFFFFF;
   --surface-raised: #FBF8F3;
   --line: #EDE7DF;
@@ -30,6 +35,9 @@
 
   --wa: #25d366;
   --wa-hover: #1da851;
+
+  --accent: #C17D45;
+  --accent-light: #E8C9A4;
 }
 
 @theme inline {
@@ -47,28 +55,34 @@
   --color-olive-subtle: var(--olive-subtle);
   --color-gold: var(--gold);
   --color-gold-subtle: var(--gold-subtle);
+  --color-rose: var(--rose);
+  --color-rose-subtle: var(--rose-subtle);
   --color-surface: var(--surface);
   --color-surface-raised: var(--surface-raised);
   --color-line: var(--line);
   --color-line-subtle: var(--line-subtle);
   --color-wa: var(--wa);
   --color-wa-hover: var(--wa-hover);
+  --color-accent: var(--accent);
+  --color-accent-light: var(--accent-light);
   --font-sans: var(--font-geist-sans);
   --font-serif: "Georgia", "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
-/* ═══════ Base ═══════ */
-
+/* Change 2: improved base reset */
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
+/* Change 3: better html scroll + text rendering */
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   overscroll-behavior-y: none;
   overflow-x: hidden;
+  hanging-punctuation: first last;
 }
 
+/* Change 4: improved body typography */
 body {
   background: var(--bg);
   color: var(--fg);
@@ -79,20 +93,37 @@ body {
   line-height: 1.65;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
+  text-rendering: optimizeLegibility;
 }
 
+/* Change 5: warmer selection color */
 ::selection { background: var(--brand-muted); color: var(--fg); }
-img { image-rendering: -webkit-optimize-contrast; }
+
+/* Change 6: better image rendering */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  content-visibility: auto;
+}
 
 /* ═══════ Typography ═══════ */
 
+/* Change 7: improved serif with optical sizing */
 .f-serif {
   font-family: var(--font-serif);
   letter-spacing: -0.015em;
+  font-optical-sizing: auto;
 }
 
+/* Change 8: richer gradient text */
 .text-grad {
-  background: linear-gradient(135deg, var(--brand) 20%, #D4935A 100%);
+  background: linear-gradient(135deg, var(--brand) 0%, #D4935A 40%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-grad-green {
+  background: linear-gradient(135deg, var(--wa) 0%, #1da851 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -100,161 +131,253 @@ img { image-rendering: -webkit-optimize-contrast; }
 
 /* ═══════ Animations ═══════ */
 
+/* Change 9: smoother animation curves */
 @keyframes up { from { opacity:0; transform:translateY(24px) } to { opacity:1; transform:translateY(0) } }
 @keyframes fade { from { opacity:0 } to { opacity:1 } }
 @keyframes scl { from { opacity:0; transform:scale(.94) } to { opacity:1; transform:scale(1) } }
 @keyframes slideR { from { opacity:0; transform:translateX(28px) } to { opacity:1; transform:translateX(0) } }
 @keyframes slideL { from { opacity:0; transform:translateX(-28px) } to { opacity:1; transform:translateX(0) } }
-@keyframes glow { 0%,100% { box-shadow:0 0 0 0 rgba(37,211,102,.35) } 50% { box-shadow:0 0 0 12px rgba(37,211,102,0) } }
+@keyframes glow { 0%,100% { box-shadow:0 0 0 0 rgba(37,211,102,.4) } 50% { box-shadow:0 0 0 14px rgba(37,211,102,0) } }
+@keyframes float { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-6px) } }
+@keyframes shimmer { 0% { background-position: -200% 0 } 100% { background-position: 200% 0 } }
+/* Change 10: new bounce animation */
+@keyframes bounce-soft { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-4px) } }
+/* Change 11: new scale-in for quiz completion */
+@keyframes scale-in { from { opacity:0; transform:scale(.85) } to { opacity:1; transform:scale(1) } }
+/* Change 12: new slide-up-fade for sections */
+@keyframes slide-up-fade { from { opacity:0; transform:translateY(16px) } to { opacity:1; transform:translateY(0) } }
 
 .a-up { animation: up .65s cubic-bezier(.22,1,.36,1) forwards; }
 .a-fade { animation: fade .5s ease forwards; }
-.a-scl { animation: scl .5s ease forwards; }
+.a-scl { animation: scl .45s ease forwards; }
 .a-sr { animation: slideR .65s cubic-bezier(.22,1,.36,1) forwards; }
 .a-sl { animation: slideL .65s cubic-bezier(.22,1,.36,1) forwards; }
 .a-glow { animation: glow 2.2s ease-in-out infinite; }
+.a-float { animation: float 3.5s ease-in-out infinite; }
+/* Change 13: new animation classes */
+.a-bounce { animation: bounce-soft 2s ease-in-out infinite; }
+.a-scale-in { animation: scale-in .5s cubic-bezier(.22,1,.36,1) forwards; }
 
-.d1 { animation-delay:.1s; opacity:0 }
-.d2 { animation-delay:.2s; opacity:0 }
-.d3 { animation-delay:.3s; opacity:0 }
-.d4 { animation-delay:.4s; opacity:0 }
+.d1 { animation-delay:.08s; opacity:0 }
+.d2 { animation-delay:.16s; opacity:0 }
+.d3 { animation-delay:.24s; opacity:0 }
+.d4 { animation-delay:.32s; opacity:0 }
+.d5 { animation-delay:.40s; opacity:0 }
+/* Change 14: more delay classes */
+.d6 { animation-delay:.48s; opacity:0 }
+.d7 { animation-delay:.56s; opacity:0 }
 
-.progress-bar { transition: width .45s cubic-bezier(.22,1,.36,1); }
+.progress-bar { transition: width .4s cubic-bezier(.22,1,.36,1); }
 
 /* ═══════ Components ═══════ */
 
-/* Quiz option — refined interaction */
+/* Change 15: improved quiz option interaction */
 .q-opt {
   position: relative;
   transition: border-color .2s ease, box-shadow .2s ease, transform .15s ease, background-color .2s ease;
 }
 .q-opt:hover {
   border-color: var(--brand);
-  box-shadow: 0 0 0 1px var(--brand);
+  box-shadow: 0 0 0 1px var(--brand), 0 4px 20px rgba(178,106,53,.1);
   background-color: var(--surface-raised);
 }
-.q-opt:active { transform: scale(.98); }
+.q-opt:active { transform: scale(.985); }
 
-/* Button hover lift */
+/* Change 16: better button hover with GPU acceleration */
 button[class*="bg-brand"], a[class*="bg-brand"], a[class*="bg-wa"] {
-  transition: all .2s cubic-bezier(.22,1,.36,1);
+  transition: all .25s cubic-bezier(.22,1,.36,1);
+  will-change: transform;
 }
 button[class*="bg-brand"]:hover, a[class*="bg-brand"]:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(178,106,53,.25);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(178,106,53,.25);
 }
 a[class*="bg-wa"]:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(37,211,102,.25);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(37,211,102,.25);
 }
 
-/* Image hover zoom */
-.img-zoom { overflow: hidden; }
-.img-zoom img { transition: transform .6s cubic-bezier(.22,1,.36,1); }
-.img-zoom:hover img { transform: scale(1.03); }
+/* Change 17: improved image zoom with GPU hint */
+.img-zoom { overflow: hidden; border-radius: 12px; }
+.img-zoom img { transition: transform .6s cubic-bezier(.22,1,.36,1); will-change: transform; }
+.img-zoom:hover img { transform: scale(1.04); }
 
-/* Link underline animation */
-.link-fancy {
-  position: relative;
-  display: inline-block;
-}
+/* Change 18: link underline */
+.link-fancy { position: relative; display: inline-block; }
 .link-fancy::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: var(--brand);
-  transition: width .3s ease;
+  content: ''; position: absolute; bottom: -2px; left: 0;
+  width: 0; height: 1px; background: var(--brand); transition: width .3s ease;
 }
 .link-fancy:hover::after { width: 100%; }
 
-/* Stat */
-.stat { font-variant-numeric: tabular-nums; }
+/* Change 19: improved stat font */
+.stat { font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; }
 
-/* Section divider */
-.sep { height:1px; background: linear-gradient(90deg, transparent, var(--line), transparent); }
+/* Change 20: better section divider */
+.sep { height:1px; background: linear-gradient(90deg, transparent 5%, var(--line) 50%, transparent 95%); }
 
-/* Smooth page entrance */
-@keyframes pageIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-body { animation: pageIn .4s ease forwards; }
+/* Change 21: faster page entrance */
+@keyframes pageIn { from { opacity: 0 } to { opacity: 1 } }
+body { animation: pageIn .35s ease forwards; }
 
-/* Card border hover */
+/* Change 22: enhanced card hover */
 .card-hover {
-  transition: border-color .25s ease, box-shadow .25s ease;
+  transition: border-color .3s ease, box-shadow .3s ease, transform .3s ease;
 }
 .card-hover:hover {
   border-color: var(--brand-muted);
-  box-shadow: 0 2px 12px rgba(178,106,53,.06);
+  box-shadow: 0 8px 32px rgba(178,106,53,.08);
+  transform: translateY(-3px);
 }
 
-/* Credential table row hover */
-.row-hover { transition: background-color .15s ease; }
+/* Change 23: improved glass effect */
+.glass {
+  background: rgba(255,255,255,.75);
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  border: 1px solid rgba(237,231,223,.5);
+  box-shadow: 0 4px 16px rgba(0,0,0,.04);
+}
+
+/* Change 24: smoother row hover */
+.row-hover { transition: background-color .2s ease; }
 .row-hover:hover { background-color: var(--surface-raised); }
 
+/* Change 25: finer dot pattern */
+.dot-pattern {
+  background-image: radial-gradient(circle, var(--line) 0.8px, transparent 0.8px);
+  background-size: 20px 20px;
+}
+
+/* Change 26: gradient border */
+.gradient-border { position: relative; }
+.gradient-border::before {
+  content: ''; position: absolute; inset: 0;
+  border-radius: inherit; padding: 1px;
+  background: linear-gradient(135deg, var(--brand), var(--gold), var(--brand));
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+}
+
+/* Change 27: improved quote mark */
+.quote-mark {
+  font-family: Georgia, serif;
+  font-size: 3.5rem;
+  line-height: 1;
+  color: var(--brand-muted);
+  position: absolute;
+  top: -4px;
+  left: 20px;
+  user-select: none;
+}
+
+/* Change 28: badge shimmer */
+.badge-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.25), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* Change 29: step number circle */
+.step-num {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 14px;
+  background: var(--brand);
+  color: white;
+  flex-shrink: 0;
+}
+
+/* Change 30: connector line between steps */
+.step-line {
+  width: 2px;
+  background: linear-gradient(180deg, var(--brand) 0%, var(--line) 100%);
+  flex-shrink: 0;
+}
+
 /* ═══════ Scrollbar ═══════ */
-::-webkit-scrollbar { width:5px }
+/* Change 31: thinner scrollbar */
+::-webkit-scrollbar { width:4px }
 ::-webkit-scrollbar-track { background:var(--bg) }
-::-webkit-scrollbar-thumb { background:var(--line); border-radius:3px }
-::-webkit-scrollbar-thumb:hover { background:var(--fg-5) }
+::-webkit-scrollbar-thumb { background:var(--fg-5); border-radius:4px }
+::-webkit-scrollbar-thumb:hover { background:var(--fg-4) }
+
+/* Change 32: firefox scrollbar */
+html { scrollbar-width: thin; scrollbar-color: var(--fg-5) var(--bg); }
 
 /* ═══════ Focus ═══════ */
-:focus-visible { outline:2px solid var(--brand); outline-offset:2px; border-radius:6px }
-.skip { position:absolute; top:-100%; left:0; background:var(--brand); color:white; padding:.5rem 1rem; z-index:100 }
+/* Change 33: better focus ring */
+:focus-visible { outline:2px solid var(--brand); outline-offset:3px; border-radius:8px }
+.skip { position:absolute; top:-100%; left:0; background:var(--brand); color:white; padding:.5rem 1rem; z-index:100; border-radius:0 0 8px 0 }
 .skip:focus { top:0 }
 
 /* ═══════ Mobile ═══════ */
 
-/* iOS safe area support */
+/* Change 34: comprehensive safe area support */
 @supports (padding: env(safe-area-inset-bottom)) {
   body {
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
   }
-  footer {
-    padding-bottom: calc(1rem + env(safe-area-inset-bottom));
-  }
+  footer { padding-bottom: calc(1rem + env(safe-area-inset-bottom)); }
   .float-wa {
     bottom: calc(1.25rem + env(safe-area-inset-bottom));
     right: calc(1.25rem + env(safe-area-inset-right));
   }
 }
 
-/* Touch-friendly targets */
+/* Change 35: touch targets */
 button, a, [role="button"] { min-height:44px }
 
+/* Change 36: improved mobile styles */
 @media (max-width:640px) {
   .q-opt { min-height:56px }
-
-  /* Prevent any horizontal overflow */
   section, main, header, footer { max-width: 100vw; }
-
-  /* Better mobile typography scaling */
   h1 { word-break: break-word; hyphens: auto; }
   h2 { word-break: break-word; }
-
-  /* Ensure tables don't overflow */
   .measurements-table { font-size: 13px; }
+  /* Change 37: hide decorative blurs on mobile for performance */
+  .blur-3xl { display: none; }
 }
 
-/* Extra-small screens (320px) */
+/* Change 38: small screens */
 @media (max-width:360px) {
   body { font-size: 15px; }
   .q-opt { min-height: 52px; }
 }
 
-/* Print styles */
+/* Change 39: improved print */
 @media print {
-  header, footer, .fixed, button { display: none !important; }
-  section { break-inside: avoid; }
-  body { background: white; color: black; }
+  header, footer, .fixed, button, .float-wa { display: none !important; }
+  section { break-inside: avoid; page-break-inside: avoid; }
+  body { background: white; color: black; font-size: 12pt; }
   .bg-surface-raised { background: #f5f5f5 !important; }
+  a[href]::after { content: " (" attr(href) ")"; font-size: 0.8em; color: #666; }
+  img { max-width: 100% !important; }
 }
 
+/* Marquee ticker */
+@keyframes marquee {
+  0% { transform: translateX(0) }
+  100% { transform: translateX(-50%) }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+
+/* Certificate hover glow */
+.cert-glow { transition: box-shadow .3s ease, border-color .3s ease; }
+.cert-glow:hover { box-shadow: 0 4px 20px rgba(184,149,46,.15); border-color: rgba(184,149,46,.3); }
+
+/* Change 40: reduced motion */
 @media (prefers-reduced-motion:reduce) {
-  *,*::before,*::after { animation-duration:.01ms!important; transition-duration:.01ms!important }
+  *,*::before,*::after { animation-duration:.01ms!important; transition-duration:.01ms!important; animation-iteration-count: 1!important; }
+  html { scroll-behavior: auto; }
 }
