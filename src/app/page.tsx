@@ -1000,7 +1000,11 @@ export default function Home() {
   const go = useCallback(()=>{setStage("quiz");scrollTo({top:0,behavior:"smooth"})},[]);
   const pick = useCallback((v:string)=>{
     const q=quiz[qi]; const next={...ans,[q.id]:v}; setAns(next);
-    if(qi<quiz.length-1) setQi(qi+1);
+    if(qi<quiz.length-1) {
+      setQi(qi+1);
+      /* Smooth scroll to keep quiz centered */
+      requestAnimationFrame(()=>scrollTo({top:Math.max(0,scrollY-20),behavior:"smooth"}));
+    }
     else {setStage("done");scrollTo({top:0,behavior:"smooth"})}
   },[qi,ans]);
   const back = useCallback(()=>{if(qi>0) setQi(qi-1); else setStage("hero")},[qi]);
