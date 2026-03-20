@@ -528,7 +528,7 @@ function Transformari() {
         <div className={`grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-5 max-w-4xl mx-auto ${v?"a-up d2":""}`}>
           <div className="relative group sm:mt-8">
             <div className="img-zoom shadow-lg aspect-[3/4]">
-              <Image src="/images/img-telegram-2.png" alt="Transformare clientă — înainte și după Maratonul de Slăbit" width={400} height={533} className="w-full h-full object-cover"/>
+              <Image src="/images/img-telegram-2.jpg" alt="Transformare clientă — înainte și după Maratonul de Slăbit" width={400} height={533} className="w-full h-full object-cover"/>
             </div>
             <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-fg/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
               <div><p className="text-white text-xs font-bold">Clientă Maraton</p><p className="text-white/70 text-[10px]">Transformare verificată</p></div>
