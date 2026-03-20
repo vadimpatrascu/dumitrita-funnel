@@ -251,7 +251,7 @@ function Hero({go}:{go:()=>void}) {
       {/* Dark stats bar — full width, creates visual drama */}
       <div className="relative mt-6 sm:mt-0">
         <div className="max-w-[1140px] mx-auto px-4 sm:px-8">
-          <div className="bg-fg text-surface shadow-xl shadow-fg/20 rounded-b-2xl sm:rounded-b-3xl px-4 sm:px-8 py-5 sm:py-6">
+          <div className="bg-fg text-surface shadow-xl shadow-fg/20 rounded-b-2xl sm:rounded-b-3xl px-4 sm:px-8 py-5 sm:py-6 relative noise">
             <div className="a-up d5 grid grid-cols-4 text-center">
               {[
                 {el:<>-<Counter n={18} ms={800}/>.3<span className="text-xs font-normal text-fg-5 ml-0.5">kg</span></>,l:"greutate"},
