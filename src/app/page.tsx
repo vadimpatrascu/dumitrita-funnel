@@ -851,15 +851,23 @@ function Progress({i,t}:{i:number;t:number}) {
 /* Change 73: quiz cards with emoji icons */
 function QCard({q,qi,pick}:{q:Q;qi:number;pick:(v:string)=>void}) {
   const [selected,setSelected] = useState<string|null>(null);
+  const [focused,setFocused] = useState(0);
   const handlePick = (v:string) => { setSelected(v); setTimeout(() => pick(v), 280); };
+  /* Keyboard nav */
+  const onKey = useCallback((e:React.KeyboardEvent) => {
+    if(selected) return;
+    if(e.key==="ArrowDown"||e.key==="j") { e.preventDefault(); setFocused(f=>(f+1)%q.opts.length); }
+    else if(e.key==="ArrowUp"||e.key==="k") { e.preventDefault(); setFocused(f=>(f-1+q.opts.length)%q.opts.length); }
+    else if(e.key==="Enter"||e.key===" ") { e.preventDefault(); handlePick(q.opts[focused].value); }
+  },[selected,focused,q.opts]);
 
   return (
-    <div className="a-up max-w-md mx-auto">
+    <div className="a-up max-w-md mx-auto" onKeyDown={onKey} tabIndex={0} role="radiogroup" aria-label={q.question}>
       <h2 className="f-serif text-xl sm:text-2xl font-normal text-center mb-2">{q.question}</h2>
       {q.sub && <p className="text-sm text-fg-4 text-center mb-7">{q.sub}</p>}
       <div className="space-y-2.5">
         {q.opts.map(o=>(
-          <button key={o.value} onClick={()=>!selected&&handlePick(o.value)} className={`q-opt w-full flex items-center gap-3 bg-surface border-2 rounded-2xl px-5 py-4 text-left cursor-pointer ${selected===o.value?"border-wa bg-wa/5 shadow-md":"border-line"} ${selected&&selected!==o.value?"opacity-35":""}`}>
+          <button key={o.value} onClick={()=>!selected&&handlePick(o.value)} onFocus={()=>setFocused(q.opts.indexOf(o))} role="radio" aria-checked={selected===o.value} className={`q-opt w-full flex items-center gap-3 bg-surface border-2 rounded-2xl px-5 py-4 text-left cursor-pointer ${selected===o.value?"border-wa bg-wa/5 shadow-md":"border-line"} ${selected&&selected!==o.value?"opacity-35":""} ${focused===q.opts.indexOf(o)&&!selected?"ring-2 ring-brand/30":""}`}>
             {/* Change 74: emoji icon on quiz options */}
             <span className="text-lg shrink-0" aria-hidden="true">{o.icon}</span>
             <span className="text-[14px] sm:text-[15px] text-fg-2 font-medium flex-1">{o.label}</span>
