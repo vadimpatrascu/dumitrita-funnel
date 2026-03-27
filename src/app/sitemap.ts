@@ -4,8 +4,8 @@ import type { MetadataRoute } from "next";
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: "https://dumitrita-funnel.vercel.app",
-      lastModified: new Date("2026-03-19"),
+      url: "https://dumitritanutrition.online",
+      lastModified: new Date("2026-03-22"),
       changeFrequency: "weekly",
       priority: 1,
     },

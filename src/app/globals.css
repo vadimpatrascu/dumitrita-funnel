@@ -5,39 +5,59 @@
    100-change upgrade · 2026-03-19
    ═══════════════════════════════════════════════════════════ */
 
-/* Change 1: refined color palette with new rose accent */
+/* Design tokens — premium brand system */
 :root {
+  /* Base tones — warm ivory foundation */
   --bg: #FDFBF7;
-  --fg: #1C1410;
-  --fg-2: #3D322A;
-  --fg-3: #6B5E52;
-  --fg-4: #9A8E82;
-  --fg-5: #C4BAB0;
+  --fg: #1A120D;
+  --fg-2: #3A2E25;
+  --fg-3: #68594B;
+  --fg-4: #998C7E;
+  --fg-5: #C5BBB0;
 
-  --brand: #B26A35;
-  --brand-hover: #96562A;
-  --brand-subtle: #F8EEE4;
-  --brand-muted: #E8D4C0;
+  /* Brand — warm terracotta amber */
+  --brand: #B0632D;
+  --brand-hover: #924F22;
+  --brand-subtle: #F7EDE2;
+  --brand-muted: #E5CDB5;
 
-  --olive: #5C6B36;
-  --olive-subtle: #EEF1E6;
+  /* Accents */
+  --olive: #56673A;
+  --olive-subtle: #EBF0E2;
+  --gold: #B3902A;
+  --gold-subtle: #FAF3E0;
+  --rose: #C05068;
+  --rose-subtle: #FAF0F2;
 
-  --gold: #B8952E;
-  --gold-subtle: #FBF5E6;
-
-  --rose: #C4626A;
-  --rose-subtle: #FBF0F0;
-
+  /* Surfaces */
   --surface: #FFFFFF;
-  --surface-raised: #FBF8F3;
-  --line: #EDE7DF;
-  --line-subtle: #F5F0EA;
+  --surface-raised: #FAF7F2;
+  --surface-warm: #F5F0E8;
+  --line: #EBE3D9;
+  --line-subtle: #F3EDE5;
 
+  /* WhatsApp */
   --wa: #25d366;
-  --wa-hover: #1da851;
+  --wa-hover: #1aad56;
 
-  --accent: #C17D45;
-  --accent-light: #E8C9A4;
+  /* Accent */
+  --accent: #C0803F;
+  --accent-light: #E8C59A;
+
+  /* Shadows — soft, warm */
+  --shadow-sm: 0 1px 3px rgba(26,18,13,.04), 0 1px 2px rgba(26,18,13,.02);
+  --shadow-md: 0 4px 16px rgba(26,18,13,.06), 0 2px 6px rgba(26,18,13,.03);
+  --shadow-lg: 0 12px 40px rgba(26,18,13,.07), 0 4px 12px rgba(26,18,13,.03);
+  --shadow-xl: 0 24px 64px rgba(26,18,13,.08), 0 8px 24px rgba(26,18,13,.04);
+  --shadow-brand: 0 8px 32px rgba(176,99,45,.15);
+  --shadow-wa: 0 8px 32px rgba(37,211,102,.15);
+
+  /* Radius */
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+  --r-full: 9999px;
 }
 
 @theme inline {
@@ -59,6 +79,7 @@
   --color-rose-subtle: var(--rose-subtle);
   --color-surface: var(--surface);
   --color-surface-raised: var(--surface-raised);
+  --color-surface-warm: var(--surface-warm);
   --color-line: var(--line);
   --color-line-subtle: var(--line-subtle);
   --color-wa: var(--wa);
@@ -76,10 +97,8 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
   overscroll-behavior-y: none;
   overflow-x: hidden;
-  hanging-punctuation: first last;
 }
 
 /* Change 4: improved body typography */
@@ -90,9 +109,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
-  line-height: 1.65;
+  line-height: 1.7;
   overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
   text-rendering: optimizeLegibility;
 }
 
@@ -107,32 +125,53 @@ img {
 
 /* ═══════ Typography ═══════ */
 
-/* Change 7: improved serif with optical sizing */
+/* Refined serif with optical sizing */
 .f-serif {
   font-family: var(--font-serif);
-  letter-spacing: -0.015em;
+  letter-spacing: -0.018em;
   font-optical-sizing: auto;
 }
 
-/* Change 8: richer gradient text */
+/* Section label — uppercase eyebrow text */
+.eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brand);
+}
+
+/* Animated gradient text — slow color-wave */
+@keyframes grad-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
 .text-grad {
-  background: linear-gradient(135deg, var(--brand) 0%, #D4935A 40%, var(--gold) 100%);
+  background: linear-gradient(135deg, var(--brand) 0%, #CC894C 30%, var(--gold) 55%, #CC894C 80%, var(--brand) 100%);
+  background-size: 250% 100%;
+  animation: grad-shift 7s ease-in-out infinite;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .text-grad-green {
-  background: linear-gradient(135deg, var(--wa) 0%, #1da851 100%);
+  background: linear-gradient(135deg, var(--wa) 0%, #1aad56 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
+/* Subtle ruled line divider */
+.rule-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--line) 20%, var(--line) 80%, transparent 100%);
+}
+
 /* ═══════ Animations ═══════ */
 
 /* Change 9: smoother animation curves */
-@keyframes up { from { opacity:0; transform:translateY(24px) } to { opacity:1; transform:translateY(0) } }
+@keyframes up { from { opacity:0; transform:translateY(16px) } to { opacity:1; transform:translateY(0) } }
 @keyframes fade { from { opacity:0 } to { opacity:1 } }
 @keyframes scl { from { opacity:0; transform:scale(.94) } to { opacity:1; transform:scale(1) } }
 @keyframes slideR { from { opacity:0; transform:translateX(28px) } to { opacity:1; transform:translateX(0) } }
@@ -147,9 +186,9 @@ img {
 /* Change 12: new slide-up-fade for sections */
 @keyframes slide-up-fade { from { opacity:0; transform:translateY(16px) } to { opacity:1; transform:translateY(0) } }
 
-.a-up { animation: up .65s cubic-bezier(.22,1,.36,1) forwards; }
-.a-fade { animation: fade .5s ease forwards; }
-.a-scl { animation: scl .45s ease forwards; }
+.a-up { animation: up .7s cubic-bezier(.22,1,.36,1) forwards; }
+.a-fade { animation: fade .6s ease forwards; }
+.a-scl { animation: scl .5s ease forwards; }
 .a-sr { animation: slideR .65s cubic-bezier(.22,1,.36,1) forwards; }
 .a-sl { animation: slideL .65s cubic-bezier(.22,1,.36,1) forwards; }
 .a-glow { animation: glow 2.2s ease-in-out infinite; }
@@ -167,6 +206,12 @@ img {
 .d6 { animation-delay:.48s; opacity:0 }
 .d7 { animation-delay:.56s; opacity:0 }
 
+/* Soften all ping animations — less aggressive, warmer feel */
+.animate-ping {
+  animation-duration: 2s !important;
+  opacity: 0.25 !important;
+}
+
 .progress-bar { transition: width .4s cubic-bezier(.22,1,.36,1); }
 
 /* ═══════ Components ═══════ */
@@ -174,27 +219,31 @@ img {
 /* Change 15: improved quiz option interaction */
 .q-opt {
   position: relative;
-  transition: border-color .2s ease, box-shadow .2s ease, transform .15s ease, background-color .2s ease;
+  transition: border-color .2s ease, box-shadow .2s ease, transform .2s cubic-bezier(.22,1,.36,1), background-color .2s ease, opacity .2s ease;
 }
-.q-opt:hover {
-  border-color: var(--brand);
-  box-shadow: 0 0 0 1px var(--brand), 0 4px 20px rgba(178,106,53,.1);
-  background-color: var(--surface-raised);
+.q-opt:not([class*="border-wa"]):hover {
+  border-color: rgba(176,99,45,.35);
+  box-shadow: 0 2px 16px rgba(176,99,45,.08);
+  background-color: var(--brand-subtle);
 }
 .q-opt:active { transform: scale(.985); }
+/* Selected state */
+.q-opt[class*="border-wa"] {
+  box-shadow: 0 2px 20px rgba(37,211,102,.12), 0 0 0 3px rgba(37,211,102,.08);
+}
 
-/* Change 16: better button hover with GPU acceleration */
+/* Button hover with GPU acceleration */
 button[class*="bg-brand"], a[class*="bg-brand"], a[class*="bg-wa"] {
-  transition: all .25s cubic-bezier(.22,1,.36,1);
+  transition: all .3s cubic-bezier(.22,1,.36,1);
   will-change: transform;
 }
 button[class*="bg-brand"]:hover, a[class*="bg-brand"]:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(178,106,53,.25);
+  box-shadow: var(--shadow-brand);
 }
 a[class*="bg-wa"]:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(37,211,102,.25);
+  box-shadow: var(--shadow-wa);
 }
 
 /* Change 17: improved image zoom with GPU hint */
@@ -220,23 +269,36 @@ a[class*="bg-wa"]:hover {
 @keyframes pageIn { from { opacity: 0 } to { opacity: 1 } }
 body { animation: pageIn .35s ease forwards; }
 
-/* Change 22: enhanced card hover */
+/* Enhanced card hover */
 .card-hover {
-  transition: border-color .3s ease, box-shadow .3s ease, transform .3s ease;
+  transition: border-color .35s ease, box-shadow .35s ease, transform .35s cubic-bezier(.22,1,.36,1);
 }
 .card-hover:hover {
   border-color: var(--brand-muted);
-  box-shadow: 0 8px 32px rgba(178,106,53,.08);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+
+/* Premium card — richer shadow + subtle inner glow */
+.premium-card {
+  background: var(--surface);
+  border: 1px solid var(--line-subtle);
+  box-shadow: var(--shadow-sm);
+  transition: border-color .3s ease, box-shadow .35s cubic-bezier(.22,1,.36,1), transform .35s cubic-bezier(.22,1,.36,1);
+}
+.premium-card:hover {
+  border-color: var(--brand-muted);
+  box-shadow: var(--shadow-lg);
   transform: translateY(-3px);
 }
 
-/* Change 23: improved glass effect */
+/* Improved glass effect */
 .glass {
-  background: rgba(255,255,255,.75);
-  backdrop-filter: blur(20px) saturate(1.2);
-  -webkit-backdrop-filter: blur(20px) saturate(1.2);
-  border: 1px solid rgba(237,231,223,.5);
-  box-shadow: 0 4px 16px rgba(0,0,0,.04);
+  background: rgba(255,255,255,.82);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  backdrop-filter: blur(24px) saturate(1.4);
+  border: 1px solid rgba(235,227,217,.6);
+  box-shadow: 0 2px 16px rgba(26,18,13,.05), 0 0 0 0.5px rgba(255,255,255,.6) inset;
 }
 
 /* Change 24: smoother row hover */
@@ -255,10 +317,10 @@ body { animation: pageIn .35s ease forwards; }
   content: ''; position: absolute; inset: 0;
   border-radius: inherit; padding: 1px;
   background: linear-gradient(135deg, var(--brand), var(--gold), var(--brand));
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
   pointer-events: none;
 }
 
@@ -281,21 +343,22 @@ body { animation: pageIn .35s ease forwards; }
   animation: shimmer 3s ease-in-out infinite;
 }
 
-/* Change 29: step number circle */
+/* Step number circle */
 .step-num {
-  width: 40px; height: 40px;
+  width: 44px; height: 44px;
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  font-weight: 700; font-size: 14px;
-  background: var(--brand);
+  font-weight: 700; font-size: 15px;
+  background: linear-gradient(135deg, var(--brand), var(--accent));
   color: white;
   flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(176,99,45,.25);
 }
 
-/* Change 30: connector line between steps */
+/* Connector line between steps */
 .step-line {
   width: 2px;
-  background: linear-gradient(180deg, var(--brand) 0%, var(--line) 100%);
+  background: linear-gradient(180deg, var(--brand-muted) 0%, transparent 100%);
   flex-shrink: 0;
 }
 
@@ -372,13 +435,13 @@ button, a, [role="button"] { min-height:44px }
 }
 .marquee-track:hover { animation-play-state: paused; }
 
-/* Subtle noise texture for dark sections */
+/* Subtle noise texture for dark sections — soft grain */
 .noise::after {
   content: '';
   position: absolute;
   inset: 0;
-  opacity: 0.015;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.006;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   pointer-events: none;
   mix-blend-mode: overlay;
 }
@@ -386,6 +449,239 @@ button, a, [role="button"] { min-height:44px }
 /* Certificate hover glow */
 .cert-glow { transition: box-shadow .3s ease, border-color .3s ease; }
 .cert-glow:hover { box-shadow: 0 4px 20px rgba(184,149,46,.15); border-color: rgba(184,149,46,.3); }
+
+/* Confetti celebration for quiz completion */
+@keyframes confetti-fall {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+@keyframes confetti-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+}
+.confetti-piece {
+  position: fixed;
+  top: -10px;
+  z-index: 60;
+  width: 8px;
+  height: 14px;
+  border-radius: 2px;
+  animation: confetti-fall 3.5s cubic-bezier(.23,1,.32,1) forwards, confetti-shake 0.8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Celebration glow ring */
+@keyframes celebrate-ring {
+  0% { transform: scale(0.8); opacity: 0; box-shadow: 0 0 0 0 rgba(37,211,102,.4); }
+  50% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 20px rgba(37,211,102,0); }
+  100% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+}
+.celebrate-ring { animation: celebrate-ring 1s ease-out; }
+
+/* Animated gradient border */
+@keyframes gradient-rotate {
+  0% { --gradient-angle: 0deg; }
+  100% { --gradient-angle: 360deg; }
+}
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+.gradient-border-animated {
+  position: relative;
+}
+.gradient-border-animated::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: conic-gradient(from var(--gradient-angle), var(--brand), var(--gold), var(--wa), var(--brand));
+  animation: gradient-rotate 4s linear infinite;
+  z-index: -1;
+}
+
+/* WhatsApp typing indicator */
+@keyframes typing-dot {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-4px); opacity: 1; }
+}
+.typing-dot { animation: typing-dot 1.4s ease-in-out infinite; }
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+/* Stage transition */
+@keyframes stage-enter {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.stage-enter {
+  animation: stage-enter 0.4s cubic-bezier(.22,1,.36,1) forwards;
+}
+
+/* Reading progress indicator — animated shimmer chase */
+@keyframes progress-shimmer {
+  0% { background-position: 0% 0; }
+  100% { background-position: 200% 0; }
+}
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2.5px;
+  background: linear-gradient(90deg, var(--brand), var(--gold), var(--wa), var(--brand));
+  background-size: 200% 100%;
+  animation: progress-shimmer 3s linear infinite;
+  z-index: 100;
+  transition: width 0.1s linear;
+  pointer-events: none;
+  box-shadow: 0 1px 10px rgba(176,99,45,.35), 0 0 4px rgba(37,211,102,.2);
+}
+
+/* Safe area padding helpers */
+.safe-top { padding-top: env(safe-area-inset-top); }
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+
+/* Hero h1 text shadow */
+.hero-h1 { text-shadow: 0 1px 2px rgba(0,0,0,0.04); }
+
+/* Stats bar deep shadow */
+.stats-bar { box-shadow: 0 20px 60px rgba(26,18,13,.18); }
+
+/* Step connector gradient */
+.step-connector {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 5%, rgba(176,99,45,.25) 25%, rgba(37,211,102,.2) 50%, rgba(86,103,58,.2) 75%, transparent 95%);
+}
+
+/* Float dots staggered delays */
+.float-d0 { animation-delay: 0s; }
+.float-d1 { animation-delay: 0.5s; }
+.float-d2 { animation-delay: 1s; }
+.float-d3 { animation-delay: 1.5s; }
+.float-d4 { animation-delay: 2s; }
+
+/* High-contrast label for data tables */
+.data-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--fg-4);
+}
+
+/* Inset highlight for featured items */
+.featured-highlight {
+  position: relative;
+  overflow: hidden;
+}
+.featured-highlight::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(176,99,45,.04) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Testimonial quote */
+.quote-pull {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--fg-2);
+  position: relative;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--brand-muted);
+}
+
+/* Hide scrollbar for Stories carousel */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Dark card header — Maraton program card */
+.bg-maraton-header { background: linear-gradient(135deg, #1A120D 0%, #2E1D10 60%, #1A120D 100%); }
+
+/* Trust strip dark bar */
+.bg-trust-strip { background: linear-gradient(90deg, #1A120D 0%, #2A1E15 50%, #1A120D 100%); }
+
+/* Seasonal spring banner */
+.bg-seasonal-spring { background: linear-gradient(90deg,#FEF2F5 0%,#F7FAF0 55%,#FDF5ED 100%); }
+.text-seasonal-spring { color: #b26070; }
+
+/* Instagram gradient ring */
+.ig-ring { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+
+/* Instagram follow button */
+.ig-btn { background: linear-gradient(45deg, #833AB4, #E1306C, #F77737); }
+
+/* Premium FAQ item — left accent on open with slide-in */
+@keyframes indicator-in {
+  from { transform: scaleY(0); transform-origin: top; opacity: 0; }
+  to { transform: scaleY(1); transform-origin: top; opacity: 1; }
+}
+.faq-open-indicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--brand), var(--gold));
+  border-radius: 0 2px 2px 0;
+  animation: indicator-in 0.3s cubic-bezier(.22,1,.36,1) forwards;
+}
+
+/* Pulse ring for WA-related elements */
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+.pulse-ring::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--wa);
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+/* Subtle inner glow for highlighted stat cards */
+.stat-highlight-glow {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 4px 16px rgba(176,99,45,.15);
+  animation: stat-pulse 4s ease-in-out infinite 2s;
+}
+@keyframes stat-pulse {
+  0%, 100% { box-shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 4px 16px rgba(176,99,45,.15); }
+  50% { box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 6px 24px rgba(176,99,45,.25), 0 0 0 3px rgba(176,99,45,.06); }
+}
+
+/* Hover lift for review cards — with left accent shadow */
+.review-card {
+  transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s ease, border-color .3s ease;
+}
+.review-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg), inset 3px 0 0 var(--brand-muted);
+}
+
+/* Chat input blinking cursor */
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+.cursor-blink::after {
+  content: '|';
+  color: #bbb;
+  animation: blink 1.2s step-end infinite;
+  margin-left: 1px;
+}
+
+/* Hover tint overlay for gallery items */
+.gallery-hover-tint {
+  transition: background-color .4s ease;
+}
+.gallery-hover-tint:hover {
+  background-color: rgba(176,99,45,.04);
+}
 
 /* Change 40: reduced motion */
 @media (prefers-reduced-motion:reduce) {

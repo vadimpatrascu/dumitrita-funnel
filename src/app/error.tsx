@@ -1,7 +1,24 @@
 "use client";
 
-/* Change 91: error page with WhatsApp fallback */
-export default function Error({ reset }: { error: Error; reset: () => void }) {
+import { useEffect, useState } from "react";
+
+/* Change 91: error page with WhatsApp fallback + auto-retry on mobile */
+export default function Error({ error, reset }: { error: Error; reset: () => void }) {
+  const [retrying, setRetrying] = useState(true);
+
+  // Auto-retry once on first error (handles mobile Safari hydration issues)
+  useEffect(() => {
+    const retried = sessionStorage.getItem("error_retried");
+    if (!retried) {
+      sessionStorage.setItem("error_retried", "1");
+      reset();
+      return;
+    }
+    setRetrying(false);
+  }, [reset]);
+
+  if (retrying) return null;
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-5 text-center">
       <div className="w-16 h-16 rounded-full bg-brand-subtle flex items-center justify-center mb-6">

@@ -11,8 +11,8 @@ const geistSans = Geist({
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 5,
-  userScalable: true,
+  maximumScale: 1,
+  userScalable: false,
   viewportFit: "cover",
   themeColor: "#B26A35",
 };
@@ -24,15 +24,15 @@ export const metadata: Metadata = {
     "Slăbire sănătoasă cu Doboș Dumitrița — Consultant Nutriție Generală acreditat AIPNSF (Nr. 598). Maratonul de Slăbit: plan alimentar personalizat, 136+ membri, rezultate documentate (-18.3 kg). Quiz gratuit + consultație pe WhatsApp.",
   keywords: ["nutriție","slăbire sănătoasă","plan alimentar personalizat","consultant nutriție","Dumitrița Doboș","AIPNSF","maratonul de slăbit","rețete sănătoase","nutriționist acreditat","dieta sănătoasă"],
   /* Change 84: canonical URL */
-  alternates: { canonical: "https://dumitrita-funnel.vercel.app" },
+  alternates: { canonical: "https://dumitritanutrition.online" },
   openGraph: {
     title: "Doboș Dumitrița — Consultant Nutriție Generală",
     description: "Slăbire sănătoasă cu plan alimentar personalizat. -18.3 kg documentat. Quiz gratuit + consultație WhatsApp.",
     type: "website",
     locale: "ro_RO",
-    url: "https://dumitrita-funnel.vercel.app",
+    url: "https://dumitritanutrition.online",
     siteName: "Doboș Dumitrița — Nutriție",
-    images: [{ url: "https://dumitrita-funnel.vercel.app/images/hero.jpg", width: 900, height: 1125, alt: "Doboș Dumitrița — Consultant Nutriție Generală acreditat AIPNSF" }],
+    images: [{ url: "https://dumitritanutrition.online/images/hero.jpg", width: 900, height: 1125, alt: "Doboș Dumitrița — Consultant Nutriție Generală acreditat AIPNSF" }],
   },
   /* Change 85: better twitter card */
   twitter: { card: "summary_large_image", title: "Doboș Dumitrița — Nutriție Acreditată AIPNSF", description: "Plan alimentar personalizat + Maratonul de Slăbit. Quiz gratuit, consultație pe WhatsApp." },
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ro">
+    <html lang="ro" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="32x32" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -53,7 +53,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://wa.me" />
         <link rel="dns-prefetch" href="https://instagram.com" />
-        <link rel="manifest" href="/manifest.json" />
         {/* Change 87: preload hero image for LCP */}
         <link rel="preload" as="image" href="/images/hero.jpg" />
       </head>
@@ -79,8 +78,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               "@context":"https://schema.org","@type":"HealthAndBeautyBusiness",
               name:"Doboș Dumitrița — Consultant Nutriție Generală",
               description:"Consultant Nutriție Generală acreditat AIPNSF. Planuri alimentare personalizate, Maratonul de Slăbit și rețete sănătoase. 16.7K followers pe Instagram.",
-              url:"https://dumitrita-funnel.vercel.app",
-              image:"https://dumitrita-funnel.vercel.app/images/hero.jpg",
+              url:"https://dumitritanutrition.online",
+              image:"https://dumitritanutrition.online/images/hero.jpg",
               sameAs:["https://instagram.com/dobos_dumitrita","https://www.threads.com/@dobos_dumitrita"],
               hasCredential:{"@type":"EducationalOccupationalCredential",credentialCategory:"Aviz Liberă Practică",recognizedBy:{"@type":"Organization",name:"AIPNSF"}},
               aggregateRating:{"@type":"AggregateRating",ratingValue:"5",reviewCount:"2",bestRating:"5"},
@@ -107,6 +106,34 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                   acceptedAnswer:{"@type":"Answer",text:"Cea mai documentată transformare: -18.3 kg, -16 cm talie, -18 cm bust, de la 99.8 la 81.5 kg."}
                 },
               ]
+            }),
+          }}
+        />
+        {/* Course schema for Maratonul de Slăbit */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context":"https://schema.org","@type":"Course",
+              name:"Maratonul de Slăbit",
+              description:"Program de grup pentru slăbire sănătoasă cu plan alimentar personalizat, rețete săptămânale și suport zilnic prin WhatsApp.",
+              provider:{"@type":"Person",name:"Doboș Dumitrița",url:"https://instagram.com/dobos_dumitrita"},
+              hasCourseInstance:{"@type":"CourseInstance",courseMode:"online",courseWorkload:"PT4W",instructor:{"@type":"Person",name:"Doboș Dumitrița"}},
+            }),
+          }}
+        />
+        {/* Person schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context":"https://schema.org","@type":"Person",
+              name:"Doboș Dumitrița",
+              jobTitle:"Consultant Nutriție Generală",
+              url:"https://dumitritanutrition.online",
+              sameAs:["https://instagram.com/dobos_dumitrita","https://www.threads.com/@dobos_dumitrita"],
+              knowsAbout:["Nutriție","Plan alimentar","Slăbire sănătoasă","Alimentație echilibrată"],
+              hasCredential:{"@type":"EducationalOccupationalCredential",credentialCategory:"Aviz Liberă Practică",recognizedBy:{"@type":"Organization",name:"AIPNSF"},identifier:"Nr. 598"},
             }),
           }}
         />
