@@ -484,7 +484,7 @@ function Maraton({go}:{go:()=>void}) {
                   ))}
                 </div>
                 <a href={`https://wa.me/${WA}?text=${encodeURIComponent("Bună! Vreau să mă înscriu la Maratonul de Slăbit. 🙏")}`} target="_blank" rel="noopener noreferrer" className="w-full bg-wa hover:bg-wa-hover text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 text-sm transition-all shadow-md hover:shadow-lg mt-1">
-                  <WaIco c="w-4 h-4"/> Înscrie-te acum
+                  <WaIco c="w-4 h-4"/> Rezervă-ți locul acum
                 </a>
               </div>
             </div>
