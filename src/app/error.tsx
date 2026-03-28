@@ -1,21 +1,43 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 /* Change 91: error page with WhatsApp fallback + auto-retry on mobile */
 export default function Error({ error, reset }: { error: Error; reset: () => void }) {
   const [retrying, setRetrying] = useState(true);
+  const retryCount = useRef(0);
 
-  // Auto-retry once on first error (handles mobile Safari hydration issues)
+  // Auto-retry up to 2 times (handles hydration issues and transient errors)
   useEffect(() => {
-    const retried = sessionStorage.getItem("error_retried");
-    if (!retried) {
-      sessionStorage.setItem("error_retried", "1");
-      reset();
-      return;
+    try {
+      const retriedStr = sessionStorage.getItem("error_retried") || "0";
+      const retried = parseInt(retriedStr, 10);
+      if (retried < 2) {
+        sessionStorage.setItem("error_retried", String(retried + 1));
+        retryCount.current = retried + 1;
+        // Small delay before retry to let resources load
+        const t = setTimeout(() => reset(), retried === 0 ? 100 : 500);
+        return () => clearTimeout(t);
+      }
+      setRetrying(false);
+    } catch {
+      // sessionStorage may not be available (private browsing, etc.)
+      if (retryCount.current < 2) {
+        retryCount.current++;
+        const t = setTimeout(() => reset(), 300);
+        return () => clearTimeout(t);
+      }
+      setRetrying(false);
     }
-    setRetrying(false);
   }, [reset]);
+
+  // Clear retry counter after 30s so future visits get fresh retries
+  useEffect(() => {
+    const t = setTimeout(() => {
+      try { sessionStorage.removeItem("error_retried"); } catch {}
+    }, 30000);
+    return () => clearTimeout(t);
+  }, []);
 
   if (retrying) return null;
 

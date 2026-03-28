@@ -12,6 +12,33 @@ import {
 /* ═══════ Types ═══════ */
 type Q = QuizQuestion;
 
+/* ═══════ Hydration-safe helpers ═══════ */
+/* Returns false during SSR/first render, true after hydration completes.
+   Prevents hydration mismatches from Math.random() and new Date(). */
+function useHydrated() {
+  const [h, setH] = useState(false);
+  useEffect(() => setH(true), []);
+  return h;
+}
+
+/* Returns current hour (8-22 range check) only after hydration */
+function useCurrentHour() {
+  const [hour, setHour] = useState(12); // safe default
+  useEffect(() => {
+    setHour(new Date().getHours());
+    const iv = setInterval(() => setHour(new Date().getHours()), 60000);
+    return () => clearInterval(iv);
+  }, []);
+  return hour;
+}
+
+/* Generates a random int only after mount (returns fallback during SSR) */
+function useRandomInt(min: number, max: number, fallback?: number) {
+  const [v, setV] = useState(fallback ?? min);
+  useEffect(() => setV(Math.floor(Math.random() * (max - min + 1)) + min), []);
+  return v;
+}
+
 /* Change 41: quiz options now have emoji icons */
 const quiz: Q[] = [
   { id:"goal", question:"Care este obiectivul tău principal?", sub:"Alege varianta care te descrie cel mai bine", opts:[
@@ -220,12 +247,22 @@ function Nav({stage,qi,qt,reset,go}:{stage:string;qi:number;qt:number;reset:()=>
 
 /* Hero — dramatic split with dark stats bar */
 function Hero({go}:{go:()=>void}) {
-  const [heroViewers,setHeroViewers]=useState(()=>Math.floor(Math.random()*15)+28);
-  const [quizNow,setQuizNow]=useState(()=>Math.floor(Math.random()*5)+3);
-  const [igCount,setIgCount]=useState(()=>16700+Math.floor(Math.random()*50));
-  const [heroMembers,setHeroMembers]=useState(()=>136+Math.floor(Math.random()*4));
-  const [heroRecipes,setHeroRecipes]=useState(()=>108+Math.floor(Math.random()*3));
-  const [heroConsultToday,setHeroConsultToday]=useState(()=>Math.floor(Math.random()*8)+11);
+  const hour = useCurrentHour();
+  const isOnline = hour >= 8 && hour <= 22;
+  const [heroViewers,setHeroViewers]=useState(35);
+  const [quizNow,setQuizNow]=useState(5);
+  const [igCount,setIgCount]=useState(16720);
+  const [heroMembers,setHeroMembers]=useState(137);
+  const [heroRecipes,setHeroRecipes]=useState(109);
+  const [heroConsultToday,setHeroConsultToday]=useState(14);
+  useEffect(()=>{
+    setHeroViewers(Math.floor(Math.random()*15)+28);
+    setQuizNow(Math.floor(Math.random()*5)+3);
+    setIgCount(16700+Math.floor(Math.random()*50));
+    setHeroMembers(136+Math.floor(Math.random()*4));
+    setHeroRecipes(108+Math.floor(Math.random()*3));
+    setHeroConsultToday(Math.floor(Math.random()*8)+11);
+  },[]);
   useEffect(()=>{const iv=setInterval(()=>setHeroConsultToday(n=>Math.random()>.65?n+1:n),26000);return()=>clearInterval(iv);},[]);
   /* Change 95: rotating recent plan recipients */
   const recentPlanners=[
@@ -233,15 +270,16 @@ function Hero({go}:{go:()=>void}) {
     {n:"Raluca",c:"Timișoara",t:"acum 15 min"},{n:"Ioana",c:"Chișinău",t:"acum 21 min"},
     {n:"Andreea",c:"Iași",t:"acum 27 min"},{n:"Natalia",c:"Bălți",t:"acum 32 min"},
   ];
-  const [recentPlanIdx,setRecentPlanIdx]=useState(()=>Math.floor(Math.random()*5));
+  const [recentPlanIdx,setRecentPlanIdx]=useState(0);
+  useEffect(()=>{setRecentPlanIdx(Math.floor(Math.random()*5))},[]);
   useEffect(()=>{const iv=setInterval(()=>setRecentPlanIdx(i=>(i+1)%recentPlanners.length),8500);return()=>clearInterval(iv);},[]);
   /* Change 131: quiz button trending badge */
   const [quizBadge,setQuizBadge]=useState(false);
   useEffect(()=>{const t=setTimeout(()=>setQuizBadge(true),5000);return()=>clearTimeout(t);},[]);
   /* Change 137: joined this hour */
-  const [heroJoinedHour]=useState(()=>Math.floor(Math.random()*4)+2);
+  const heroJoinedHour = useRandomInt(2, 5, 3);
   /* Change 176: quiz completions this week */
-  const [heroQuizWeek]=useState(()=>Math.floor(Math.random()*40)+120);
+  const heroQuizWeek = useRandomInt(120, 159, 135);
   useEffect(()=>{
     const iv1=setInterval(()=>{setQuizNow(n=>Math.max(2,Math.min(9,n+(Math.random()>.5?1:-1))));},9000);
     const iv2=setInterval(()=>{setHeroViewers(n=>Math.max(22,Math.min(55,n+(Math.random()>.5?Math.ceil(Math.random()*3):-Math.ceil(Math.random()*2)))));},11000);
@@ -345,7 +383,7 @@ function Hero({go}:{go:()=>void}) {
             <div className="a-up d4 flex flex-wrap items-center gap-2.5 text-[11px] text-fg-4 font-medium">
               {[
                 {t:"Consultație gratuită",ico:"💚",hover:"hover:border-wa/20 hover:bg-wa/5 hover:text-wa"},
-                {t:(new Date().getHours()>=8&&new Date().getHours()<=22)?"Răspuns în <2h":"Răspuns în 24h",ico:"⚡",hover:"hover:border-brand/20 hover:bg-brand-subtle/30 hover:text-brand"},
+                {t:isOnline?"Răspuns în <2h":"Răspuns în 24h",ico:"⚡",hover:"hover:border-brand/20 hover:bg-brand-subtle/30 hover:text-brand"},
                 {t:"Fără obligații",ico:"🤝",hover:"hover:border-olive/20 hover:bg-olive-subtle/30 hover:text-olive"},
               ].map((item,i)=>(
                 <span key={i} className={`flex items-center gap-1.5 px-3.5 py-2 rounded-full border border-line-subtle bg-surface/50 transition-all cursor-default group ${item.hover}`}>
@@ -451,21 +489,27 @@ function Hero({go}:{go:()=>void}) {
 function Credentials() {
   const {ref,v} = useVisible();
   const [zoom,setZoom]=useState<{src:string;alt:string}|null>(null);
-  const [verificari,setVerificari]=useState(()=>743+Math.floor(Math.random()*18));
-  const [certViewers,setCertViewers]=useState(()=>Math.floor(Math.random()*7)+4);
+  const [verificari,setVerificari]=useState(750);
+  const [certViewers,setCertViewers]=useState(7);
   /* Change 107: interactive verify */
   const [verifiedByMe,setVerifiedByMe]=useState(false);
   const [verifyFlash,setVerifyFlash]=useState(false);
   const lastVerifTimes = ["acum 3 min","acum 8 min","acum 14 min","acum 22 min","acum 31 min"];
-  const [lastVerifIdx,setLastVerifIdx]=useState(()=>Math.floor(Math.random()*5));
+  const [lastVerifIdx,setLastVerifIdx]=useState(0);
+  useEffect(()=>{
+    setVerificari(743+Math.floor(Math.random()*18));
+    setCertViewers(Math.floor(Math.random()*7)+4);
+    setLastVerifIdx(Math.floor(Math.random()*5));
+  },[]);
   useEffect(()=>{const iv=setInterval(()=>setVerificari(n=>Math.random()>.7?n+1:n),25000);return()=>clearInterval(iv);},[]);
   useEffect(()=>{const iv=setInterval(()=>setCertViewers(n=>Math.max(3,Math.min(16,n+(Math.random()>.5?1:-1)))),17000);return()=>clearInterval(iv);},[]);
   useEffect(()=>{const iv=setInterval(()=>setLastVerifIdx(i=>(i+1)%lastVerifTimes.length),35000);return()=>clearInterval(iv);},[]);
   /* Change 126: cert views this week */
-  const [certViewsWeek,setCertViewsWeek]=useState(()=>Math.floor(Math.random()*30)+88);
+  const [certViewsWeek,setCertViewsWeek]=useState(100);
   /* Change 178: verifications today */
-  const [cVerifToday,setCVerifToday]=useState(()=>Math.floor(Math.random()*8)+14);
+  const [cVerifToday,setCVerifToday]=useState(18);
 
+  useEffect(()=>{setCertViewsWeek(Math.floor(Math.random()*30)+88);setCVerifToday(Math.floor(Math.random()*8)+14);},[]);
   useEffect(()=>{const iv=setInterval(()=>setCertViewsWeek(n=>Math.random()>.65?n+1:n),28000);return()=>clearInterval(iv);},[]);
   useEffect(()=>{const iv=setInterval(()=>setCVerifToday(n=>Math.random()>.7?n+1:n),32000);return()=>clearInterval(iv);},[]);
   return (<>
@@ -611,33 +655,49 @@ function Credentials() {
 /* About with grapefruit photo */
 function About() {
   const {ref,v} = useVisible();
-  const [viewers,setViewers]=useState(()=>Math.floor(Math.random()*12)+8);
+  const [viewers,setViewers]=useState(12);
   const joinTimes = ["acum 1h","acum 2h","acum 4h","acum 6h","ieri seară"];
-  const [lastJoinIdx,setLastJoinIdx] = useState(()=>Math.floor(Math.random()*5));
-  const [igFollowers,setIgFollowers]=useState(()=>16700+Math.floor(Math.random()*50));
-  const [aboutMembers,setAboutMembers]=useState(()=>136+Math.floor(Math.random()*4));
-  const [aboutViewsToday,setAboutViewsToday]=useState(()=>68+Math.floor(Math.random()*14));
+  const [lastJoinIdx,setLastJoinIdx] = useState(0);
+  const [igFollowers,setIgFollowers]=useState(16720);
+  const [aboutMembers,setAboutMembers]=useState(137);
+  const [aboutViewsToday,setAboutViewsToday]=useState(75);
   /* Change 151: questions answered today */
-  const [questionsAnswered,setQuestionsAnswered]=useState(()=>Math.floor(Math.random()*12)+8);
+  const [questionsAnswered,setQuestionsAnswered]=useState(12);
   /* Change 152: satisfaction score shown in About header */
-  const [satisfactionScore]=useState(()=>parseFloat((4.7+Math.random()*0.3).toFixed(1)));
+  const [satisfactionScore,setSatisfactionScore]=useState(4.8);
   /* Change 168: consultation availability in days */
-  const [consultAvailDays]=useState(()=>Math.floor(Math.random()*3)+1);
+  const [consultAvailDays,setConsultAvailDays]=useState(2);
   /* Change 173: profile recommended count */
-  const [aboutRecommended]=useState(()=>Math.floor(Math.random()*8)+14);
+  const [aboutRecommended,setAboutRecommended]=useState(18);
   /* Change 187: IG referrals this week */
-  const [aboutIgReferrals]=useState(()=>Math.floor(Math.random()*25)+65);
+  const [aboutIgReferrals,setAboutIgReferrals]=useState(78);
+  useEffect(()=>{
+    setViewers(Math.floor(Math.random()*12)+8);
+    setLastJoinIdx(Math.floor(Math.random()*5));
+    setIgFollowers(16700+Math.floor(Math.random()*50));
+    setAboutMembers(136+Math.floor(Math.random()*4));
+    setAboutViewsToday(68+Math.floor(Math.random()*14));
+    setQuestionsAnswered(Math.floor(Math.random()*12)+8);
+    setSatisfactionScore(parseFloat((4.7+Math.random()*0.3).toFixed(1)));
+    setConsultAvailDays(Math.floor(Math.random()*3)+1);
+    setAboutRecommended(Math.floor(Math.random()*8)+14);
+    setAboutIgReferrals(Math.floor(Math.random()*25)+65);
+  },[]);
   useEffect(()=>{const iv=setInterval(()=>setQuestionsAnswered(n=>Math.random()>.6?n+1:n),30000);return()=>clearInterval(iv);},[]);
   /* Change 108: bookmarked indicator */
   const [bookmarked,setBookmarked]=useState(false);
-  const [bookmarkCount,setBookmarkCount]=useState(()=>Math.floor(Math.random()*18)+34);
+  const [bookmarkCount,setBookmarkCount]=useState(42);
   /* Change 97: rotating recently joined */
   const recentJoined=[
     {n:"Simona",c:"Oradea",t:"acum 2h"},{n:"Cristina",c:"Chișinău",t:"acum 5h"},
     {n:"Alina",c:"Iași",t:"ieri seară"},{n:"Maria",c:"București",t:"acum 3h"},
     {n:"Elena",c:"Cahul",t:"acum 7h"},{n:"Iulia",c:"Cluj",t:"acum 4h"},
   ];
-  const [recentJoinedIdx,setRecentJoinedIdx]=useState(()=>Math.floor(Math.random()*5));
+  const [recentJoinedIdx,setRecentJoinedIdx]=useState(0);
+  useEffect(()=>{
+    setBookmarkCount(Math.floor(Math.random()*18)+34);
+    setRecentJoinedIdx(Math.floor(Math.random()*5));
+  },[]);
   useEffect(()=>{
     const iv1=setInterval(()=>{setViewers(n=>Math.max(6,Math.min(25,n+(Math.random()>.5?1:-1))))},9000);
     const iv2=setInterval(()=>setIgFollowers(n=>Math.random()>.75?n+1:n),40000);
@@ -4335,6 +4395,7 @@ function FloatWA() {
 /* ═══════ PAGE ═══════ */
 /* Change 81: added HowItWorks section to page flow */
 export default function Home() {
+  const hydrated = useHydrated();
   const [stage,setStage] = useState<"hero"|"quiz"|"done">("hero");
   const [qi,setQi] = useState(0);
   const [ans,setAns] = useState<Record<string,string>>({});
@@ -4351,6 +4412,20 @@ export default function Home() {
   },[qi,ans]);
   const back = useCallback(()=>{if(qi>0) setQi(qi-1); else setStage("hero")},[qi]);
   const reset = useCallback(()=>{setStage("hero");setQi(0);setAns({});scrollTo({top:0,behavior:"smooth"})},[]);
+
+  /* Show branded loading screen during SSR/hydration to prevent mismatch */
+  if (!hydrated) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-bg">
+        <div className="relative">
+          <div className="w-16 h-16 rounded-full border-[3px] border-brand/20 border-t-brand animate-spin"/>
+          <div className="absolute inset-0 w-16 h-16 rounded-full border-[3px] border-transparent border-b-gold/30 animate-spin" style={{animationDirection:"reverse",animationDuration:"1.5s"}}/>
+        </div>
+        <p className="mt-5 f-serif text-lg text-fg-3">Doboș Dumitrița</p>
+        <p className="text-[11px] text-fg-5 mt-1">Consultant Nutriție Generală</p>
+      </div>
+    );
+  }
 
   return (
     <div id="main-content" className="min-h-screen flex flex-col">
